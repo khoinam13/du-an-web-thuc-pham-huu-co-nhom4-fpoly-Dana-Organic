@@ -1,0 +1,28 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.text{
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    color: #111111d9;
+    font-weight: 700;
+}
+.textlogin{
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    color: #3c6;
+    text-decoration: none;
+   
+}
+.textbutton{
+   color: #3c6;
+   border-radius: 999px;
+   border-color: #3c6;
+     height: 45px;
+}
+.textlogin:hover{
+    color: #fff;
+}
+.textbutton:hover{
+    background-color: #3c6;
+
+}
