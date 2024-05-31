@@ -3,7 +3,7 @@ import  "./Foodter.css"
 
 export default function index() {
   return (
-    <div></div>
+    <div>2</div>
   )
 }
 
