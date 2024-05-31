@@ -1,5 +1,4 @@
 import './Heading.css'
-
 function Heading(){
     return(
         <div>
