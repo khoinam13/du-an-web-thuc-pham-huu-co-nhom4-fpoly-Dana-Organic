@@ -3,7 +3,7 @@ import './Heading.css'
 function Heading(){
     return(
         <div>
-         <nav className="navbar bg-body-tertiary">
+         <nav className="navbar bg-body-tertiary navbar-expand-lg bg-body-tertiary">
             <div className="container" >
                     <div>
                   
@@ -16,7 +16,7 @@ function Heading(){
                          <ul className="nav justify-content-center">
                         <li className="nav-item">
                    
-                            <Link className="nav-link text" aria-current="page" to="/contact">Trang chủ</Link>
+                            <Link className="nav-link text" aria-current="page" to="/">Trang chủ</Link>
                            
                         </li>
                         <li className="nav-item">
@@ -38,7 +38,7 @@ function Heading(){
                     </div>
                     <div >
                           <button className="textbutton">
-                          <a href="" classNameName='textlogin'> Đăng nhập/Đăng kí</a>
+                          <a href="" className='textlogin'> Đăng nhập/Đăng kí</a>
                           </button>
                           <button className="textbutton">
                           <a href="https://bitas.com.vn/lib/pic/giohang2.png" className="textlogin">Giỏ Hàng</a>
