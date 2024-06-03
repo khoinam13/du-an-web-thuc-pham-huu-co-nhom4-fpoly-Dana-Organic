@@ -25,7 +25,7 @@ export default function Main() {
         <Route path='/product' element={<Product/>}/>
     </Routes>
 
-    <div className='home-module'>
+    {/* <div className='home-module'>
         <div className='home-module__wrap'>
           <div className='home-module__item'>
             <h2 className='home-module__heading'>ĐĂNG NHẬP</h2>
@@ -39,11 +39,11 @@ export default function Main() {
               <button className='home-module__submit'>ĐĂNG NHẬP</button>
             </form>
             <Link className='home-module__forget' to={'/'}>Quên mật khẩu</Link>
-          </div>
+          </div> */}
 
           {/* đăng kí */}
 
-          <div className='home-module__item'>
+          {/* <div className='home-module__item'>
             <h2 className='home-module__heading'>ĐĂNG KÝ</h2>
             <form>
               <label htmlFor='register__name' className='home-module__lable'>Địa chỉ email *</label>
@@ -56,7 +56,7 @@ export default function Main() {
             </form>
           </div>
         </div>
-    </div>
+    </div> */}
     </>
   )
 }
