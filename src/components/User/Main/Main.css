@@ -1,0 +1,39 @@
+.home-module{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home-module__wrap{
+    background-color: #fff;
+    display: inline-flex;
+    min-width: 1075px;
+    padding: 28px 36px;
+}
+.home-module__item{
+    flex: 1;
+    font-weight: 500;
+}
+.home-module__heading{
+    font-size: 26px;
+}
+.home-module__lable{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.home-module__input{
+    width: calc(100% - 30px);
+    height: 38px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    
+}
+.home-module__forget{
+   
+}
