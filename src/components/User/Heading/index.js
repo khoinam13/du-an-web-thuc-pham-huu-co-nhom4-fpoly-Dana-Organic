@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import './Heading.css'
 function Heading(){
     return(
-        <div>
-         <nav className="navbar bg-body-tertiary navbar-expand-lg bg-body-tertiary">
+        <div >
+         <nav className="navbar bg-body-tertiary navbar-expand-lg bg-body-tertiary" style={{position:'fixed',zIndex:'1000',width:'100%'}}>
             <div className="container" >
                     <div>
                   
