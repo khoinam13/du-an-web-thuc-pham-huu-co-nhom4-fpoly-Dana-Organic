@@ -38,7 +38,7 @@ export default function Main() {
               <label htmlFor='login__memorize' className='home-module__lable'>Ghi nhớ mật khẩu</label>
               <button className='home-module__submit'>ĐĂNG NHẬP</button>
             </form>
-            <Link className='home-module__forget' to={'/'}>Quên mật khẩu</Link>
+            <Link className='home-module__forget' to={'/'}>Quên mật khẩu2</Link>
           </div>
 
           {/* đăng kí */}
