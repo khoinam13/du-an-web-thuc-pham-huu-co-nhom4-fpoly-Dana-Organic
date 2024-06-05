@@ -24,7 +24,7 @@ function Carousel(){
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
                     <div >
                         <center >
-                        <img height={'100%'} width={'200px'} src='https://png.pngtree.com/png-clipart/20200224/original/pngtree-delivery-truck-icon-png-image_5237472.jpg'/>
+                        <img style={{ }} height={'100%'} width={'200px'} src='https://png.pngtree.com/png-clipart/20200224/original/pngtree-delivery-truck-icon-png-image_5237472.jpg'/>
                         </center>
                     </div>
                     <div style={{textAlign:'center'}}>
@@ -50,7 +50,7 @@ function Carousel(){
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
                     <div >
                         <center >
-                        <img height={'100%'} width={'200px'} src='https://png.pngtree.com/element_our/png_detail/20190103/exchangecurrencyfinancemoneyconvert-glyph-icon--vector-i-png_310017.jpg'/>
+                        <img  height={'100%'} width={'200px'} src='https://png.pngtree.com/element_our/png_detail/20190103/exchangecurrencyfinancemoneyconvert-glyph-icon--vector-i-png_310017.jpg'/>
                         </center>
                     </div>
                     <div style={{textAlign:'center'}}>

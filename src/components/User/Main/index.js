@@ -1,31 +1,54 @@
-import React from 'react'
-import Home from './Home'
-import Cart from './Cart'
-import Contact from './Contact'
-import DetailProduct from './DetailProduct'
-import Introduce from './Introduce'
-import News from './News'
-import Product from './Product'
-import { Route, Routes } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import "./Main.css"
-export default function Main() {
-  return (
-    <>
+import React from 'react';
+import { createBrowserRouter } from "react-router-dom";
+import Home from './Home';
+import Cart from './Cart';
+import DetailProduct from './DetailProduct';
+import Introduce from './Introduce';
+import News from './News';
+import Product from './Product';
+import App from '../../../App';
 
-    {/* Định tuyến */}
+import "./Main.css";
 
-    <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/contact' element={<Contact/>}/>
-        <Route path='/detail-product' element={<DetailProduct/>}/>
-        <Route path='/introduce' element={<Introduce/>}/>
-        <Route path='/news' element={<News/>}/>
-        <Route path='/product' element={<Product/>}/>
-    </Routes>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/product",
+        element: <Product />,
+      },
+      {
+        path: "/news",
+        element: <News />,
+      },
+      {
+        path: "/introduce",
+        element: <Introduce />,
+      },
+      {
+        path: "/detail-product",
+        element: <DetailProduct />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+    ],
+  },
+  // {
+  //   path: "/admin",
+  //   element: <Admin />,
+  // },
+]);
 
-    {/* <div className='home-module'>
+// 
+  {/* <div className='home-module'>
         <div className='home-module__wrap'>
           <div className='home-module__item'>
             <h2 className='home-module__heading'>ĐĂNG NHẬP</h2>
@@ -38,8 +61,13 @@ export default function Main() {
               <label htmlFor='login__memorize' className='home-module__lable'>Ghi nhớ mật khẩu</label>
               <button className='home-module__submit'>ĐĂNG NHẬP</button>
             </form>
+<<<<<<< HEAD
+            <Link className='home-module__forget' to={'/'}>Quên mật khẩu2</Link>
+          </div>
+=======
             <Link className='home-module__forget' to={'/'}>Quên mật khẩu</Link>
           </div> */}
+         
 
           {/* đăng kí */}
 
@@ -57,6 +85,4 @@ export default function Main() {
           </div>
         </div>
     </div> */}
-    </>
-  )
-}
+export default router;
