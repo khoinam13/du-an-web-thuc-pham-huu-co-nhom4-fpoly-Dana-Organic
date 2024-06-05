@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import './Heading.css'
+import Module from './Module'
+import { handleToggle } from './Handle';
+import { useState } from "react";
 function Heading(){
+    const [isToggle, setIsToggle] = useState(false)
     return(
         <div >
          <nav className="navbar bg-body-tertiary navbar-expand-lg bg-body-tertiary" style={{position:'fixed',zIndex:'1000',width:'100%'}}>
@@ -37,8 +41,8 @@ function Heading(){
                             </form>
                     </div>
                     <div >
-                          <button className="textbutton">
-                          <a href="" className='textlogin'> Đăng nhập/Đăng kí</a>
+                          <button  onClick={()=> handleToggle(isToggle, setIsToggle)} className="textbutton">
+                          <Link to={'/'} className='textlogin'> Đăng nhập/Đăng kí</Link>
                           </button>
                           <button className="textbutton">
                           <a href="https://bitas.com.vn/lib/pic/giohang2.png" className="textlogin">Giỏ Hàng</a>
@@ -47,6 +51,7 @@ function Heading(){
                 
             </div>
             </nav>
+            <Module isToggle = {isToggle} setIsToggle = {setIsToggle} onToggle = {handleToggle}/>
         </div>
     )
 

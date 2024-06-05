@@ -6,9 +6,7 @@ function App() {
   return (
     <>
     <Heading/>
-      <Main>
-        
-      </Main>
+      <Main/>
     <Foodter/>
     </>
   );
