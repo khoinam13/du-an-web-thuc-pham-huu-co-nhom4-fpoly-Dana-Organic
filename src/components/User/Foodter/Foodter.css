@@ -1,16 +1,18 @@
 .footer{
-    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     gap: 30px;
-    margin-top: 3800px;
+    position: relative;
     background-color: #111111d9;
-    /* position: fixed; */
-    /* top: 4700px;  */
 }
-.text{
+h6{
+    font-weight: 600;
+    font-size: 20px;
+ 
+}
+.textt{
     color: white ;
+    font-weight: 600;
+    font-size: 20px;
 }
 .textul{
     text-decoration: none;

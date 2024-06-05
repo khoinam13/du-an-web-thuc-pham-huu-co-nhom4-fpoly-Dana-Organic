@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Module from './Module';
+import { handleToggle } from './Handle';
 import './Heading.css';
 
 function Heading() {
@@ -8,9 +10,9 @@ function Heading() {
     const handleClick = (path) => {
         setActiveLink(path);
     };
-
+    const [isToggle, setIsToggle] = useState(false)
     return (
-        <div>
+        <div style={{ position:'sticky',top:'0px',zIndex:'1000'}}>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
@@ -63,23 +65,24 @@ function Heading() {
                                 </Link>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search" style={{marginRight:'10px'}}>
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <form className="d-flex" role="search" style={{ marginRight:'10px', marginBottom:'10px',marginTop:'10px'}}>
+                            <input className="form-control me-2" type="search" placeholder={"Search"} aria-label="Search"/>
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
                         <div className="d-flex">
-                            <button className="textbutton">
-                                <Link to="/login" className="textlogin"> Đăng nhập/Đăng kí</Link>
+                            <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton">
+                                <Link to={'/'} className='textlogin'> Đăng nhập/Đăng kí</Link>
                             </button>
                             <button className="textbutton">
-                                <Link to="/cart" className="textlogin">Giỏ Hàng</Link>
+                                <a href="https://bitas.com.vn/lib/pic/giohang2.png" className="textlogin">Giỏ Hàng</a>
                             </button>
                         </div>
                     </div>
                 </div>
             </nav>
+            <Module isToggle={isToggle} setIsToggle={setIsToggle} onToggle={handleToggle} />
         </div>
-    );
+    )
 }
 
-export default Heading;
+export default Heading

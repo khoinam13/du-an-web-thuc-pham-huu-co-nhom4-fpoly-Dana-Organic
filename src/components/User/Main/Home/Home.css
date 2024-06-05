@@ -1,13 +1,13 @@
 .carousel{
     margin: 0 auto;
     width: 90%;
-    height: 600px;
     /* border: 1px solid red; */
     display: flex   ;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 .banner{
     margin: 0 auto;
