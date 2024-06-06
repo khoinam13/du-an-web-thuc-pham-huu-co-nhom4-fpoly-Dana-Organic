@@ -10,9 +10,9 @@ function Range(){
                     Khoảng giá
                 </h3>
                 <center>
-                <input type={'text'} style={{width:'40%'}} placeholder={'₫ TỪ'}/>
+                <input type={'text'} style={{width:'40%',border:' 3px solid #ebebeb',borderRadius:'6px'}} placeholder={'₫ TỪ'}/>
                 ------
-                <input type={'text'} style={{width:'40%'}} placeholder={'₫ ĐẾN'}/>
+                <input type={'text'} style={{width:'40%',border:' 3px solid #ebebeb',borderRadius:'6px'}} placeholder={'₫ ĐẾN'}/>
                 </center>
                 <center style={{ marginTop:'20px'}}>
                 <button type="button" className="btn btn-success"style={{backgroundColor:'#3c6 '}}> Áp dụng</button>

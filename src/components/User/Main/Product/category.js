@@ -15,7 +15,7 @@ function Category() {
     <div>
       <h3 className='h3'>Danh mục</h3>
       <div className="list-group">
-        <Link href="#" className={`list-group-item list-group-item-action ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
+        <Link to="/product/products" className={`list-group-item list-group-item-action ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
           Trái Cây
         </Link>
         <Link href="#" className={`list-group-item list-group-item-action ${activeIndex === 1 ? 'active' : ''}`} onClick={() => handleClick(1)}>

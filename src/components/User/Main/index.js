@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import Home from './Home';
@@ -7,8 +6,8 @@ import DetailProduct from './DetailProduct';
 import Introduce from './Introduce';
 import News from './News';
 import Product from './Product';
+import Products from './Product/product';
 import App from '../../../App';
-
 
 const router = createBrowserRouter([
   {
@@ -20,23 +19,29 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/product",
+        path: "product",
         element: <Product />,
+        children: [
+          {
+            path: "products",
+            element: <Products />,
+          }
+        ]
       },
       {
-        path: "/news",
+        path: "news",
         element: <News />,
       },
       {
-        path: "/introduce",
+        path: "introduce",
         element: <Introduce />,
       },
       {
-        path: "/detail-product",
+        path: "detail-product",
         element: <DetailProduct />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <Cart />,
       },
     ],
@@ -47,6 +52,4 @@ const router = createBrowserRouter([
   // },
 ]);
 
-
 export default router;
-

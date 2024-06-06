@@ -19,6 +19,7 @@ function Carousel(){
 
             </div>
         </div>
+        <marquee behavior="scroll" scrollamount="20"> 
         <div style={{width:' 1715px',justifyContent:'center',alignItems:'center',display:'flex',gap:'30px',flexWrap:'wrap'}}>   
             <div style={{ width:'340px'}} >
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
@@ -75,7 +76,7 @@ function Carousel(){
          
             
         </div>  
-         
+        </marquee>
             {/* sản phẩm mới  */}
                 <NewProduct/>
             <div style={{ width:'90%',display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'30px',}}>

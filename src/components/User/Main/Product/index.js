@@ -1,10 +1,10 @@
 import React from 'react'
 import './Product.css'
-import Products from './product'
+// import Products from './product'
 import Category from './category'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Filter from './filterproduct';
-
+import { Outlet } from 'react-router-dom';
 
 
 export default function Product() {
@@ -18,7 +18,8 @@ export default function Product() {
           <Category />
         </div>
         <div className="col-12 col-md-9">
-          <Products />
+          {/* <Products /> */}
+          <Outlet />
         </div>
       </div>
     </div>

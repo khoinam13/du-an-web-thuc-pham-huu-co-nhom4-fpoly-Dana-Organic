@@ -38,7 +38,7 @@ function Heading() {
                                 <Link
                                     className={`text ${activeLink === '/san-pham' ? 'active' : ''}`}
                                     style={{ color: activeLink === '/san-pham' ? '#111111d9' : '#666666d9' }}
-                                    to="/product"
+                                    to="/product/products"
                                     onClick={() => handleClick('/san-pham')}
                                 >
                                     Sản Phẩm
