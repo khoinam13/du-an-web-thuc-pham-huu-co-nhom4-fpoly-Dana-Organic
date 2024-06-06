@@ -37,7 +37,7 @@ function Carousel(){
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
                     <div >
                         <center >
-                        <img height={'100%'} width={'200px'} src='https://png.pngtree.com/png-clipart/20230928/original/pngtree-headset-icon-for-customer-support-gaming-and-streaming-vector-png-image_12898883.png'/>
+                        <img style={{filter: 'hue-rotate(120deg)' }} height={'100%'} width={'200px'} src='https://png.pngtree.com/png-clipart/20230928/original/pngtree-headset-icon-for-customer-support-gaming-and-streaming-vector-png-image_12898883.png'/>
                         </center>
                     </div>
                     <div style={{textAlign:'center'}}>

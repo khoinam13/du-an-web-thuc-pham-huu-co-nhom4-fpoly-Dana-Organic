@@ -12,16 +12,16 @@ function Heading() {
     };
     const [isToggle, setIsToggle] = useState(false)
     return (
-        <div style={{ position:'sticky',top:'0px',zIndex:'1000'}}>
+        <div style={{ position:'sticky',top:'0px',zIndex:'1000', }}>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container">
-                    <Link className="navbar-brand" to="/">
+                <div className="container "  >
+                    <Link className="navbar-brand " to="/" style={{width:'200px'}}> 
                         <img src="https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/lg.png" alt="Logo" width="178" height="83" className="d-inline-block align-text-top" />
                     </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
+                    <div className="collapse navbar-collapse" id="navbarNav" >
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link
@@ -54,12 +54,22 @@ function Heading() {
                                     Tin Tức
                                 </Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link
                                     className={`text ${activeLink === '/gioi-thieu' ? 'active' : ''}`}
                                     style={{ color: activeLink === '/gioi-thieu' ? '#111111d9' : '#666666d9' }}
                                     to="/gioi-thieu"
                                     onClick={() => handleClick('/gioi-thieu')}
+                                >
+                                    Giới thiệu
+                                </Link>
+                            </li> */}
+                            <li className="nav-item">
+                                <Link
+                                    className={`text ${activeLink === '/detail-product' ? 'active' : ''}`}
+                                    style={{ color: activeLink === '/detail-product' ? '#111111d9' : '#666666d9' }}
+                                    to="/detail-product"
+                                    onClick={() => handleClick('/detail-product')}
                                 >
                                     Giới thiệu
                                 </Link>
