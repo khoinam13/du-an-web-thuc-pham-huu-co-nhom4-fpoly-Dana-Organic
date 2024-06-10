@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Module from './Module';
 import { handleToggle } from './Handle';
 import './Heading.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Heading() {
     const [activeLink, setActiveLink] = useState('/');
@@ -70,7 +71,7 @@ function Heading() {
                                     style={{ color: activeLink === '/detail-product' ? '#111111d9' : '#666666d9' }}
                                     to="/detail-product"
                                     onClick={() => handleClick('/detail-product')}
-                                >
+                                >y
                                     Giới thiệu
                                 </Link>
                             </li>
@@ -79,12 +80,13 @@ function Heading() {
                             <input className="form-control me-2" type="search" placeholder={"Search"} aria-label="Search"/>
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
-                        <div className="d-flex">
+                        <div className="d-flex" style={{ display:'flex',justifyContent:'center',alignItems:'center',gap:'15px'}}>
+                           
+                            {/* <button className="textbutton"> */}
+                                <Link to={'/'} > <center><i class="fa-solid fa-cart-shopping" style={{color: '#3c6', fontSize:'30px' }}></i> </center></Link>
+                            {/* </button> */}
                             <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton">
                                 <Link to={'/'} className='textlogin'> Đăng nhập/Đăng kí</Link>
-                            </button>
-                            <button className="textbutton">
-                                <a href="https://bitas.com.vn/lib/pic/giohang2.png" className="textlogin">  Giỏ Hàng</a>
                             </button>
                         </div>
                     </div>
