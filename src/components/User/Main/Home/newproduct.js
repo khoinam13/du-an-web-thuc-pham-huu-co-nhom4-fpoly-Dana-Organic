@@ -21,7 +21,7 @@ function NewProduct(){
                                     </center>
                                     <div className="card-body" >
                                   <center >
-                                  <Link className="card-title cardtitle" style={{color:'#83bb3e'}} >Hoa qủa</Link>
+                                  <Link to={'/detail-product'} className="card-title cardtitle" style={{color:'#83bb3e'}} >Hoa qủa</Link>
                                    <div style={{display:'flex',justifyContent:'center',alignItems:'center',gap:'15px'}}>
                                   <p > <del className="carddel">400,000đ</del></p>
                                     <p className="carddel" style={{fontWeight: 'bold'}}>300,000đ</p>

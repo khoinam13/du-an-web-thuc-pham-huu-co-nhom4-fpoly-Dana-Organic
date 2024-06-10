@@ -84,7 +84,7 @@ function Heading() {
                                 <Link to={'/'} className='textlogin'> Đăng nhập/Đăng kí</Link>
                             </button>
                             <button className="textbutton">
-                                <a href="https://bitas.com.vn/lib/pic/giohang2.png" className="textlogin">Giỏ Hàng</a>
+                                <a href="https://bitas.com.vn/lib/pic/giohang2.png" className="textlogin">  Giỏ Hàng</a>
                             </button>
                         </div>
                     </div>
@@ -94,5 +94,6 @@ function Heading() {
         </div>
     )
 }
+
 
 export default Heading

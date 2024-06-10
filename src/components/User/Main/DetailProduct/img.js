@@ -18,9 +18,9 @@ function Image(){
                     </div>
                    
                 </div>
-                <div style={{ width:'720px'}}>
+                <div style={{ width:'720px',marginBottom:'auto'}}>
              
-                    <h2>Rau Củ</h2>
+                    <h2>Rau Củ</h2> 
                     <div style={{display:'flex',gap:'20px'}}>
                             <p > <del className="carddel">400,000đ</del></p>
                              <p className="carddel" style={{fontWeight: 'bold'}}>300,000đ</p>
