@@ -71,7 +71,7 @@ function Heading() {
                                     style={{ color: activeLink === '/detail-product' ? '#111111d9' : '#666666d9' }}
                                     to="/detail-product"
                                     onClick={() => handleClick('/detail-product')}
-                                >y
+                                >
                                     Giới thiệu
                                 </Link>
                             </li>
@@ -83,7 +83,7 @@ function Heading() {
                         <div className="d-flex" style={{ display:'flex',justifyContent:'center',alignItems:'center',gap:'15px'}}>
                            
                             {/* <button className="textbutton"> */}
-                                <Link to={'/'} > <center><i class="fa-solid fa-cart-shopping" style={{color: '#3c6', fontSize:'30px' }}></i> </center></Link>
+                                <Link to={'/cart'} > <center><i class="fa-solid fa-cart-shopping" style={{color: '#3c6', fontSize:'30px' }}></i> </center></Link>
                             {/* </button> */}
                             <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton">
                                 <Link to={'/'} className='textlogin'> Đăng nhập/Đăng kí</Link>

@@ -7,7 +7,9 @@ import Introduce from './Introduce';
 import News from './News';
 import Product from './Product';
 import Products from './Product/product';
+import Total from './Cart/totalproduct';
 import App from '../../../App';
+import Infor from './Cart/infor';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,12 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+        children: [
+          {
+            path: "infor",
+            element: <Infor />,
+          }
+        ]
       },
     ],
   },
