@@ -83,7 +83,19 @@ function Heading() {
                         <div className="d-flex" style={{ display:'flex',justifyContent:'center',alignItems:'center',gap:'15px'}}>
                            
                             {/* <button className="textbutton"> */}
-                                <Link to={'/cart'} > <center><i class="fa-solid fa-cart-shopping" style={{color: '#3c6', fontSize:'30px' }}></i> </center></Link>
+                            <Link to={'/cart'}>
+                            <div style={{ position: 'relative', display: 'inline-block' }}>
+                                <center>
+                                <i className="fa-solid fa-cart-shopping" style={{ color: '#3c6', fontSize: '30px' }}></i>
+                                </center>
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                1
+                                <span className="visually-hidden">unread messages</span>
+                                </span>
+                            </div>
+                            </Link>
+                               
+
                             {/* </button> */}
                             <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton">
                                 <Link to={'/'} className='textlogin'> Đăng nhập/Đăng kí</Link>
