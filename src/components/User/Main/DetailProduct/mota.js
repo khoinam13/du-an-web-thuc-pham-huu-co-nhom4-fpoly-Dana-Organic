@@ -4,7 +4,6 @@ function Mota(){
              <div  style={{width:'76%', margin:'0 auto',marginBottom:'20px',marginTop:'20px'}}>
                     <div style={{display:'flex',gap:'15px',marginBottom:'20px'}}>
                     <button type="button" class="btn btn-success">Mô Tả</button>
-                    <button type="button" class="btn btn-success">Đánh giá</button>
                     </div>
 
                     <div >

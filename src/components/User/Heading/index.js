@@ -49,10 +49,10 @@ function Heading() {
                                 <Link
                                     className={`text ${activeLink === '/tin-tuc' ? 'active' : ''}`}
                                     style={{ color: activeLink === '/tin-tuc' ? '#111111d9' : '#666666d9' }}
-                                    to="/tin-tuc"
+                                    to="/contact"
                                     onClick={() => handleClick('/tin-tuc')}
                                 >
-                                    Tin Tức
+                                    Liên Hệ
                                 </Link>
                             </li>
                             {/* <li className="nav-item">
@@ -67,10 +67,10 @@ function Heading() {
                             </li> */}
                             <li className="nav-item">
                                 <Link
-                                    className={`text ${activeLink === '/detail-product' ? 'active' : ''}`}
-                                    style={{ color: activeLink === '/detail-product' ? '#111111d9' : '#666666d9' }}
-                                    to="/detail-product"
-                                    onClick={() => handleClick('/detail-product')}
+                                    className={`text ${activeLink === '/introduce' ? 'active' : ''}`}
+                                    style={{ color: activeLink === '/introduce' ? '#111111d9' : '#666666d9' }}
+                                    to="/introduce"
+                                    onClick={() => handleClick('/introduce')}
                                 >
                                     Giới thiệu
                                 </Link>
@@ -90,7 +90,6 @@ function Heading() {
                                 </center>
                                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 1
-                                <span className="visually-hidden">unread messages</span>
                                 </span>
                             </div>
                             </Link>

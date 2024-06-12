@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import Home from './Home';
 import Cart from './Cart';
+import Contact from './Contact';
 import DetailProduct from './DetailProduct';
 import Introduce from './Introduce';
 import News from './News';
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "detail-product",
         element: <DetailProduct />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
       {
         path: "cart",
