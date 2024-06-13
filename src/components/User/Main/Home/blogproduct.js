@@ -5,10 +5,10 @@ function BlogProduct(){
             <div style={{ display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'20px'}} >
                         
                         <div style={{ width:'100%',margin:'0 auto',textAlign:'center',color:'#777'}}>
-                            <h6 style={{fontSize:'20px'}}> Sản phẩm vừa về cửa hàng</h6>
+                            <h6 style={{fontSize:'20px'}}> Bài viết mới</h6>
                         </div>
                         <div style={{ width:'100%',margin:'0 auto',textAlign:'center',color:'#20242e',fontFamily:'Quicksand',fontSize:'48px'}}>
-                            <h3 style={{fontSize:'48px'}}>    Sản phẩm mới</h3>
+                            <h3 style={{fontSize:'48px'}}>    Bài viết </h3>
                         </div>
                     
                         
