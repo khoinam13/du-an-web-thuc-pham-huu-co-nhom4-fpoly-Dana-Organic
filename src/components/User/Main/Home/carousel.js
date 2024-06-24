@@ -19,13 +19,12 @@ function Carousel(){
 
             </div>
         </div>
-        <marquee behavior="scroll" scrollamount="20"> 
         <div style={{width:' 1715px',justifyContent:'center',alignItems:'center',display:'flex',gap:'30px',flexWrap:'wrap'}}>   
             <div style={{ width:'340px'}} >
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
                     <div >
                         <center >
-                        <img style={{ }} height={'100%'} width={'200px'} src='https://png.pngtree.com/png-clipart/20200224/original/pngtree-delivery-truck-icon-png-image_5237472.jpg'/>
+                        <img style={{ }} height={'100%'} width={'200px'} src='https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/t1.jpg'/>
                         </center>
                     </div>
                     <div style={{textAlign:'center'}}>
@@ -38,7 +37,7 @@ function Carousel(){
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
                     <div >
                         <center >
-                        <img style={{filter: 'hue-rotate(120deg)' }} height={'100%'} width={'200px'} src='https://png.pngtree.com/png-clipart/20230928/original/pngtree-headset-icon-for-customer-support-gaming-and-streaming-vector-png-image_12898883.png'/>
+                        <img height={'100%'} width={'200px'} src='https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/t2.jpg'/>
                         </center>
                     </div>
                     <div style={{textAlign:'center'}}>
@@ -51,7 +50,7 @@ function Carousel(){
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
                     <div >
                         <center >
-                        <img  height={'100%'} width={'200px'} src='https://png.pngtree.com/element_our/png_detail/20190103/exchangecurrencyfinancemoneyconvert-glyph-icon--vector-i-png_310017.jpg'/>
+                        <img  height={'100%'} width={'200px'} src='https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/t2.jpg'/>
                         </center>
                     </div>
                     <div style={{textAlign:'center'}}>
@@ -64,7 +63,7 @@ function Carousel(){
                 <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
                     <div >
                         <center >
-                        <img height={'100%'} width={'200px'} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFuzGiwlRzniPs-UOj9-ij9e65H2TWxdsc6Q28W1fSit-yR70fIR-6OAM9hYyTn2mrSxQ&usqp=CAU'/>
+                        <img height={'100%'} width={'200px'} src='https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/t4.jpg'/>
                         </center>
                     </div>
                     <div style={{textAlign:'center'}}>
@@ -76,7 +75,6 @@ function Carousel(){
          
             
         </div>  
-        </marquee>
             {/* sản phẩm mới  */}
                 <NewProduct/>
             <div style={{ width:'90%',display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'30px',}}>

@@ -1,6 +1,20 @@
-
+import React,{useState} from "react";
 
 function Image(){
+  const [count, setCount] = useState(1);
+
+  const handleIncrease = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+
+  const handleDecrease = () => {
+    setCount(prevCount => Math.max(1, prevCount - 1)); 
+  };
+
+  const handleChange = (event) => {
+    const value = Number(event.target.value);
+    setCount(value);
+  };
     return(
         <>
             <div className="row d-flex justify-content-center align-items-center" style={{width:'100%'}} >
@@ -18,24 +32,36 @@ function Image(){
                     </div>
                    
                 </div>
-                <div style={{ width:'720px'}}>
+                <div style={{ width:'720px',marginBottom:'auto'}}>
              
-                    <h2>Rau Củ</h2>
+                    <h2 style={{fontWeight:'600'}}>Rau Củ</h2> 
                     <div style={{display:'flex',gap:'20px'}}>
-                            <p > <del className="carddel">400,000đ</del></p>
-                             <p className="carddel" style={{fontWeight: 'bold'}}>300,000đ</p>
+                            <p > <del className="carddel" style={{fontSize:'25px'}}>400,000đ</del></p>
+                             <p className="carddel" style={{fontWeight: 'bold',fontSize:'25px'}}>300,000đ</p>
                     </div>
                     <div>
-                    <p>
+                    <p style={{ color:'#777',lineHeight:'25.6px',fontSize:'20px'}}>
                     Giá trị dinh dưỡng: Nho tươi cung cấp các chất dinh dưỡng, làm giảm mệt nhọc ngay lập tức. Các nghiên cứu cho thấy Nho tươi có chứa vitamin A, C, Calcium và sắt giúp duy trì sức…
                     </p>
                           
                     </div>
                     <div>
-                    <p>
-                        Tình trạng:<span style={{backgroundColor:'#3c6'}}> Còn hàng</span>
+                    <p style={{ color:'#7a9c59',fontSize:'19px',fontWeight:'600'}}>
+                        Tình trạng:<span style={{backgroundColor:'#00923f',color:'#fff'}}><i class="fa-solid fa-check"></i>  Còn hàng</span>
                     </p>
-                          
+                    <div className="counter-container">
+                    <button type="button" onClick={handleDecrease} className="counter-button">-</button>
+                    <input 
+                      className="counter-input"
+                      type="number" 
+                      min="1" 
+                      value={count} 
+                      onChange={handleChange} 
+                    />
+                    <button type="button" onClick={handleIncrease} className="counter-button">+</button>
+                    <button type="button" class="btn btn" style={{backgroundColor:'#83bb3e',width:'250px',fontSize:'20px',fontWeight:'500',color:'#fff', marginLeft:'30px'}}>Thêm Vào Giỏ Hàng</button> 
+
+              </div>
                     </div>
 
                 </div>
