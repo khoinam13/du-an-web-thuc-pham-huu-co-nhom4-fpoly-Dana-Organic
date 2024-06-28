@@ -2,17 +2,16 @@ import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { GoCheckCircleFill } from "react-icons/go";
 import { GoX } from "react-icons/go";
-import { validattionSchema } from "../../untils";
+import { validattionSchemaRegister } from "../../untils";
+import { validationSchemaLogin } from "../../untils";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { hiddenElement } from "../../handle";
-import { useRef } from "react";
 import { createAccount } from "../../handle";
+import { loginAccount } from "../../handle";
 import "./Module.css";
 
 function Module({ isToggle, setIsToggle, onToggle }) {
  
-  const RefSuccessful = useRef();
-
   return (
     <>
       {isToggle && (
@@ -20,33 +19,57 @@ function Module({ isToggle, setIsToggle, onToggle }) {
           <div className="home-module__wrap">
             <div className="home-module__item">
               <h2 className="home-module__heading">ĐĂNG NHẬP</h2>
-              <form>
-                <label htmlFor="login__name" className="home-module__lable">
-                  Tên tài khoản hoặc địa chỉ email *
-                </label>
-                <input
-                  id="login__name"
-                  className="home-module__input"
-                  type="text"
-                />
-                <label htmlFor="login__password" className="home-module__lable">
-                  Mật khẩu *
-                </label>
-                <input
-                  id="login__password"
-                  className="home-module__input"
-                  type="password"
-                />
-                <input
-                  id="login__memorize"
-                  className="home-module__input-check"
-                  type="checkbox"
-                />
-                <label htmlFor="login__memorize" className="home-module__lable">
-                  Ghi nhớ mật khẩu
-                </label>
-                <button className="home-module__submit">ĐĂNG NHẬP</button>
-              </form>
+              <Formik
+              // initialValues={{ registerName: "", registerPassword: "" }}
+              // validationSchema={validattionSchema}
+              // validateOnChange={true}
+              // validateOnBlur={true}
+              // onSubmit={createAccount}
+              initialValues={{loginName: '', loginPassword : '' }}
+              validationSchema={validationSchemaLogin}
+              onSubmit={ loginAccount}
+              >
+
+                <Form>
+                  <label htmlFor="login__name" className="home-module__lable">
+                    Tên tài khoản hoặc địa chỉ email *
+                  </label>
+                  <Field
+                    id="login__name"
+                    className="home-module__input"
+                    type="text"
+                    name="loginName"
+                  />
+                    <ErrorMessage
+                    name="loginName"
+                    className="error"
+                    component="div"
+                    />
+                  <label htmlFor="login__password" className="home-module__lable">
+                    Mật khẩu *
+                  </label>
+                  <Field
+                    id="login__password"
+                    className="home-module__input"
+                    type="password"
+                    name="loginPassword"
+                  />
+                  <ErrorMessage
+                    className="error"
+                    component="div"
+                    name="loginPassword"
+                  />
+                  <Field
+                    id="login__memorize"
+                    className="home-module__input-check"
+                    type="checkbox"
+                  />
+                  <label htmlFor="login__memorize" className="home-module__lable">
+                    Ghi nhớ mật khẩu
+                  </label>
+                  <button className="home-module__submit">ĐĂNG NHẬP</button>
+                </Form>
+              </Formik>
               <Link className="home-module__forget" to={"/"}>
                 Quên mật khẩu?
               </Link>
@@ -57,7 +80,7 @@ function Module({ isToggle, setIsToggle, onToggle }) {
               {/* FORMIK */}
               <Formik
                 initialValues={{ registerName: "", registerPassword: "" }}
-                validationSchema={validattionSchema}
+                validationSchema={validattionSchemaRegister}
                 validateOnChange={true}
                 validateOnBlur={true}
                 onSubmit={createAccount}
