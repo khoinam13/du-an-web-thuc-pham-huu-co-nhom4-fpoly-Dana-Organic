@@ -6,12 +6,9 @@ import { validattionSchemaRegister } from "../../untils";
 import { validationSchemaLogin } from "../../untils";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { hiddenElement } from "../../handle";
-import { createAccount } from "../../handle";
-import { loginAccount } from "../../handle";
 import "./Module.css";
 
-function Module({ isToggle, setIsToggle, onToggle }) {
- 
+function Module({ isToggle, setIsToggle, onToggle , onLogin, onCreateAccount}) {
   return (
     <>
       {isToggle && (
@@ -20,16 +17,10 @@ function Module({ isToggle, setIsToggle, onToggle }) {
             <div className="home-module__item">
               <h2 className="home-module__heading">ĐĂNG NHẬP</h2>
               <Formik
-              // initialValues={{ registerName: "", registerPassword: "" }}
-              // validationSchema={validattionSchema}
-              // validateOnChange={true}
-              // validateOnBlur={true}
-              // onSubmit={createAccount}
-              initialValues={{loginName: '', loginPassword : '' }}
-              validationSchema={validationSchemaLogin}
-              onSubmit={ loginAccount}
+                initialValues={{ loginName: "", loginPassword: "" }}
+                validationSchema={validationSchemaLogin}
+                onSubmit={onLogin}
               >
-
                 <Form>
                   <label htmlFor="login__name" className="home-module__lable">
                     Tên tài khoản hoặc địa chỉ email *
@@ -40,12 +31,15 @@ function Module({ isToggle, setIsToggle, onToggle }) {
                     type="text"
                     name="loginName"
                   />
-                    <ErrorMessage
+                  <ErrorMessage
                     name="loginName"
                     className="error"
                     component="div"
-                    />
-                  <label htmlFor="login__password" className="home-module__lable">
+                  />
+                  <label
+                    htmlFor="login__password"
+                    className="home-module__lable"
+                  >
                     Mật khẩu *
                   </label>
                   <Field
@@ -64,7 +58,10 @@ function Module({ isToggle, setIsToggle, onToggle }) {
                     className="home-module__input-check"
                     type="checkbox"
                   />
-                  <label htmlFor="login__memorize" className="home-module__lable">
+                  <label
+                    htmlFor="login__memorize"
+                    className="home-module__lable"
+                  >
                     Ghi nhớ mật khẩu
                   </label>
                   <button className="home-module__submit">ĐĂNG NHẬP</button>
@@ -83,7 +80,7 @@ function Module({ isToggle, setIsToggle, onToggle }) {
                 validationSchema={validattionSchemaRegister}
                 validateOnChange={true}
                 validateOnBlur={true}
-                onSubmit={createAccount}
+                onSubmit={onCreateAccount}
               >
                 <Form>
                   <label

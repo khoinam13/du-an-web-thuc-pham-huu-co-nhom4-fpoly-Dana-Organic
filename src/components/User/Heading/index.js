@@ -1,15 +1,69 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
 import Module from "./Module";
 import { handleToggle } from "../handle";
+import { FaUser } from "react-icons/fa";
+import axios from "axios";
+import Cookies from "js-cookie";
 import "./Heading.css";
 function Heading() {
+  const [FlagExistUser, setFlagExistUser] = useState(false)
   const [activeLink, setActiveLink] = useState("/");
-
   const handleClick = (path) => {
     setActiveLink(path);
   };
   const [isToggle, setIsToggle] = useState(false);
+
+    // đăng kí tài khoản
+    const  createAccount = async (values, actions) =>{
+      await axios
+      .get(`http://localhost:3001/account?registerName=${values.registerName}`)
+      .then((response) => {
+        if (response.data.length !== 0) {
+          actions.setFieldError("registerName", "Email này đã tồn tại");
+        } else {
+          axios.post("http://localhost:3001/account", values);
+          values.registerName = "";
+          values.registerPassword = "";
+          document.querySelector('.successful').style.display = 'flex'
+        }
+      })
+    }
+
+    // đăng nhập tài khoản
+          const loginAccount = async (values, actions) =>{
+          await axios
+          .get(`http://localhost:3001/account?registerName=${values.loginName}`)
+          .then(response =>{
+              if(response.data.length ===0){
+                actions.setFieldError("loginName", "Tài khoản không đúng")
+              }
+              else{
+                const registerPassword = response.data[0].registerPassword
+                if(values.loginPassword !== registerPassword){
+                  actions.setFieldError("loginPassword", "Mật khẩu không đúng")
+                }
+                else{
+                  // khung
+                  const setCookie = (name, values, days) => {
+                    Cookies.set(name, values, {expires: days})
+                  }
+                  setCookie( "username" ,values.loginName, 7)
+                  alert('Bạn đã đăng nhập thành công')
+                  setFlagExistUser(true)
+                  setIsToggle(false)
+                  values.loginName = '';
+                  values.loginPassword = ''
+                }
+              }
+          })
+        }
+
+        // đăng xuất tài khoản
+        const checkOutAccount = ()=>{
+          Cookies.remove('username')
+          setFlagExistUser(false)
+        }
   return (
     <div style={{ position: "sticky", top: "0px", zIndex: "1000" }}>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -79,16 +133,6 @@ function Heading() {
                   Liên Hệ
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                                <Link
-                                    className={`text ${activeLink === '/gioi-thieu' ? 'active' : ''}`}
-                                    style={{ color: activeLink === '/gioi-thieu' ? '#111111d9' : '#666666d9' }}
-                                    to="/gioi-thieu"
-                                    onClick={() => handleClick('/gioi-thieu')}
-                                >
-                                    Giới thiệu
-                                </Link>
-                            </li> */}
               <li className="nav-item">
                 <Link
                   className={`text ${
@@ -108,6 +152,7 @@ function Heading() {
           </div>
           <div style={{ marginRight: "30px" }}>
             <form className="d-flex" role="search">
+              
               <input
                 className="form-control me-2"
                 type="search"
@@ -120,22 +165,27 @@ function Heading() {
             </form>
           </div>
           <div>
-            <button
-              onClick={() => handleToggle(isToggle, setIsToggle)}
-              className="textbutton"
-            >
-              <Link to={"/"} className="textlogin">
-                {" "}
-                Đăng nhập/Đăng kí
-              </Link>
-            </button>
+            { FlagExistUser ?
+            (
+              <>
+                <button className="iconbutton"  ><Link><FaUser className="nav__user-btn-icon"/></Link></button>
+                <button className="textbutton"
+                  onClick={checkOutAccount}
+                >Đăng xuất</button>
+              </>
+            ) : 
+            (
+              (
+                <button
+                onClick={() => handleToggle(isToggle, setIsToggle)}
+                className="textbutton nav__login"
+                > Đăng nhập/Đăng kí
+                </button>
+              )
+            )
+            }
             <button className="textbutton">
-              <a
-                href="https://bitas.com.vn/lib/pic/giohang2.png"
-                className="textlogin"
-              >
-                Giỏ Hàng
-              </a>
+               Giỏ hàng
             </button>
           </div>
         </div>
@@ -144,6 +194,8 @@ function Heading() {
         isToggle={isToggle}
         setIsToggle={setIsToggle}
         onToggle={handleToggle}
+        onLogin= {loginAccount}
+        onCreateAccount = {createAccount}
       />
     </div>
   );
