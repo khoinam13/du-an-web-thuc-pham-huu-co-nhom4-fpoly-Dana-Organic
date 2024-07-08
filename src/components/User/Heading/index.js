@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Module from './Module';
 import { handleToggle } from './Handle';
-import './Heading.css'; 
+import './Heading.css';
 
 function Heading({ setSearchQuery }) {
   const [activeLink, setActiveLink] = useState('/');
