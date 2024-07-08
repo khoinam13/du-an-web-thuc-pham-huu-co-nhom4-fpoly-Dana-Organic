@@ -55,7 +55,7 @@ function TopProduct(){
                             </div>
 
 
-                            <div style={{borderRadius:'16px',width:'500px',height:'500px',backgroundColor:'#005350',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                            <div style={{borderRadius:'16px',width:'500px',height:'600px',backgroundColor:'#005350',display:'flex',justifyContent:'center',alignItems:'center'}}>
                             <div style={{width:'65%',display:'flex',flexWrap:'wrap',justifyContent:'center',alignItems:'center',gap:'30px'}}>
                                    <p style={{ color:'white',fontSize:'25px'}}>
                                     Giảm giá trong tuần

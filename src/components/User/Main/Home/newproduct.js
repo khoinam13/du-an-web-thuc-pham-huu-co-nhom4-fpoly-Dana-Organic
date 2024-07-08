@@ -2,6 +2,35 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 function NewProduct() {
+  const products = [
+    {
+      id: 1,
+      name: "Cà rốt",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      sameimage:[
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      ],
+      price: 15990,
+      description:
+        "Cà rốt rất tốt cho sức khỏe",
+        quantity:"10",
+    },
+    {
+      id: 2,
+      name: "Su hào",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      sameimage:[
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      ],
+      price: 15990,
+      description:
+      "su hào rất tốt cho sức khỏe",
+      quantity:"10",
+    },
+  ];
+
   return (
     <>
       <div
@@ -11,6 +40,7 @@ function NewProduct() {
           alignItems: "center",
           flexWrap: "wrap",
           gap: "20px",
+          marginBottom: "20px",
         }}
       >
         <div
@@ -46,45 +76,52 @@ function NewProduct() {
             width: "89%",
           }}
         >
-          <div className="card" style={{ width: "18rem" }}>
-            <center>
-              <img
-                src="https://hoaquafuji.com/storage/app/media/NEWS/cac-loai-trai-cay-nhap-khau.jpg"
-                height={"247px"}
-                width={"247px"}
-              />
-            </center>
-            <div className="card-body">
-              <center>
-                <Link
-                  to={"/detail-product"}
-                  className="card-title cardtitle"
-                  style={{ color: "#83bb3e" }}
-                >
-                  Hoa qủa
-                </Link>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "15px",
-                  }}
-                >
-                  <p>
-                    {" "}
-                    <del className="carddel">400,000đ</del>
-                  </p>
-                  <p className="carddel" style={{ fontWeight: "bold" }}>
-                    300,000đ
-                  </p>
+          {products.map((item) => {
+            const discountedPrice = item.price * 0.7;
+
+            return (
+              <div className="card" style={{ width: "18rem" }} key={item.id}>
+                <center>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    height={"247px"}
+                    width={"247px"}
+                  />
+                </center>
+                <div className="card-body">
+                  <center>
+                    <Link
+                      to={`/detail-product/${item.id}`}
+                      className="card-title cardtitle"
+                      style={{ color: "#83bb3e" }}
+                    >
+                      {item.name}
+                    </Link>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "15px",
+                      }}
+                    >
+                      <p>
+                        <del className="carddel">{item.price.toLocaleString()}đ</del>
+                      </p>
+                      <p className="carddel" style={{ fontWeight: "bold" }}>
+                        {discountedPrice.toLocaleString()}đ
+                      </p>
+                    </div>
+                  </center>
                 </div>
-              </center>
-            </div>
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
   );
 }
+
 export default NewProduct;

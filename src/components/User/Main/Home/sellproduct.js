@@ -10,6 +10,7 @@ function SellProduct() {
             alignItems: "center",
             flexWrap: "wrap",
             gap: "20px",
+            marginBottom: "20px",
           }}
         >
           <div
