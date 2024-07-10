@@ -2,16 +2,15 @@ import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { GoCheckCircleFill } from "react-icons/go";
 import { GoX } from "react-icons/go";
-import { validattionSchemaRegister } from "../../untils";
-import { validationSchemaLogin } from "../../untils";
+import { validationSchemaLogin, validattionSchemaRegister } from "../../untils";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { hiddenElement } from "../../handle";
 import "./Module.css";
 
-function Module({ isToggle, setIsToggle, onToggle , onLogin, onCreateAccount}) {
+function Module({ isLogin, setIsLogin, isRegister, setIsRegister, onToggle , onLogin, onCreateAccount}) {
   return (
     <>
-      {isToggle && (
+      {isLogin && (
         <div className="home-module-wrap">
           <div className="home-module__wrap">
             <div className="home-module__item">
@@ -19,6 +18,8 @@ function Module({ isToggle, setIsToggle, onToggle , onLogin, onCreateAccount}) {
               <Formik
                 initialValues={{ loginName: "", loginPassword: "" }}
                 validationSchema={validationSchemaLogin}
+                validateOnChange={false}
+                validateOnBlur={false}
                 onSubmit={onLogin}
               >
                 <Form>
@@ -71,15 +72,30 @@ function Module({ isToggle, setIsToggle, onToggle , onLogin, onCreateAccount}) {
                 Quên mật khẩu?
               </Link>
             </div>
+            <button className="home-module__close">
+            <IoCloseOutline
+              onClick={() => onToggle(isLogin, setIsLogin)}
+              className="home-module__close-icon"
+            />
+          </button>
+          </div>
+          
+        </div>
+      )}
 
-            <div className="home-module__item">
+      {isRegister &&
+      (
+
+        <div className="home-module-wrap">
+          <div className="home-module__wrap">
+          <div className="home-module__item">
               <h2 className="home-module__heading">ĐĂNG KÝ</h2>
-              {/* FORMIK */}
+              
               <Formik
                 initialValues={{ registerName: "", registerPassword: "" }}
                 validationSchema={validattionSchemaRegister}
-                validateOnChange={true}
-                validateOnBlur={true}
+                validateOnChange={false}
+                validateOnBlur={false}
                 onSubmit={onCreateAccount}
               >
                 <Form>
@@ -123,15 +139,16 @@ function Module({ isToggle, setIsToggle, onToggle , onLogin, onCreateAccount}) {
                 </Form>
               </Formik>
             </div>
-          </div>
-          <button className="home-module__close">
+            <button className="home-module__close">
             <IoCloseOutline
-              onClick={() => onToggle(isToggle, setIsToggle)}
+              onClick={() => onToggle(isRegister, setIsRegister)}
               className="home-module__close-icon"
             />
-          </button>
+            </button>
+          </div>
         </div>
-      )}
+      )
+      }
       ;{/* thông báo đăng kí thành công*/}
       <div className="successful">
         <div className="successful__wrap">

@@ -25,7 +25,12 @@ border-color: #3c6;
 height: 45px;
 margin-right: 15px;
 font-weight: 600;
-    
+min-width: 94px;  
+}
+.nav-car{
+    color: #3c6;
+    font-size: 30px;
+    cursor: pointer;
 }
 .iconbutton{
     color: #3c6;

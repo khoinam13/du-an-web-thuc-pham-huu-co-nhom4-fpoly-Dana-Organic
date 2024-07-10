@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Module from "./Module";
 import { handleToggle } from "../handle";
 import { FaUser } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 import axios from "axios";
 import Cookies from "js-cookie";
 import "./Heading.css";
@@ -12,7 +13,8 @@ function Heading() {
   const handleClick = (path) => {
     setActiveLink(path);
   };
-  const [isToggle, setIsToggle] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
     // đăng kí tài khoản
     const  createAccount = async (values, actions) =>{
@@ -51,7 +53,7 @@ function Heading() {
                   setCookie( "username" ,values.loginName, 7)
                   alert('Bạn đã đăng nhập thành công')
                   setFlagExistUser(true)
-                  setIsToggle(false)
+                  setIsLogin(false)
                   values.loginName = '';
                   values.loginPassword = ''
                 }
@@ -176,23 +178,31 @@ function Heading() {
             ) : 
             (
               (
+                <>
                 <button
-                onClick={() => handleToggle(isToggle, setIsToggle)}
+                onClick={() => handleToggle(isLogin, setIsLogin)}
                 className="textbutton nav__login"
-                > Đăng nhập/Đăng kí
+                > Đăng nhập
                 </button>
+
+                <button
+                onClick={() => handleToggle(isRegister, setIsRegister)}
+                className="textbutton nav__login"
+                > Đăng kí
+                </button>
+                </>
+
+                
               )
             )
             }
-            <button className="textbutton">
-               Giỏ hàng
-            </button>
+            <FaCartShopping className="nav-car" />
           </div>
         </div>
       </nav>
       <Module
-        isToggle={isToggle}
-        setIsToggle={setIsToggle}
+        isRegister={isRegister} setIsRegister={setIsRegister}
+        isLogin = {isLogin} setIsLogin = {setIsLogin}
         onToggle={handleToggle}
         onLogin= {loginAccount}
         onCreateAccount = {createAccount}
