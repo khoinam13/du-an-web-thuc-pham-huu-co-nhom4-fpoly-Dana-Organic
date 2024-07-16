@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Module from './Module';
-import { handleToggle } from './Handle';
+import { handleToggle } from '../handle';  // Adjust import if needed
 import './Heading.css';
 
 function Heading({ setSearchQuery }) {
   const [activeLink, setActiveLink] = useState('/');
   const [isToggle, setIsToggle] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+  const [cartItemCount, setCartItemCount] = useState(1); // Example count for cart items
 
-  const handleClick = (path) => { 
+  const handleClick = (path) => {
     setActiveLink(path);
   }
 
@@ -19,7 +20,7 @@ function Heading({ setSearchQuery }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSearchQuery(searchInput.trim()); 
+    setSearchQuery(searchInput.trim());
   }
 
   return (
@@ -33,7 +34,7 @@ function Heading({ setSearchQuery }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="nav justify-content-center" style={{width:'80%'}}>
               <li className="nav-item">
                 <Link
                   className={`text ${activeLink === '/' ? 'active' : ''}`}
@@ -75,31 +76,35 @@ function Heading({ setSearchQuery }) {
                   Giới thiệu
                 </Link>
               </li>
+             
+             
             </ul>
-            <form className="d-flex" role="search" style={{ marginRight: '10px', marginBottom: '10px', marginTop: '10px' }} onSubmit={handleSubmit}>
+            <form className="d-flex" role="search" style={{ marginLeft: '10px', marginBottom: '10px', marginTop: '10px' }} onSubmit={handleSubmit}>
               <input
                 className="form-control me-2"
                 type="search"
-                placeholder="Tìm kiếm"
+                placeholder="Tìm kiếm "
                 aria-label="Search"
                 value={searchInput}
                 onChange={handleInputChange}
               />
-              <button className="btn btn-outline-success" type="submit">Tìm</button>
             </form>
-            <div className="d-flex" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px' }}>
+            <div className="d-flex" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px',width:'50%' }}>
               <Link to="/cart">
                 <div style={{ position: 'relative', display: 'inline-block' }}>
                   <center>
                     <i className="fa-solid fa-cart-shopping" style={{ color: '#3c6', fontSize: '30px' }}></i>
                   </center>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    1
+                    {cartItemCount}
                   </span>
                 </div>
               </Link>
+              <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton" style={{ backgroundColor:'rgb(51, 204, 102)'}}>
+                <Link to="/" className="textlogin" style={{ color:'white'}}> Đăng nhập</Link>
+              </button>
               <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton">
-                <Link to="/" className="textlogin"> Đăng nhập/Đăng kí</Link>
+                <Link to="/" className="textlogin"> Đăng kí</Link>
               </button>
             </div>
           </div>

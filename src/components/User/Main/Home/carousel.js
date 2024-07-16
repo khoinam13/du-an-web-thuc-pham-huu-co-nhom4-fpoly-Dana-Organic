@@ -8,7 +8,29 @@ function Carousel(){
     <>
      <div className='carousel'>
         <div style={{width:' 800px',height:'600px'}}>  
-        <img src="https://www.vinmec.com/s3-images/20210519_070755_784816_thuc-pham-huu-co.max-800x800.jpg" alt='' height={'100%'} width={'100%'} style={{borderRadius:'13px'}}/>   
+       
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel"   style={{width:'100%', height:'600px'}}>
+  <div class="carousel-inner"  >
+    <div class="carousel-item active" data-bs-interval="2000"  >
+      <img src="https://www.vinmec.com/s3-images/20210519_070755_784816_thuc-pham-huu-co.max-800x800.jpg" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}} alt="..."/>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000" >
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCH8s27IAgee-5nItO1QjvgSMd_uAQWXMVYdh-wJA7LUq9nqWf2d0jgE8BqpmM-8r2H6o&usqp=CAU" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}} alt="..."/>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000"  >
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhzYussa-_PiBuqxnFztdGYH4eNaw6ufYIVLB1DUZXNzOl_4Y2iF4QaHH79eSWLg9lvOs&usqp=CAU" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}}  alt="..."/>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+        {/* <img src="https://www.vinmec.com/s3-images/20210519_070755_784816_thuc-pham-huu-co.max-800x800.jpg" alt='' height={'100%'} width={'100%'} style={{borderRadius:'13px'}}/>    */}
         </div>
         <div style={{ width:'720px'}} >
             <div style={{ width:'100%',height:'290px',marginBottom:'20px'}}>
