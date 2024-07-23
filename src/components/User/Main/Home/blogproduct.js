@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 function BlogProduct(){
     return(
        <>
-            <div style={{ display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'20px'}} >
+            <div style={{ display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'20px',marginBottom:'60px'}} >
                         
                         <div style={{ width:'100%',margin:'0 auto',textAlign:'center',color:'#777'}}>
                             <h6 style={{fontSize:'20px'}}> Bài viết mới</h6>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Module from './Module';
-import { handleToggle } from '../handle';  // Adjust import if needed
+import { handleToggle } from '../handle';  
 import './Heading.css';
 
 function Heading({ setSearchQuery }) {
   const [activeLink, setActiveLink] = useState('/');
   const [isToggle, setIsToggle] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const [cartItemCount, setCartItemCount] = useState(1); // Example count for cart items
+  const [cartItemCount, setCartItemCount] = useState(0); 
 
   const handleClick = (path) => {
     setActiveLink(path);
@@ -33,7 +33,7 @@ function Heading({ setSearchQuery }) {
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div className="collapse navbar-collapse" id="navbarNav" style={{width:'1300px'}}>
             <ul className="nav justify-content-center" style={{width:'80%'}}>
               <li className="nav-item">
                 <Link
@@ -76,6 +76,16 @@ function Heading({ setSearchQuery }) {
                   Giới thiệu
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link
+                  className={`text ${activeLink === '/blog' ? 'active' : ''}`}
+                  style={{ color: activeLink === '/blog' ? '#111111d9' : '#666666d9' }}
+                  to="/blog"
+                  onClick={() => handleClick('/blog')}
+                >
+                  Bài viết
+                </Link>
+              </li>
              
              
             </ul>
@@ -107,7 +117,23 @@ function Heading({ setSearchQuery }) {
                 <Link to="/" className="textlogin"> Đăng kí</Link>
               </button>
             </div>
+            {/*  */}
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+              <div class="btn-group" role="group" style={{ display:'flex',alignItems:'center'}}>
+              <h4>name</h4>
+                <button type="button" class="btn btn-link"   data-bs-toggle="dropdown" aria-expanded="false" style={{width:'70px'}}>
+                 <img src='https://vergewiki.com/uploads/biography/2019/7/6/Anh%20Do-1562430469201.jpg' alt='' width={'100%'} height={'100%'} style={{borderRadius:'50%'}}/>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><Link class="dropdown-item" to={'/acount'}>Tài Khoản Của Tôi</Link></li>
+                  <li><Link class="dropdown-item" to={'/order'}>Đơn Mua</Link></li>
+                  <li><Link class="dropdown-item" to={'/post'}>Đăng Bài </Link></li>
+                  <li><Link class="dropdown-item" to={'#'}>Đăng Xuất</Link></li>
+                </ul>
+              </div>
+            </div>
           </div>
+        
         </div>
       </nav>
       <Module isToggle={isToggle} setIsToggle={setIsToggle} onToggle={handleToggle} /> {/* Assuming Module component is correctly imported */}

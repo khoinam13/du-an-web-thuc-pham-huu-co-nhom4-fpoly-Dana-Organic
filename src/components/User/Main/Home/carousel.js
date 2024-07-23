@@ -41,7 +41,7 @@ function Carousel(){
 
             </div>
         </div>
-        <div style={{width:' 1715px',justifyContent:'center',alignItems:'center',display:'flex',gap:'30px',flexWrap:'wrap'}}>   
+        <div style={{width:' 1715px',justifyContent:'center',alignItems:'center',display:'flex',gap:'30px',flexWrap:'wrap',marginTop:'50px'}}>   
             <div style={{ width:'340px'}} >
                 <div style={{ width:'100%',height:'250px',marginBottom:'20px'}}>
                     <div >

@@ -31,6 +31,11 @@ import Voucher from '../../Admin/voucher';
 import UpdateVoucher from '../../Admin/voucher/updatevoucher';
 import NewVoucher from '../../Admin/voucher/newvoucher';
 import ThongKe from '../../Admin/thongke';
+import Blog from './blog';
+import DetailBlog from './blog/detailblog';
+import Account from '../Heading/login/taikhoan';
+import Order from '../Heading/login/order';
+import PostBlog from '../Heading/login/postblog';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <News />,
+      }, 
+       {
+        path: "blog",
+        element: <Blog />,
+      },
+       {
+        path: "detailblog",
+        element: <DetailBlog />,
       },
       {
         path: "introduce",
@@ -69,6 +82,18 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "acount",
+        element: <Account />,
+      },
+      {
+        path: "order",
+        element: <Order />,
+      },
+      {
+        path: "post",
+        element: <PostBlog />,
       },
       {
         path: "cart",

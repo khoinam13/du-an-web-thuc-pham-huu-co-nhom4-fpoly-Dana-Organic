@@ -40,7 +40,8 @@ function NewProduct() {
           alignItems: "center",
           flexWrap: "wrap",
           gap: "20px",
-          marginBottom: "20px",
+          marginBottom: "60px",
+          marginTop: "60px",
         }}
       >
         <div

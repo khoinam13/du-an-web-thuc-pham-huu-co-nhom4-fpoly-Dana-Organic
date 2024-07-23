@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 function SellProduct() {
   return (
     <>
-      <div>
+      <div style={{  marginBottom: "60px",}}>
         <div
           style={{
             display: "flex",
@@ -10,7 +10,8 @@ function SellProduct() {
             alignItems: "center",
             flexWrap: "wrap",
             gap: "20px",
-            marginBottom: "20px",
+            marginBottom: "60px",
+            marginTop: "60px",
           }}
         >
           <div

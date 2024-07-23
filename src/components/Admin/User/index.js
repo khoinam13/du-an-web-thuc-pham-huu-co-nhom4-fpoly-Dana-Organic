@@ -19,6 +19,7 @@ function AdminUser() {
               <tr>
                 <th scope="col">Tên</th>
                 <th scope="col">Hình Ảnh</th>
+                <th scope="col">Ngày Sinh</th>
                 <th scope="col">Email</th>
                 <th scope="col">Mật Khẩu</th>
                 <th scope="col">Vai Trò</th>
@@ -29,6 +30,7 @@ function AdminUser() {
             <tbody>
               <tr>
                 <td>Mark</td>
+                <td>Otto</td>
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>@mdo</td>
