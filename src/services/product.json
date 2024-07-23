@@ -1,0 +1,45 @@
+{
+    "products": [
+      {
+        "_id": 1,
+        "name": "Cà chua",
+        "category": "Rau củ",
+        "price": 20000,
+        "unit": "kg",
+        "description": "Cà chua tươi, ngon, giàu vitamin C.",
+        "stock": 150,
+        "image" : "https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/Group-8057-1-600x600-1.jpg"
+      },
+      {
+        "_id": 2,
+        "name": "Cà rốt",
+        "category": "Rau củ",
+        "price": 15000,
+        "unit": "kg",
+        "description": "Cà rốt tươi, tốt cho sức khỏe.",
+        "stock": 100 ,
+        "image" : "https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/Group-8057-1-600x600-1.jpg"
+      },
+      {
+        "_id": 3,
+        "name": "Tỏi",
+        "category": "Rau củ",
+        "price": 30000,
+        "unit": "kg",
+        "description": "Tỏi tươi, thơm, tốt cho sức khỏe.",
+        "stock": 90 ,
+        "image" : "https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/hanh-tay-600x600-1.jpg"
+      },
+      {
+        "_id": 4,
+        "name": "Củ cải trắng",
+        "category": "Rau củ",
+        "price": 12000,
+        "unit": "kg",
+        "description": "Củ cải trắng tươi, giàu dinh dưỡng.",
+        "stock": 110 ,
+        "image" : "https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/Group-8060-600x600-1.jpg"
+      }
+    ]
+  }
+  

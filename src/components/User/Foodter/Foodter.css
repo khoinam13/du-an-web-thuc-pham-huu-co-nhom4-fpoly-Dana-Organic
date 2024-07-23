@@ -1,0 +1,18 @@
+.footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 3800px;
+    background-color: #111111d9;
+    /* position: fixed; */
+    /* top: 4700px;  */
+}
+.text{
+    color: white ;
+}
+.textul{
+    text-decoration: none;
+    color: white ;
+}

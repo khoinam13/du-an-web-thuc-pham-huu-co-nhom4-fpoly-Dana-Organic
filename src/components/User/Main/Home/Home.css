@@ -1,0 +1,32 @@
+.carousel{
+    margin: 0 auto;
+    width: 90%;
+    height: 600px;
+    /* border: 1px solid red; */
+    display: flex   ;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.banner{
+    margin: 0 auto;
+    width: 90%;
+    height: 600px;
+    border: 1px solid red;
+    display: flex   ;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.cardtitle{
+    color: #83bb3e;
+    font-size: 35px;
+    text-decoration: none;
+}
+.carddel{
+    color: #fe9705;
+    font-size: 18px;
+}
+
