@@ -21,7 +21,7 @@ function Total(){
                     <td className='tdcolll'>300.000đ</td>
                     
                     </tr>
-                
+                        
                 </tbody>
                 </table>
                     <Link to={'/cart/infor'}>                <button type="button" class="btn btn" style={{backgroundColor:'#83bb3e',width:'250px',fontSize:'20px',fontWeight:'500',color:'#fff'}}>Tiến Hành Thanh Toán</button>

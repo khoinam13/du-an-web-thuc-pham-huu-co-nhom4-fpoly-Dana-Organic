@@ -1,35 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 import "./Home.css";
+// import products from "../../../../../db.json"
+import { useState,useEffect } from 'react';
+
 
 function NewProduct() {
-  const products = [
-    {
-      id: 1,
-      name: "Cà rốt",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-      sameimage:[
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-      ],
-      price: 15990,
-      description:
-        "Cà rốt rất tốt cho sức khỏe",
-        quantity:"10",
-    },
-    {
-      id: 2,
-      name: "Su hào",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
-      sameimage:[
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-      ],
-      price: 15990,
-      description:
-      "su hào rất tốt cho sức khỏe",
-      quantity:"10",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/products');
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Lỗi dữ liệu!!', error);
+      }
+    };
+
+    fetchData();
+  }, []); 
 
   return (
     <>

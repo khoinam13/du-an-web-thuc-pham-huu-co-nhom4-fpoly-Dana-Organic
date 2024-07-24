@@ -1,5 +1,21 @@
 import { Link } from "react-router-dom";
+import {useState,useEffect} from "react"
 function BlogProduct(){
+    const [blog, setBlog] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/blog');
+        const data = await res.json();
+        setBlog(data.slice(0, 4));
+      } catch (error) {
+        console.error('Lỗi dữ liệu!!', error);
+      }
+    };
+
+    fetchData();
+  }, []); 
     return(
        <>
             <div style={{ display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'20px',marginBottom:'60px'}} >
@@ -13,23 +29,37 @@ function BlogProduct(){
                     
                         
                         <div style={{ display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'20px',width:'89%'}}>
-                            <div className="card" style={{width: '28rem'}}>
-                                <img src="https://nhuongquyenviet.vn/wp-content/uploads/2023/06/1-5.png" className="card-img-top" alt="..."/>
-                                <div className="card-body" >
-                                         <center >
-                                         <Link className="card-title " style={{color:'black',fontSize:'20px',textDecoration:'none',fontWeight:'40px'}} >Kỹ thuật trồng rau sạch trong chậu xốp tại nhà đơn giản</Link>
-                                          <div style={{display:'flex',justifyContent:'center',alignItems:'center',gap:'15px'}}>
-                                       
-                                           <p >Tự trồng rau trong thùng xốp tại nhà là sự lựa chọn của rất nhiều gia đình trong thành phố bởi...					</p>
-                                          </div>
-                                          <Link href="#" className="btn btn-primary">Chi Tiết</Link>
-                                         </center>
-                                         
-                                       </div>
+                        {blog.map((item) => (
+                            <div key={item.id} className="card" style={{ width: '20rem' }}>
+                                <img src={item.image} className="card-img-top" alt="..." height={'270px'} />
+                                <div className="card-body">
+                                <center>
+                                 
+                                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px' }}>
+                                    <Link
+                                    to={`/detailblog/${item.id}`} 
+                                    className="card-title"
+                                    style={{
+                                        color: 'black',
+                                        fontSize: '20px',
+                                        textDecoration: 'none',
+                                        fontWeight: '40px',
+                                        fontFamily: '"Quicksand", sans-serif',
+                                        fontWeight: 600
+                                    }}
+                                    >
+                                    {item.title}
+                                    </Link>
+                                    </div>
+                                    <Link to={`/detailblog/${item.id}`} className="btn btn-primary">Chi Tiết</Link> 
+                                </center>
+                                </div>
                             </div>
+                            ))}
                            
-                           
+                       
                         </div>
+                         
                     
             </div>
        </>

@@ -1,5 +1,25 @@
 import { Link } from "react-router-dom";
+import { useState,useEffect } from 'react';
+
+
+
 function SellProduct() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/products');
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Lỗi dữ liệu!!', error);
+      }
+    };
+
+    fetchData();
+  }, []); 
   return (
     <>
       <div style={{  marginBottom: "60px",}}>
@@ -38,51 +58,58 @@ function SellProduct() {
           </div>
 
           <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "20px",
-              width: "89%",
-            }}
-          >
-            <div className="card" style={{ width: "18rem" }}>
-              <center>
-                <img
-                  src="https://hoaquafuji.com/storage/app/media/NEWS/cac-loai-trai-cay-nhap-khau.jpg"
-                  height={"247px"}
-                  width={"247px"}
-                />
-              </center>
-              <div className="card-body">
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "20px",
+            width: "89%",
+          }}
+        >
+          {products.map((item) => {
+            const discountedPrice = item.price * 0.7;
+
+            return (
+              <div className="card" style={{ width: "18rem" }} key={item.id}>
                 <center>
-                  <Link
-                    className="card-title cardtitle"
-                    style={{ color: "#83bb3e" }}
-                  >
-                    Hoa qủa
-                  </Link>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "15px",
-                    }}
-                  >
-                    <p>
-                      {" "}
-                      <del className="carddel">400,000đ</del>
-                    </p>
-                    <p className="carddel" style={{ fontWeight: "bold" }}>
-                      300,000đ
-                    </p>
-                  </div>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    height={"247px"}
+                    width={"247px"}
+                  />
                 </center>
+                <div className="card-body">
+                  <center>
+                    <Link
+                      to={`/detail-product/${item.id}`}
+                      className="card-title cardtitle"
+                      style={{ color: "#83bb3e" }}
+                    >
+                      {item.name}
+                    </Link>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "15px",
+                      }}
+                    >
+                      <p>
+                        <del className="carddel">{item.price.toLocaleString()}đ</del>
+                      </p>
+                      <p className="carddel" style={{ fontWeight: "bold" }}>
+                        {discountedPrice.toLocaleString()}đ
+                      </p>
+                    </div>
+                  </center>
+                </div>
               </div>
-            </div>
-          </div>
+            );
+          })}
+        </div>
         </div>
       </div>
     </>

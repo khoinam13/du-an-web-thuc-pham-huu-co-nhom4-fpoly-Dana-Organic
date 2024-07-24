@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Product.css';
 import Range from './range';
@@ -6,21 +6,26 @@ import Likeproduct from './likeproduct';
 import { Link } from 'react-router-dom';
 
 function Category() {
-  const categories = [
-    {
-      id: 1,
-      name: 'Trái Cây',
-    },
-    {
-      id: 2,
-      name: 'Rau',
-    },
-  ];
+  const [categories, setCategories] = useState([]);
 
-  const [activeIndex, setActiveIndex] = useState(null); 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/category');
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('Lỗi dữ liệu!!', error);
+      }
+    };
+
+    fetchData();
+  }, []); 
+
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const handleClick = (index) => {
-    setActiveIndex(index); 
+    setActiveIndex(index);
   };
 
   return (

@@ -5,6 +5,7 @@ import Image from './img'
 import Mota from './mota'
 import ProductSlide from './productslide'
 export default function DetailProduct() {
+  const productId = 1; 
   return (
    <>
     <div>
@@ -17,7 +18,7 @@ export default function DetailProduct() {
       <DanhGia/>
     </div>
     <div>
-      <ProductSlide/>
+    <ProductSlide productId={productId} />
     </div>
    </>
   )

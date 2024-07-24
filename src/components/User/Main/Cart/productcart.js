@@ -1,56 +1,112 @@
-import './Cart.css'
-import React, {useState} from 'react';
-function ProductCart(){
-    const [count, setCount] = useState(1);
+import './Cart.css';
+import React, { useState, useEffect } from 'react';
 
-    const handleIncrease = () => {
-      setCount(prevCount => prevCount + 1);
-    };
+function ProductCart() {
+  const [cart, setCart] = useState([]);
+  const [count, setCount] = useState({});
   
-    const handleDecrease = () => {
-      setCount(prevCount => Math.max(1, prevCount - 1)); 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/carts');
+        const data = await res.json();
+        setCart(data);
+
+        // Khởi tạo số lượng mặc định cho mỗi sản phẩm
+        const initialCount = data.reduce((acc, item) => {
+          acc[item.id] = 1; // Giả sử mỗi sản phẩm có một ID duy nhất
+          return acc;
+        }, {});
+        setCount(initialCount);
+      } catch (error) {
+        console.error('Lỗi dữ liệu!!', error);
+      }
     };
+
+    fetchData();
+  }, []);
   
-    const handleChange = (event) => {
-      const value = Number(event.target.value);
-      setCount(value);
-    };
-    return(
-            <>
-            <table class="table" >
-  <thead>
-    <tr className='thcol'>
-      <th scope="col" className='thcoll'>Sản Phẩm</th>
-      <th scope="col" className='thcoll'>Đơn Giá</th>
-      <th scope="col" className='thcoll'>Số Lượng</th>
-      <th scope="col" className='thcoll'>Tạm tính</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr className='tdcol' >
-      
-      <td style={{width:'200px'}} ><img src="https://hoaquafuji.com/storage/app/media/NEWS/cac-loai-trai-cay-nhap-khau.jpg" width={'100px'} height={'100px'} /></td>
-      <td className='tdcoll'>300.000đ</td>
-      <td className='tdcoll'>
-      <div className="counter-container">
-      <button type="button" onClick={handleDecrease} className="counter-button">-</button>
-      <input 
-        className="counter-input"
-        type="number" 
-        min="1" 
-        value={count} 
-        onChange={handleChange} 
-      />
-      <button type="button" onClick={handleIncrease} className="counter-button">+</button>
-    </div>
-      </td>
-      <td className='tdcoll'>300.000đ</td>
-    </tr>
-     
-  </tbody>
-</table>
-            </>
-        )
+  const handleIncrease = (id) => {
+    setCount(prevCount => ({
+      ...prevCount,
+      [id]: prevCount[id] + 1
+    }));
+  };
+
+  const handleDecrease = (id) => {
+    setCount(prevCount => ({
+      ...prevCount,
+      [id]: Math.max(1, prevCount[id] - 1)
+    }));
+  };
+
+  const handleChange = (event, id) => {
+    const value = Number(event.target.value);
+    setCount(prevCount => ({
+      ...prevCount,
+      [id]: value
+    }));
+  };
+
+  return (
+    <>
+      <table className="table">
+        <thead>
+          <tr className='thcol'>
+            <th scope="col" className='thcoll'>Sản Phẩm</th>
+            <th scope="col" className='thcoll'>Đơn Giá</th>
+            <th scope="col" className='thcoll'>Số Lượng</th>
+            <th scope="col" className='thcoll'>Tạm tính</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cart.map(product => {
+            const unitPrice = product.price; // Đơn giá từ dữ liệu API
+            const productCount = count[product.id] || 1; // Số lượng sản phẩm
+
+            return (
+              <tr key={product.id} className='tdcol'>
+                <td style={{ width: '200px' }}>
+                  <img src={product.image} width='100px' height='100px' alt={product.name} />
+                </td>
+                <td className='tdcoll'>
+                  {unitPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                </td>
+                <td className='tdcoll'>
+                  <div className="counter-container">
+                    <button 
+                      type="button" 
+                      onClick={() => handleDecrease(product.id)} 
+                      className="counter-button"
+                    >
+                      -
+                    </button>
+                    <input 
+                      className="counter-input"
+                      type="number" 
+                      min="1" 
+                      value={productCount} 
+                      onChange={(event) => handleChange(event, product.id)} 
+                    />
+                    <button 
+                      type="button" 
+                      onClick={() => handleIncrease(product.id)} 
+                      className="counter-button"
+                    >
+                      +
+                    </button>
+                  </div>
+                </td>
+                <td className='tdcoll'>
+                  {(unitPrice * productCount).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
+  );
 }
 
 export default ProductCart;
