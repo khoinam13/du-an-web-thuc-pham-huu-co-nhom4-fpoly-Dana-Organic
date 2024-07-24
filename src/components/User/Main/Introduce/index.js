@@ -117,7 +117,7 @@ export default function Introduce() {
           />
         </div>
         <div style={{ width: "500px" }}>
-          <p style={{ fontSize: "20px" }}>
+          <p style={{ fontSize: "20px"}}>
             Thực phẩm sạch đảm bảo : <br />
             - Hiểu được tâm lý người tiêu dùng, luôn cố gắng trau dồi và học hỏi
             để ra mắt các sản phẩm ngon nhất, gần gũi nhất với đời sống hằng

@@ -155,6 +155,19 @@ function Image() {
           </div>
         </div>
       </div>
+
+      <div style={{ width: '76%', margin: '0 auto', marginBottom: '20px', marginTop: '20px' }}>
+        <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
+          <button type="button" className="btn btn-success">Mô Tả</button>
+        </div>
+        <div>
+          <div style={{ border: '1px solid #ebebeb', padding: '20px' }}>
+            <p style={{ color:'#777',lineHeight:'25.6px',fontSize:'20px'}}>
+              {product.description}
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

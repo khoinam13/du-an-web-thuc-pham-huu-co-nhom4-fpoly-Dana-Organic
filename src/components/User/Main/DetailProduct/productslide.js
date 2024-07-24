@@ -20,25 +20,22 @@ function ProductSlide({ productId }) {
     fetchProducts();
   }, [productId]);
 
-  // Tách sản phẩm thành các nhóm dựa trên số lượng sản phẩm mỗi trang
   const productGroups = [];
   for (let i = 0; i < products.length; i += productsPerPage) {
     productGroups.push(products.slice(i, i + productsPerPage));
   }
 
-  // Chuyển đến nhóm sản phẩm tiếp theo
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % productGroups.length);
   };
 
-  // Quay lại nhóm sản phẩm trước đó
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + productGroups.length) % productGroups.length);
   };
 
   return (
-    <div style={{ width: '100%', margin: '20px auto' }}>
-      <h2 style={{ padding: '10px 0 10px 20px' }}>SẢN PHẨM TƯƠI MỚI</h2>
+    <div style={{ width: '100%', margin: '20px auto',marginBottom:"50px" }}>
+      <h2 style={{ padding: '10px 0 10px 20px',fontSize:'40px' }}>SẢN PHẨM KHÁC</h2>
       <div id="carouselExample" className="carousel slide">
         <div className="carousel-inner">
           {productGroups.map((group, groupIndex) => (

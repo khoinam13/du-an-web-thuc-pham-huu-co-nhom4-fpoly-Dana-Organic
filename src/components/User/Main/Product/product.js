@@ -34,7 +34,7 @@ function Products({ searchQuery }) {
   return (
     <>
       <div>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '20px',justifyContent:'center' }}>
           {filteredProducts.length > 0 ? (
             filteredProducts.map(product => (
               <div className="card" style={{ width: '18rem' }} key={product.id}>

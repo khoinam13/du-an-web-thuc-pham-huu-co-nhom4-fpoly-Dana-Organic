@@ -33,26 +33,17 @@ function BlogProduct(){
                             <div key={item.id} className="card" style={{ width: '20rem' }}>
                                 <img src={item.image} className="card-img-top" alt="..." height={'270px'} />
                                 <div className="card-body">
-                                <center>
+                                
                                  
-                                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', gap: '15px' }}>
                                     <Link
                                     to={`/detailblog/${item.id}`} 
                                     className="card-title"
-                                    style={{
-                                        color: 'black',
-                                        fontSize: '20px',
-                                        textDecoration: 'none',
-                                        fontWeight: '40px',
-                                        fontFamily: '"Quicksand", sans-serif',
-                                        fontWeight: 600
-                                    }}
-                                    >
+                                    style={{ color: 'black', fontSize: '20px',  textDecoration: 'none', fontFamily: '"Quicksand", sans-serif',fontWeight: 600, }} >
                                     {item.title}
                                     </Link>
                                     </div>
                                     <Link to={`/detailblog/${item.id}`} className="btn btn-primary">Chi Tiết</Link> 
-                                </center>
                                 </div>
                             </div>
                             ))}

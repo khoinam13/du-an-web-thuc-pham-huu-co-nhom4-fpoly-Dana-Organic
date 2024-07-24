@@ -55,9 +55,9 @@ function DetailBlog() {
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
             {relatedBlogs.map((item) => (
               <div className="card" key={item.id} style={{ width: '20rem', marginBottom: '30px' }}>
-                <img src={item.image} className="card-img-top" alt={item.title} />
+               <center> <img src={item.image} className="card-img-top" alt={item.title} style={{width:'200px'}}/></center>
                 <div className="card-body">
-                  <h5 className="card-title">{item.title}</h5>
+                  <h5 className="card-title" style={{textAlign:'left', fontSize:'25px'}}>{item.title}</h5>
                 </div>
                 <div className="card-body">
                   <Link to={`/blog/${item.id}`} className="card-link link">Xem Thêm</Link>
