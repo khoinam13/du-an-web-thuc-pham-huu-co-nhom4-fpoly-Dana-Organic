@@ -35,7 +35,6 @@ import Blog from './blog';
 import DetailBlog from './blog/detailblog';
 import Account from '../Heading/login/taikhoan';
 import Order from '../Heading/login/order';
-import PostBlog from '../Heading/login/postblog';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -91,10 +90,7 @@ const router = createBrowserRouter([
         path: "order",
         element: <Order />,
       },
-      {
-        path: "post",
-        element: <PostBlog />,
-      },
+     
       {
         path: "cart",
         element: <Cart />,

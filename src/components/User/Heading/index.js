@@ -127,7 +127,6 @@ function Heading({ setSearchQuery }) {
                 <ul class="dropdown-menu">
                   <li><Link class="dropdown-item" to={'/acount'}>Tài Khoản Của Tôi</Link></li>
                   <li><Link class="dropdown-item" to={'/order'}>Đơn Mua</Link></li>
-                  <li><Link class="dropdown-item" to={'/post'}>Đăng Bài </Link></li>
                   <li><Link class="dropdown-item" to={'#'}>Đăng Xuất</Link></li>
                 </ul>
               </div>
