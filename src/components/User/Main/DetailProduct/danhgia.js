@@ -10,7 +10,7 @@ function DanhGia({ productId, userId }) {
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/feedbacks')
+    fetch('http://localhost:3001/feedbacks')
       .then(response => response.json())
       .then(data => setFeedbacks(data))
       .catch(error => console.error('Error fetching feedbacks:', error));
@@ -48,7 +48,7 @@ function DanhGia({ productId, userId }) {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/feedbacks', {
+      const res = await fetch('http://localhost:3001/feedbacks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

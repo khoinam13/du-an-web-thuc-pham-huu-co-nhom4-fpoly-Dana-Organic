@@ -9,7 +9,7 @@ function ProductSlide({ productId }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/products?similarTo=${productId}`);
+        const res = await fetch(`http://localhost:3001/products?similarTo=${productId}`);
         const data = await res.json();
         setProducts(data);
       } catch (error) {

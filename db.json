@@ -8,70 +8,6 @@
       "email": "admin@admin.com",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
       "phone": "0987654321"
-    }
-  ],
-  "category": [
-    {
-      "id": 1,
-      "name": "Trái Cây"
-    },
-    {
-      "id": 2,
-      "name": "Rau củ"
-    }
-  ],
-  "products": [
-    {
-      "id": 1,
-      "name": "Cà rốt",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-      "sameimage": [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
-      ],
-      "price": 15990,
-      "description": "Cà rốt rất tốt cho sức khỏe",
-      "quantity": 10,
-      "categoryId": 1
-    },
-    {
-      "id": 2,
-      "name": "Su hào",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
-      "sameimage": [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
-      ],
-      "price": 215990,
-      "description": "Su hào rất tốt cho sức khỏe",
-      "quantity": 10,
-      "categoryId": 1
-    },
-    {
-      "id": 3,
-      "name": "Su hào",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
-      "sameimage": [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
-      ],
-      "price": 17990,
-      "description": "Su hào rất tốt cho sức khỏe",
-      "quantity": 10,
-      "categoryId": 2
-    },
-    {
-      "id": 4,
-      "name": "Su hào",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
-      "sameimage": [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
-      ],
-      "price": 13990,
-      "description": "Su hào rất tốt cho sức khỏe",
-      "quantity": 10,
-      "categoryId": 2
     },
     {
       "id": "d196",
@@ -84,6 +20,7 @@
       "registerPassword": "bOY13032003!"
     }
   ],
+  
   "category": [
     {
       "id": 1,
