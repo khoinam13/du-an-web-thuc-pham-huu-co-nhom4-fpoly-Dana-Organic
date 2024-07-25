@@ -32,7 +32,7 @@ export default function Cart() {
     >
       {showComponents && (
         <>
-          <div style={{ width: '750px', placeSelf: 'normal' }}>
+          <div style={{ width: '750px', placeSelf: 'normal',marginBottom:'150px' }}>
             <ProductCart />
           </div>
           <div style={{ width: '750px',marginBottom:'auto' }}>

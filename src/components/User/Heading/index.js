@@ -99,7 +99,7 @@ function Heading({ setSearchQuery }) {
                 onChange={handleInputChange}
               />
             </form> */}
-            <div className="d-flex" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px',width:'50%' }}>
+            <div className="d-flex" style={{ display: 'flex', alignItems: 'center', gap: '15px',width:'50%',marginLeft:'30px' }}>
               <Link to="/cart">
                 <div style={{ position: 'relative', display: 'inline-block' }}>
                   <center>
@@ -110,7 +110,7 @@ function Heading({ setSearchQuery }) {
                   </span>
                 </div>
               </Link>
-              <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton" style={{ backgroundColor:'rgb(51, 204, 102)'}}>
+              <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton" style={{ backgroundColor:'rgb(51, 204, 102)',marginLeft:'100px'}}>
                 <Link to="/" className="textlogin" style={{ color:'white'}}> Đăng nhập</Link>
               </button>
               <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton">

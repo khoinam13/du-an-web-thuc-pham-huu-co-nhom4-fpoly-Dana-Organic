@@ -194,6 +194,22 @@
       "price": 17990,
       "name": "Su hào",
       "id": 2
+    },
+    {
+      "productId": 1,
+      "quantity": 1,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "price": 15990,
+      "name": "Cà rốt",
+      "id": 3
+    },
+    {
+      "productId": 1,
+      "quantity": 1,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "price": 15990,
+      "name": "Cà rốt",
+      "id": 4
     }
   ],
   "vouchers": [
