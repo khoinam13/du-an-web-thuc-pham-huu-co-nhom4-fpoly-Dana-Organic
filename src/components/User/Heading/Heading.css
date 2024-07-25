@@ -19,6 +19,7 @@
    
 }
 .textbutton{
+
 color: #3c6;
 border-radius: 999px;
 border-color: #3c6;
@@ -26,6 +27,14 @@ height: 45px;
 margin-right: 15px;
 font-weight: 600;
 min-width: 94px;  
+
+   color: #3c6;
+   border-radius: 8px;
+   border-color: #3c6;
+     height: 45px;
+     /* margin-right: 15px; */
+     font-weight: 600;
+     /* background-color: #3c6; */
 }
 .nav-car{
     color: #3c6;
@@ -46,6 +55,7 @@ min-width: 94px;
     background-color: #c1c1c1;
     color: rgb(65, 70, 67);
 }
+<<<<<<< HEAD
 .iconbutton:hover .nav__user-btn-icon{
     color: #c1c1c1;
 }
@@ -57,4 +67,17 @@ min-width: 94px;
     font-size: 30px;
 }
 
-
+@media screen and (min-width: 990px) and (max-width: 1200px) {
+    .textbutton {
+      height: 45px; 
+      width: 120px;
+    }
+    .textlogin{
+        font-size: 15px;
+    }
+  }
+  .dropdown-item{
+    font-size: 20px;
+    font-weight: 500;
+  }
+  

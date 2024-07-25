@@ -3,12 +3,16 @@ function Comment() {
   return (
     <>
       <div>
-        <div style={{display:'flex',gap:'10px'}}>
+      <div style={{display:'flex',gap:'10px',alignItems:'center'}}>
            
-            <input type={'search'} placeholder="Search..." style={{borderRadius:'6px',border:'1px solid #777777 '}}/><i class="fa-solid fa-magnifying-glass" style={{position:'absolute',top:'92px',left:'24%'}}></i>
+           <div style={{ position:'relative', display: 'inline-block',}}>
+     <input type="search" placeholder="Search..." style={{borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px'}} />
+     <i class="fa-solid fa-magnifying-glass" style={{position: 'absolute', top: '50%', right: '10px' ,transform: 'translateY(-50%)'}}></i>
+   </div>
+    
 
-         
-        </div>
+  
+ </div>
         <div>
           <table class="table">
             <thead>

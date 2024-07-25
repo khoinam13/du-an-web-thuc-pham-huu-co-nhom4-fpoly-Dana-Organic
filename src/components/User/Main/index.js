@@ -31,6 +31,11 @@ import Voucher from '../../Admin/voucher';
 import UpdateVoucher from '../../Admin/voucher/updatevoucher';
 import NewVoucher from '../../Admin/voucher/newvoucher';
 import ThongKe from '../../Admin/thongke';
+import Blog from './blog';
+import DetailBlog from './blog/detailblog';
+import Account from '../Heading/login/taikhoan';
+import Order from '../Heading/login/order';
+import PostBlog from '../Heading/login/postblog';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,26 +50,50 @@ const router = createBrowserRouter([
         element: <Product />,
         children: [
           {
-            path: "products",
+            path: "products/:categoryId",
             element: <Products />,
+          },
+          {
+            path: "products",
+            element: <Products searchQuery="" />,
           }
         ]
       },
       {
         path: "news",
         element: <News />,
+      }, 
+       {
+        path: "blog",
+        element: <Blog />,
+      },
+       {
+        path: "detailblog/:id",
+        element: <DetailBlog />,
       },
       {
         path: "introduce",
         element: <Introduce />,
       },
       {
-        path: "detail-product",
+        path: "detail-product/:id",
         element: <DetailProduct />,
       },
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "acount",
+        element: <Account />,
+      },
+      {
+        path: "order",
+        element: <Order />,
+      },
+      {
+        path: "post",
+        element: <PostBlog />,
       },
       {
         path: "cart",

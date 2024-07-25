@@ -1,20 +1,16 @@
-.footer{
-    flex-wrap: wrap;
-    gap: 30px;
-    position: relative;
-    background-color: #111111d9;
-}
-h6{
-    font-weight: 600;
+
+h5{
+    font-weight: 900;
     font-size: 20px;
  
 }
-.textt{
-    color: white ;
-    font-weight: 600;
+.textfooter{
+    color: black ;
+    font-weight: 400;
     font-size: 20px;
 }
-.textul{
-    text-decoration: none;
-    color: white ;
+.textfooter:hover{
+    color: #33cc66;
+    font-weight: 600;
+    font-size: 20px;
 }

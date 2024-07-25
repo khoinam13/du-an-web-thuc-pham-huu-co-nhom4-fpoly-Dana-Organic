@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Product.css';
-import { Link } from 'react-router-dom'; // Ensure this path is correct
-import Likeproduct from './likeproduct';
-import Range from './range';
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Product.css";
+import Range from "./range";
+import Likeproduct from "./likeproduct";
+import { Link } from "react-router-dom";
+
 function Category() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/category");
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Lỗi dữ liệu!!", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const handleClick = (index) => {
     setActiveIndex(index);
@@ -13,27 +30,28 @@ function Category() {
 
   return (
     <div>
-      <h3 className='h3'>Danh mục</h3>
+      <h3 className="h3">Danh mục</h3>
       <div className="list-group">
-        <Link to="/product/products?category=traicay" className={`list-group-item list-group-item-action ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
-          Trái Cây
-        </Link>
-        <Link to="/product/products?category=rau" className={`list-group-item list-group-item-action ${activeIndex === 1 ? 'active' : ''}`} onClick={() => handleClick(1)}>
-          Rau 
-        </Link>
-        <Link to="/product/products?category=cu" className={`list-group-item list-group-item-action ${activeIndex === 2 ? 'active' : ''}`} onClick={() => handleClick(2)}>
-          Củ
-        </Link>
-        <Link  to="/product/products?category=hanh"  className={`list-group-item list-group-item-action ${activeIndex === 3 ? 'active' : ''}`}  onClick={() => handleClick(3)}>
-          Hành
-        </Link>
+        {categories.map((category, index) => (
+          <Link
+            to={`/product/products/${category.id}`}
+            key={category.id}
+            className={`list-group-item list-group-item-action ${
+              activeIndex === index ? "active" : ""
+            }`}
+            onClick={() => handleClick(index)}
+          >
+            {category.name}
+          </Link>
+        ))}
       </div>
-     <div style={{marginTop:'20px'}}>
-     <Range/>
-     </div>
-     <div style={{marginTop:'20px'}}>
-     <Likeproduct/>
-     </div>
+
+      <div style={{ marginTop: "20px" }}>
+        <Range />
+      </div>
+      <div style={{ marginTop: "20px" }}>
+        <Likeproduct />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,25 @@
+h2{
+    font-family: "Quicksand", sans-serif;
+    color: #333333;
+    font-size: 4.2857142857rem;
+    margin-bottom: 2.4285714286rem;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.link{
+    text-decoration: none;
+    font-size: 20px;
+    color: #f72936;
+    font-weight: 400;
+    font-family: "Quicksand", sans-serif;
+}
+
+.link:hover{
+    color:#FFDEAD;
+}
+.card-title{
+    font-size: 30px;
+    font-weight: 600;
+    font-family: "Quicksand", sans-serif;
+}

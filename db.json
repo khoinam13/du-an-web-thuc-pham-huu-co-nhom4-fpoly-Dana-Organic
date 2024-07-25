@@ -4,36 +4,231 @@
       "id": "d466",
       "registerName": "dangnam1303k3@gmail.com",
       "registerPassword": "Voy13032003!"
+    },
+    {
+      "id": "e9be",
+      "registerName": "namdang132222@gmail.com",
+      "registerPassword": "Boy13032003!"
+    },
+    {
+      "id": "d196",
+      "registerName": "dangnam221303@gmail.com",
+      "registerPassword": "Boy13032003!"
+    },
+    {
+      "id": "6a90",
+      "registerName": "dangnam132203@gmail.com",
+      "registerPassword": "bOY13032003!"
     }
   ],
-  "product" : [
+  "category": [
     {
-      "id" : "abcd",
-      "productName" : "Hoa quả",
-      "productPrice" : 20000,
-      "productPriceOrigin" : 40000,
-      "productImage" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT-zAG9-GJfvR9fxF5y7EWpep1X0BzIEWwQA&s",
-      "productType" : "trái cây"
-
+      "id": 1,
+      "name": "Trái Cây"
     },
     {
-      "id" : "abcd3",
-      "productName" : "Rau củ",
-      "productPrice" : 20000,
-      "productPriceOrigin" : 40000,
-      "productImage" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT-zAG9-GJfvR9fxF5y7EWpep1X0BzIEWwQA&s",
-      "productType" : "trái cây"
-
-    },
-    {
-      "id" : "abcd2",
-      "productName" : "Hành",
-      "productPrice" : 20000,
-      "productPriceOrigin" : 40000,
-      "productImage" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT-zAG9-GJfvR9fxF5y7EWpep1X0BzIEWwQA&s",
-      "productType" : "trái cây"
-
+      "id": 2,
+      "name": "Rau củ"
     }
-    
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Cà rốt",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Cà rốt rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 1
+    },
+    {
+      "id": 3,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    },
+    {
+      "id": 4,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    },
+    {
+      "id": 5,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    },
+    {
+      "id": 6,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    },
+    {
+      "id": 7,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    },
+    {
+      "id": 8,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    },
+    {
+      "id": 9,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    },
+    {
+      "id": 10,
+      "name": "Su hào",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "sameimage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
+      ],
+      "price": 15990,
+      "description": "Su hào rất tốt cho sức khỏe",
+      "quantity": 10,
+      "categoryId": 2
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "title": "Tin tức về sản phẩm",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "content": "Sản phẩm của chúng tôi đang có nhiều ưu đãi và khuyến mãi. Hãy xem thêm để biết thêm chi tiết."
+    },
+    {
+      "id": 2,
+      "title": "Tin tức về sản phẩm",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "content": "Sản phẩm của chúng tôi đang có nhiều ưu đãi và khuyến mãi. Hãy xem thêm để biết thêm chi tiết."
+    },
+    {
+      "id": 3,
+      "title": "Tin tức về sản phẩm",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "content": "Sản phẩm của chúng tôi đang có nhiều ưu đãi và khuyến mãi. Hãy xem thêm để biết thêm chi tiết."
+    },
+    {
+      "id": 4,
+      "title": "Tin tức về sản phẩm",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "content": "Sản phẩm của chúng tôi đang có nhiều ưu đãi và khuyến mãi. Hãy xem thêm để biết thêm chi tiết."
+    }
+  ],
+  "carts": [
+    {
+      "id": 1,
+      "productId": 1,
+      "quantity": 2,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "price": 31980
+    },
+    {
+      "id": 2,
+      "productId": 2,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
+      "quantity": 1,
+      "price": 15990
+    }
+  ],
+  "product": [
+    {
+      "id": "abcd",
+      "productName": "Hoa quả",
+      "productPrice": 20000,
+      "productPriceOrigin": 40000,
+      "productImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT-zAG9-GJfvR9fxF5y7EWpep1X0BzIEWwQA&s",
+      "productType": "trái cây"
+    },
+    {
+      "id": "abcd3",
+      "productName": "Rau củ",
+      "productPrice": 20000,
+      "productPriceOrigin": 40000,
+      "productImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT-zAG9-GJfvR9fxF5y7EWpep1X0BzIEWwQA&s",
+      "productType": "trái cây"
+    },
+    {
+      "id": "abcd2",
+      "productName": "Hành",
+      "productPrice": 20000,
+      "productPriceOrigin": 40000,
+      "productImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT-zAG9-GJfvR9fxF5y7EWpep1X0BzIEWwQA&s",
+      "productType": "trái cây"
+    }
   ]
 }

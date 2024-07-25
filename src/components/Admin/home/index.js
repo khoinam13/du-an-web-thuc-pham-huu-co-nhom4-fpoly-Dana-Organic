@@ -116,7 +116,7 @@ function Admin() {
                             </button>
                         </Link>
                     </div>
-                    <div style={{ marginTop: '128%' }} className="list-group parent-class">
+                    <div style={{ marginTop: '123%' }} className="list-group parent-class">
                         <Link to={'/'} style={{ textDecoration: 'none' }}>
                             <button type="button" style={{ color: '#777777 !important', fontSize: '20px', fontWeight: '500', display: 'flex', gap: '10px', alignItems: 'center' }} className="btn list-group-item list-group-item-action">
                                 <i className="fa-solid fa-arrow-right-from-bracket"></i>Đăng Xuất

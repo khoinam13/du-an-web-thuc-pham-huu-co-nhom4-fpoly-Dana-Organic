@@ -3,10 +3,13 @@ function AdminUser() {
   return (
     <>
       <div>
-        <div style={{display:'flex',gap:'10px'}}>
+        <div style={{display:'flex',gap:'10px',alignItems:'center'}}>
            
-            <input type={'search'} placeholder="Search..." style={{borderRadius:'6px',border:'1px solid #777777 '}}/><i class="fa-solid fa-magnifying-glass" style={{position:'absolute',top:'96px',left:'24%'}}></i>
-            <Link to={'/admin/newuser'}> <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></Link>
+                  <div style={{ position:'relative', display: 'inline-block',}}>
+            <input type="search" placeholder="Search..." style={{borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px'}} />
+            <i class="fa-solid fa-magnifying-glass" style={{position: 'absolute', top: '50%', right: '10px' ,transform: 'translateY(-50%)'}}></i>
+          </div>
+            <Link to={'/admin/newuser'}><button className="btn btn-link"><i class="fa-solid fa-plus"> </i></button></Link>
 
          
         </div>
@@ -16,6 +19,7 @@ function AdminUser() {
               <tr>
                 <th scope="col">Tên</th>
                 <th scope="col">Hình Ảnh</th>
+                <th scope="col">Ngày Sinh</th>
                 <th scope="col">Email</th>
                 <th scope="col">Mật Khẩu</th>
                 <th scope="col">Vai Trò</th>
@@ -26,6 +30,7 @@ function AdminUser() {
             <tbody>
               <tr>
                 <td>Mark</td>
+                <td>Otto</td>
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>@mdo</td>
