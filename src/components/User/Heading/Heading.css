@@ -15,13 +15,19 @@
 }
 
 .textlogin{
-    font-size: 16px;
-    font-family: "Montserrat", sans-serif;
-    color: #3c6;
-    text-decoration: none;
+    
    
 }
 .textbutton{
+
+color: #3c6;
+border-radius: 999px;
+border-color: #3c6;
+height: 45px;
+margin-right: 15px;
+font-weight: 600;
+min-width: 94px;  
+
    color: #3c6;
    border-radius: 8px;
    border-color: #3c6;
@@ -30,13 +36,37 @@
      font-weight: 600;
      /* background-color: #3c6; */
 }
-.textlogin:hover{
-    color: #fff;
+.nav-car{
+    color: #3c6;
+    font-size: 30px;
+    cursor: pointer;
 }
-.textbutton:hover{
-    background-color: #3c6;
+.iconbutton{
+    color: #3c6;
+    border-color: #3c6;
+    height: 45px;
+    margin-right: 15px;
+    font-weight: 600;
+    border: none;
+    background-color: transparent;
+}
 
+.textbutton:hover{
+    background-color: #c1c1c1;
+    color: rgb(65, 70, 67);
 }
+<<<<<<< HEAD
+.iconbutton:hover .nav__user-btn-icon{
+    color: #c1c1c1;
+}
+.nav__user{
+    display: none;
+}
+.nav__user-btn-icon{
+    color: #3c6;
+    font-size: 30px;
+}
+
 @media screen and (min-width: 990px) and (max-width: 1200px) {
     .textbutton {
       height: 45px; 

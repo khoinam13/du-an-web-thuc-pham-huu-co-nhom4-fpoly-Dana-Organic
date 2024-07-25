@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -109,9 +110,7 @@ function Products() {
             <p>Không có sản phẩm nào.</p>
           )}
         </div>
-      </div>
-    </>
-  );
+        </>
+    )
 }
-
 export default Products;
