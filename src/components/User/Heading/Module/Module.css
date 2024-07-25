@@ -21,7 +21,7 @@
   .home-module__wrap{
     background-color: #fff;
     display: inline-flex;
-    min-width: 700px;
+    width: 700px;
     padding: 28px 36px;
     position: absolute;
     animation-name: down;
@@ -146,3 +146,4 @@
      
     }
   }
+  

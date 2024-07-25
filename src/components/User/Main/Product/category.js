@@ -15,16 +15,16 @@ function Category() {
     <div>
       <h3 className='h3'>Danh mục</h3>
       <div className="list-group">
-        <Link to="/product/products" className={`list-group-item list-group-item-action ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
+        <Link to="/product/products?category=traicay" className={`list-group-item list-group-item-action ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
           Trái Cây
         </Link>
-        <Link href="#" className={`list-group-item list-group-item-action ${activeIndex === 1 ? 'active' : ''}`} onClick={() => handleClick(1)}>
+        <Link to="/product/products?category=rau" className={`list-group-item list-group-item-action ${activeIndex === 1 ? 'active' : ''}`} onClick={() => handleClick(1)}>
           Rau 
         </Link>
-        <Link href="#" className={`list-group-item list-group-item-action ${activeIndex === 2 ? 'active' : ''}`} onClick={() => handleClick(2)}>
+        <Link to="/product/products?category=cu" className={`list-group-item list-group-item-action ${activeIndex === 2 ? 'active' : ''}`} onClick={() => handleClick(2)}>
           Củ
         </Link>
-        <Link  href="#"  className={`list-group-item list-group-item-action ${activeIndex === 3 ? 'active' : ''}`}  onClick={() => handleClick(3)}>
+        <Link  to="/product/products?category=hanh"  className={`list-group-item list-group-item-action ${activeIndex === 3 ? 'active' : ''}`}  onClick={() => handleClick(3)}>
           Hành
         </Link>
       </div>
