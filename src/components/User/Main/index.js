@@ -121,7 +121,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateadminproduct",
+        path: "updateadminproduct/:id",
         element: <UpdateAdminProduct />,
 
       },
@@ -136,7 +136,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateadmincategory",
+        path: "updateadmincategory/:id",
         element: <UpdateAdminCategory />,
 
       },
@@ -151,7 +151,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateuser",
+        path: "updateuser/:id",
         element: <UpdateAdminUser />,
 
       },
@@ -166,7 +166,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateblog",
+        path: "updateblog/:id",
         element: <UpdateAdminBlog />,
 
       },
@@ -193,6 +193,11 @@ const router = createBrowserRouter([
       {
         path: "newvoucher",
         element: <NewVoucher />,
+
+      },
+      {
+        path: "updatevoucher/:id",
+        element: <UpdateVoucher />,
 
       },
       

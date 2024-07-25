@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function Image() {
-  const { id } = useParams(); // Lấy id từ URL
+  const { id } = useParams(); 
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [count, setCount] = useState(1);
   const [selectedImage, setSelectedImage] = useState("");
@@ -10,7 +11,7 @@ function Image() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/products/${id}`); // Lấy sản phẩm theo id từ API
+        const res = await fetch(`http://localhost:3000/products/${id}`);
         if (res.ok) {
           const data = await res.json();
           setProduct(data);
@@ -39,6 +40,37 @@ function Image() {
     setCount(value);
   };
 
+  const handleAddToCart = async () => {
+    if (product && product.quantity > 0) {
+      const cartItem = {
+        productId: product.id,
+        quantity: count,
+        image: selectedImage,
+        price: product.price,
+        name: product.name,
+      };
+
+      try {
+        const res = await fetch('http://localhost:3000/carts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(cartItem),
+        });
+
+        if (res.ok) {
+          console.log('Thêm vào giỏ hàng thành công!');
+          navigate('/cart');
+        } else {
+          console.error('Không thể thêm vào giỏ hàng');
+        }
+      } catch (error) {
+        console.error('Lỗi khi thêm vào giỏ hàng:', error);
+      }
+    }
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -56,15 +88,7 @@ function Image() {
           </div>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "20px", padding: "20px" }}>
             {product.sameimage.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt={product.name}
-                width={"130px"}
-                height={"130px"}
-                style={{ border: "1px solid #ebebeb", cursor: "pointer" }}
-                onClick={() => setSelectedImage(img)}
-              />
+              <img key={index} src={img}  alt={product.name} width={"130px"} height={"130px"} style={{ border: "1px solid #ebebeb", cursor: "pointer" }} onClick={() => setSelectedImage(img)} />
             ))}
           </div>
         </div>
@@ -99,43 +123,17 @@ function Image() {
               )}
             </p>
             <div className="counter-container">
-              <button
-                type="button"
-                onClick={handleDecrease}
-                className="counter-button"
-                disabled={product.quantity === 0}
-              >
-                -
-              </button>
-              <input
-                className="counter-input"
-                type="number"
-                min="1"
-                value={count}
-                onChange={handleChange}
-                disabled={product.quantity === 0}
-              />
-              <button
-                type="button"
-                onClick={handleIncrease}
-                className="counter-button"
-                disabled={product.quantity === 0}
-              >
+              <button type="button" onClick={handleDecrease} className="counter-button" disabled={product.quantity === 0} > - </button>
+              <input className="counter-input" type="number" min="1" value={count} onChange={handleChange} disabled={product.quantity === 0}/>
+              <button type="button" onClick={handleIncrease} className="counter-button" disabled={product.quantity === 0} >
                 +
               </button>
               <button
                 type="button"
                 className="btn btn"
-                style={{
-                  backgroundColor: "#83bb3e",
-                  width: "250px",
-                  fontSize: "20px",
-                  fontWeight: "500",
-                  color: "#fff",
-                  marginLeft: "30px",
-                }}
-                disabled={product.quantity === 0}
-              >
+                style={{ backgroundColor: "#83bb3e", width: "250px", fontSize: "20px", fontWeight: "500", color: "#fff", marginLeft: "30px",}} 
+                onClick={handleAddToCart}
+                disabled={product.quantity === 0} >
                 Thêm Vào Giỏ Hàng
               </button>
             </div>

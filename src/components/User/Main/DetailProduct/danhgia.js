@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-
-function DanhGia() {
+import React, { useState,useEffect } from 'react';
+import { render } from '@testing-library/react';
+import { useNavigate } from 'react-router-dom';
+function DanhGia({ productId, userId }) {
   const [rating, setRating] = useState(0); 
   const [modalRating, setModalRating] = useState(0); 
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
+  const navigate = useNavigate();
+  const [feedbacks, setFeedbacks] = useState([]);
 
+  useEffect(() => {
+    fetch('http://localhost:3000/feedbacks')
+      .then(response => response.json())
+      .then(data => setFeedbacks(data))
+      .catch(error => console.error('Error fetching feedbacks:', error));
+  }, []);
   const handleStarClick = (value) => {
     setRating(value);
   };
@@ -12,8 +23,54 @@ function DanhGia() {
     setModalRating(value);
   };
 
-  const handleSubmitRating = () => {
-    setRating(modalRating);
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result); 
+      };
+      reader.readAsDataURL(file); 
+    }
+  };
+
+  const handleSubmitRating = async () => {
+    const feedback = {
+      productId,
+      userId,
+      content,
+      rating: modalRating,
+      image:image, 
+    };
+
+    try {
+      const res = await fetch('http://localhost:3000/feedbacks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedback),
+      });
+
+      if (res.ok) {
+        console.log('Đánh giá thành công!');
+        setRating(modalRating);
+        setContent('');
+        setModalRating(0);
+        setImage(null);
+        const newFeedback = await res.json();
+        setFeedbacks(prevFeedbacks => [...prevFeedbacks, newFeedback]);
+        
+      } else {
+        console.error('Không thể gửi đánh giá');
+      }
+    } catch (error) {
+      console.error('Lỗi khi gửi đánh giá:', error);
+    }
   };
 
   const ratings = [0, 0, 0, 0, 0]; 
@@ -57,24 +114,25 @@ function DanhGia() {
                   <button  type="button"  className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModall" >
               Đánh Giá Ngay
             </button>
-            <div>
-                <div style={{display:'block',display:"flex",justifyContent:'start',alignItems:'center',gap:'15px',marginBottom:"20px"}}>
-                    <img src='https://vergewiki.com/uploads/biography/2019/7/6/Anh%20Do-1562430469201.jpg' alt='' width={'50px'} height={'50px'} style={{borderRadius:'50%'}}/>
-                    <h4>Tuấn</h4>
+            <div style={{ width: '100%' }}>
+              {feedbacks.map((feedback) => (
+                <div key={feedback.id}>
+                  <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
+                    <img src={feedback.userImage || 'https://vergewiki.com/uploads/biography/2019/7/6/Anh%20Do-1562430469201.jpg'} alt='' width={'50px'} height={'50px'} style={{ borderRadius: '50%' }} />
+                    <h4>{feedback.userName || 'Anonymous'}</h4>
+                  </div>
+                  <div style={{ marginLeft: '30px', marginRight: '30px' }}>
+                    <div style={{ display: 'flex', gap: '20px', justifyContent: 'start', alignItems: 'center', marginBottom: '10px' }}>
+                      {[...Array(feedback.rating)].map((_, index) => (
+                        <i key={index} className="fa-solid fa-star" style={{ color: '#f39c12' }}></i>
+                      ))}
+                    </div>
+                    {feedback.image && <img src={feedback.image} alt='' width={'150px'} height={'150px'} style={{ marginBottom: '5px', marginRight: '15px' }} />}
+                    <h4>{feedback.content}</h4>
+                  </div>
                 </div>
-                <div style={{marginLeft:'30px',marginRight:'30px'}}>
-                <div style={{ display: 'flex', gap: '20px',  justifyContent: 'start', alignItems: 'center', marginBottom:'10px'  }}>
-                      
-                            <i className="fa-solid fa-star" ></i>
-                           
-
-                      </div>
-                    <img src='https://vergewiki.com/uploads/biography/2019/7/6/Anh%20Do-1562430469201.jpg' alt='' width={'50px'} height={'50px'} style={{marginBottom:'5px',marginRight:'15px'}}/>
-                    <h4>Chất lượng ok, nên mua nhé</h4>
-                </div>
-             
-              </div>
-           
+              ))}
+            </div>
           </div>
 
 
@@ -91,12 +149,12 @@ function DanhGia() {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                   </div>
                   <div className="modal-body">
-                    <textarea  placeholder="Mời bạn chia sẻ cảm nhận về sản phẩm..." style={{ width: '100%', height: '140px', borderRadius: '5px',}}></textarea>
+                    <textarea  placeholder="Mời bạn chia sẻ cảm nhận về sản phẩm..." value={content} onChange={handleContentChange} style={{ width: '100%', height: '140px', borderRadius: '5px',}}></textarea>
                     <div style={{ marginBottom: '20px', marginTop: '20px' }}>
                       <h3 style={{ color: '#77777', fontSize: '25px' }}>
                         Ảnh Thực Tế Sản Phẩm
                       </h3>
-                      <input type="file" />
+                      <input type="file" onChange={handleImageChange} />
                     </div>
                     <div>
                       <h3 style={{ color: '#77777', fontSize: '25px' }}>
@@ -113,7 +171,7 @@ function DanhGia() {
                     </div>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" onClick={handleSubmitRating}>
+                    <button type="button" className="btn btn-primary"  data-bs-dismiss="modal"  onClick={handleSubmitRating}>
                       Đánh giá
                     </button>
                   </div>
@@ -123,33 +181,8 @@ function DanhGia() {
           </div>
         </div>
 
-        {/* Phần bình luận */}
-        <div style={{display: 'flex',flexDirection: 'column',border: '1px solid #ebebeb',padding: '20px',gap: '20px',}}>
-          <textarea placeholder="Mời bạn bình luận sản phẩm..." style={{width: '100%',border: '1px solid #ebebeb',height: '70px',}}></textarea>
-
-          <div style={{display: 'flex', justifyContent: 'center',alignItems: 'center',gap: '20px', fontSize: '20px',marginTop: '20px', flexWrap: 'wrap', }}>
-            <input type="radio" /> Anh
-            <input type="radio" /> Chị
-            <input type="text" placeholder="Họ Tên" style={{ border: '1px solid #ebebeb', borderRadius: '6px' }}/>
-            <input  type="email" placeholder="Email" style={{ border: '1px solid #ebebeb', borderRadius: '6px' }}/>
-            <button type="button" className="btn btn-warning">
-              Gửi
-            </button>
-          </div>
-          <div style={{ width: '100%' }}>
-          <div>
-                <div style={{display:'block',display:"flex",justifyContent:'start',alignItems:'center',gap:'15px',marginBottom:"20px"}}>
-                    <img src='https://vergewiki.com/uploads/biography/2019/7/6/Anh%20Do-1562430469201.jpg' alt='' width={'50px'} height={'50px'} style={{borderRadius:'50%'}}/>
-                    <h4>Tuấn</h4>
-                </div>
-                <div style={{marginLeft:'30px',marginRight:'30px'}}>
-                <h4>Chất lượng ok, nên mua nhé</h4>
-                </div>
-             
-              </div>
-          </div>
-        </div>
-      </div>
+       
+    </div>
     </div>
   );
 }

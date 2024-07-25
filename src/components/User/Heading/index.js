@@ -89,7 +89,7 @@ function Heading({ setSearchQuery }) {
              
              
             </ul>
-            <form className="d-flex" role="search" style={{ marginLeft: '10px', marginBottom: '10px', marginTop: '10px' }} onSubmit={handleSubmit}>
+            {/* <form className="d-flex" role="search" style={{ marginLeft: '10px', marginBottom: '10px', marginTop: '10px' }} onSubmit={handleSubmit}>
               <input
                 className="form-control me-2"
                 type="search"
@@ -98,7 +98,7 @@ function Heading({ setSearchQuery }) {
                 value={searchInput}
                 onChange={handleInputChange}
               />
-            </form>
+            </form> */}
             <div className="d-flex" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px',width:'50%' }}>
               <Link to="/cart">
                 <div style={{ position: 'relative', display: 'inline-block' }}>

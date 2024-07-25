@@ -35,7 +35,7 @@ export default function Cart() {
           <div style={{ width: '750px', placeSelf: 'normal' }}>
             <ProductCart />
           </div>
-          <div style={{ width: '750px' }}>
+          <div style={{ width: '750px',marginBottom:'auto' }}>
             <Total />
           </div>
         </>
