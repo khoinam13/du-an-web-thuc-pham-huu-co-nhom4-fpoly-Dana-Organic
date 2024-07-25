@@ -40,7 +40,7 @@ function Blog() {
           {blog.map((item) => (
             <div className="col" style={{ width: '385px', justifyContent: 'center', alignItems: 'center' }} key={item.id}>
               <div className="card h-100">
-                <img src={item.image} className="card-img-top" alt={item.title} width={'150px'} height={'300px'} />
+                <img src={item.image} className="card-img-top" alt={item.title} width={'200px'} height={'300px'} />
                 <div className="card-body">
                   <h5 className="card-title">{item.title}</h5>
                 </div>

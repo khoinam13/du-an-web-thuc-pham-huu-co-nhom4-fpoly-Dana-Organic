@@ -12,9 +12,8 @@ function ProductCart() {
         const data = await res.json();
         setCart(data);
 
-        // Khởi tạo số lượng mặc định cho mỗi sản phẩm
         const initialCount = data.reduce((acc, item) => {
-          acc[item.id] = 1; // Giả sử mỗi sản phẩm có một ID duy nhất
+          acc[item.id] = 1; 
           return acc;
         }, {});
         setCount(initialCount);
@@ -54,6 +53,7 @@ function ProductCart() {
         <thead>
           <tr className='thcol'>
             <th scope="col" className='thcoll'>Sản Phẩm</th>
+            <th scope="col" className='thcoll'>Tên Sản Phẩm</th>
             <th scope="col" className='thcoll'>Đơn Giá</th>
             <th scope="col" className='thcoll'>Số Lượng</th>
             <th scope="col" className='thcoll'>Tạm tính</th>
@@ -61,13 +61,17 @@ function ProductCart() {
         </thead>
         <tbody>
           {cart.map(product => {
-            const unitPrice = product.price; // Đơn giá từ dữ liệu API
-            const productCount = count[product.id] || 1; // Số lượng sản phẩm
+            const unitPrice = product.price; 
+            const productCount = count[product.id] || 1; 
 
             return (
               <tr key={product.id} className='tdcol'>
                 <td style={{ width: '200px' }}>
                   <img src={product.image} width='100px' height='100px' alt={product.name} />
+                </td>
+                <td style={{ width: '200px', color:" black !important" }} className='namecoll'>
+                 
+                  {product.name} 
                 </td>
                 <td className='tdcoll'>
                   {unitPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}

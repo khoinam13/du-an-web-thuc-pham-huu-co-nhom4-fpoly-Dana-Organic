@@ -43,7 +43,7 @@ function BlogProduct(){
                                     {item.title}
                                     </Link>
                                     </div>
-                                    <Link to={`/detailblog/${item.id}`} className="btn btn-primary">Chi Tiết</Link> 
+                                    <Link to={`/detailblog/${item.id}`} className="btn btn-secondary">Chi Tiết</Link> 
                                 </div>
                             </div>
                             ))}

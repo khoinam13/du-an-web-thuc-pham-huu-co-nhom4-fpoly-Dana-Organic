@@ -24,7 +24,8 @@ function Total(){
                         
                 </tbody>
                 </table>
-                    <Link to={'/cart/infor'}>                <button type="button" class="btn btn" style={{backgroundColor:'#83bb3e',width:'250px',fontSize:'20px',fontWeight:'500',color:'#fff'}}>Tiến Hành Thanh Toán</button>
+                    <Link to={'/cart/infor'}>
+                    <button type="button" class="btn btn" style={{backgroundColor:'#83bb3e',width:'250px',fontSize:'20px',fontWeight:'500',color:'#fff'}}>Tiến Hành Thanh Toán</button>
                     </Link>
                 </center>
                 {/*  */}
@@ -37,7 +38,8 @@ function Total(){
                 
                     </tr>
                     <tr>
-                    <td ><input class="form-control" type="text" placeholder="Mã Giảm Giá" aria-label="default input example"/></td>
+                    <td >
+                    <input class="form-control" type="text" placeholder="Mã Giảm Giá" aria-label="default input example"/></td>
                     
                     </tr>
                 

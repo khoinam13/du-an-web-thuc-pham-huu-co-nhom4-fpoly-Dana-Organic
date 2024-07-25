@@ -35,7 +35,6 @@ import Blog from './blog';
 import DetailBlog from './blog/detailblog';
 import Account from '../Heading/login/taikhoan';
 import Order from '../Heading/login/order';
-import PostBlog from '../Heading/login/postblog';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -91,10 +90,7 @@ const router = createBrowserRouter([
         path: "order",
         element: <Order />,
       },
-      {
-        path: "post",
-        element: <PostBlog />,
-      },
+     
       {
         path: "cart",
         element: <Cart />,
@@ -121,7 +117,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateadminproduct",
+        path: "updateadminproduct/:id",
         element: <UpdateAdminProduct />,
 
       },
@@ -136,7 +132,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateadmincategory",
+        path: "updateadmincategory/:id",
         element: <UpdateAdminCategory />,
 
       },
@@ -151,7 +147,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateuser",
+        path: "updateuser/:id",
         element: <UpdateAdminUser />,
 
       },
@@ -166,7 +162,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path: "updateblog",
+        path: "updateblog/:id",
         element: <UpdateAdminBlog />,
 
       },
@@ -193,6 +189,11 @@ const router = createBrowserRouter([
       {
         path: "newvoucher",
         element: <NewVoucher />,
+
+      },
+      {
+        path: "updatevoucher/:id",
+        element: <UpdateVoucher />,
 
       },
       

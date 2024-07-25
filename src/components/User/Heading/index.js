@@ -152,6 +152,7 @@ function Heading() {
           </div>
           <div style={{ marginRight: "30px" }}>
             <form className="d-flex" role="search">
+
               <input
                 className="form-control me-2"
                 type="search"
@@ -160,6 +161,24 @@ function Heading() {
               />
               <button className="btn btn-outline-success" type="submit">
                 Search
+
+            </form> */}
+            <div className="d-flex" style={{ display: 'flex', alignItems: 'center', gap: '15px',width:'50%',marginLeft:'30px' }}>
+              <Link to="/cart">
+                <div style={{ position: 'relative', display: 'inline-block' }}>
+                  <center>
+                    <i className="fa-solid fa-cart-shopping" style={{ color: '#3c6', fontSize: '30px' }}></i>
+                  </center>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {cartItemCount}
+                  </span>
+                </div>
+              </Link>
+              <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton" style={{ backgroundColor:'rgb(51, 204, 102)',marginLeft:'100px'}}>
+                <Link to="/" className="textlogin" style={{ color:'white'}}> Đăng nhập</Link>
+              </button>
+              <button onClick={() => handleToggle(isToggle, setIsToggle)} className="textbutton">
+                <Link to="/" className="textlogin"> Đăng kí</Link>
               </button>
             </form>
           </div>
@@ -353,5 +372,4 @@ function Heading() {
 //   );
 // }
 
-// >>>>>>> 4f6899e41508549243c5f4a5f0fac038347c94cd
 export default Heading;
