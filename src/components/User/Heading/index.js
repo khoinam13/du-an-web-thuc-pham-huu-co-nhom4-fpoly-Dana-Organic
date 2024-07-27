@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Module from "./Module";
 import { handleToggle } from "../handle";
 import { FaUser } from "react-icons/fa";
-import { FaCartShopping } from "react-icons/fa6";
 import axios from "axios";
 import Cookies from "js-cookie";
 import "./Heading.css";
 function Heading() {
+  const navigate = useNavigate();
   const [FlagExistUser, setFlagExistUser] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
   const handleClick = (path) => {
@@ -20,14 +21,18 @@ function Heading() {
   // đăng kí tài khoản
   const createAccount = async (values, actions) => {
     await axios
-      .get(`http://localhost:3001/account?registerName=${values.registerName}`)
+      .get(`http://localhost:3001/account?registerEmail=${values.registerEmail}`)
       .then((response) => {
-        if (response.data.length !== 0) {
-          actions.setFieldError("registerName", "Email này đã tồn tại");
+        if (response.data.length !== 0 ) {
+          actions.setFieldError("registerEmail", "Email này đã tồn tại");
         } else {
           axios.post("http://localhost:3001/account", values);
           values.registerName = "";
           values.registerPassword = "";
+          values.registerPasswordRetype = "";
+          values.registerEmail = "";
+          values.registerPhone= "";
+          values.registerAddress = "";
           document.querySelector(".successful").style.display = "flex";
         }
       });
@@ -36,7 +41,7 @@ function Heading() {
   // đăng nhập tài khoản
   const loginAccount = async (values, actions) => {
     await axios
-      .get(`http://localhost:3001/account?registerName=${values.loginName}`)
+      .get(`http://localhost:3001/account?registerEmmail=${values.loginName}`)
       .then((response) => {
         if (response.data.length === 0) {
           actions.setFieldError("loginName", "Tài khoản không đúng");
@@ -64,6 +69,7 @@ function Heading() {
   const checkOutAccount = () => {
     Cookies.remove("username");
     setFlagExistUser(false);
+    navigate('/');
   };
   return (
     <>
@@ -191,11 +197,13 @@ function Heading() {
               <div>
                 {FlagExistUser ? (
                   <>
+                  {/* =========== user ============= */}
                     <button className="iconbutton">
-                      <Link>
+                      <Link to={'/acount'}>
                         <FaUser className="nav__user-btn-icon" />
                       </Link>
                     </button>
+                    {/* ========= user ========== */}
                     <button className="textbutton" onClick={checkOutAccount}>
                       Đăng xuất
                     </button>

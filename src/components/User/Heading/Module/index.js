@@ -7,7 +7,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { hiddenElement } from "../../handle";
 import "./Module.css";
 
-function Module({ isLogin, setIsLogin, isRegister, setIsRegister, onToggle , onLogin, onCreateAccount}) {
+function Module({
+  isLogin,
+  setIsLogin,
+  isRegister,
+  setIsRegister,
+  onToggle,
+  onLogin,
+  onCreateAccount,
+}) {
   return (
     <>
       {isLogin && (
@@ -73,37 +81,34 @@ function Module({ isLogin, setIsLogin, isRegister, setIsRegister, onToggle , onL
               </Link>
             </div>
             <button className="home-module__close">
-            <IoCloseOutline
-              onClick={() => onToggle(isLogin, setIsLogin)}
-              className="home-module__close-icon"
-            />
-          </button>
+              <IoCloseOutline
+                onClick={() => onToggle(isLogin, setIsLogin)}
+                className="home-module__close-icon"
+              />
+            </button>
           </div>
-          
         </div>
       )}
-
-      {isRegister &&
-      (
-
+      {isRegister && (
         <div className="home-module-wrap">
           <div className="home-module__wrap">
-          <div className="home-module__item">
+            <div className="home-module__item">
               <h2 className="home-module__heading">ĐĂNG KÝ</h2>
-              
+
               <Formik
-                initialValues={{ registerName: "", registerPassword: "" }}
+                initialValues={{ registerName: "", registerPassword: "", registerEmail : "", registerPasswordRetype : "", registerPhone : "", registerAccress : ""    }}
                 validationSchema={validattionSchemaRegister}
                 validateOnChange={false}
                 validateOnBlur={false}
                 onSubmit={onCreateAccount}
               >
                 <Form>
+                  {/*  */}
                   <label
                     htmlFor="register__name"
                     className="home-module__lable"
                   >
-                    Địa chỉ email *
+                    Họ tên *
                   </label>
                   <Field
                     id="register__name"
@@ -116,6 +121,59 @@ function Module({ isLogin, setIsLogin, isRegister, setIsRegister, onToggle , onL
                     name="registerName"
                     component="div"
                   />
+                  {/*  */}
+                  <label
+                    htmlFor="register__email"
+                    className="home-module__lable"
+                  >
+                    Địa chỉ email *
+                  </label>
+                  <Field
+                    id="register__email"
+                    className="home-module__input"
+                    type="text"
+                    name="registerEmail"
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="registerEmail"
+                    component="div"
+                  />
+                  {/*  */}
+                  <label
+                    htmlFor="register__address"
+                    className="home-module__lable"
+                  >
+                    Địa chỉ của bạn *
+                  </label>
+                  <Field
+                    id="register__addres"
+                    className="home-module__input"
+                    type="text"
+                    name="registerAddress"
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="registerAddress"
+                    component="div"
+                  />
+                  {/*  */}
+                  {/*  */}
+                  <label htmlFor="register__phone" className="home-module__lable">
+                    SDT *
+                  </label>
+                  <Field
+                    id="register__phone"
+                    className="home-module__input"
+                    type="tel"
+                    name="registerPhone"
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="registerPhone"
+                    component="div"
+                  />
+                  {/*  */}
                   <label
                     htmlFor="register__password"
                     className="home-module__lable"
@@ -133,6 +191,29 @@ function Module({ isLogin, setIsLogin, isRegister, setIsRegister, onToggle , onL
                     name="registerPassword"
                     component="div"
                   />
+
+                  {/*  */}
+
+                  <label
+                    htmlFor="register__password-retype"
+                    className="home-module__lable"
+                  >
+                    Nhập lại mật khẩu *
+                  </label>
+                  <Field
+                    id="register__password-retype"
+                    className="home-module__input"
+                    type="password"
+                    name="registerPasswordRetype"
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="registerPasswordRetype"
+                    component="div"
+                  />
+
+                  {/*  */}
+
                   <button type="submit" className="home-module__submit">
                     ĐĂNG KÍ
                   </button>
@@ -140,15 +221,14 @@ function Module({ isLogin, setIsLogin, isRegister, setIsRegister, onToggle , onL
               </Formik>
             </div>
             <button className="home-module__close">
-            <IoCloseOutline
-              onClick={() => onToggle(isRegister, setIsRegister)}
-              className="home-module__close-icon"
-            />
+              <IoCloseOutline
+                onClick={() => onToggle(isRegister, setIsRegister)}
+                className="home-module__close-icon"
+              />
             </button>
           </div>
         </div>
-      )
-      }
+      )}
       ;{/* thông báo đăng kí thành công*/}
       <div className="successful">
         <div className="successful__wrap">

@@ -1,26 +1,16 @@
 {
   "account": [
     {
-      "id": "1",
-      "username": "admin",
-      "password": "123456",
-      "role": "admin",
-      "email": "admin@admin.com",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
-      "phone": "0987654321"
-    },
-    {
-      "id": "d196",
-      "registerName": "dangnam221303@gmail.com",
-      "registerPassword": "Boy13032003!"
-    },
-    {
-      "id": "6a90",
-      "registerName": "dangnam132203@gmail.com",
-      "registerPassword": "bOY13032003!"
+      "id": "a872",
+      "registerName": "dangnam",
+      "registerPassword": "Boy13032003!",
+      "registerEmail": "dangnam1303k3@gmail.com",
+      "registerPasswordRetype": "Boy13032003!",
+      "registerPhone": "0369832486",
+      "registerAccress": "",
+      "registerAddress": "177 Phạm Như Xương"
     }
   ],
-  
   "category": [
     {
       "id": 1,
@@ -138,7 +128,6 @@
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU"
       ],
       "price": 15990,
-
       "description": "Su hào rất tốt cho sức khỏe",
       "quantity": 10,
       "categoryId": 2
