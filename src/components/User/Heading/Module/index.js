@@ -96,7 +96,7 @@ function Module({
               <h2 className="home-module__heading">ĐĂNG KÝ</h2>
 
               <Formik
-                initialValues={{ registerName: "", registerPassword: "", registerEmail : "", registerPasswordRetype : "", registerPhone : "", registerAccress : ""    }}
+                initialValues={{ registerName: "", registerPassword: "", registerEmail : "", registerPasswordRetype : "", registerPhone : "", registerAddress : "", registerSex : "", registerDateBirth : ""  }}
                 validationSchema={validattionSchemaRegister}
                 validateOnChange={false}
                 validateOnBlur={false}
@@ -171,6 +171,42 @@ function Module({
                   <ErrorMessage
                     className="error"
                     name="registerPhone"
+                    component="div"
+                  />
+
+                  <label htmlFor="register__date-birth" className="home-module__lable">
+                    Ngày sinh *
+                  </label>
+                  <Field
+                    id="register__date-birth"
+                    className="home-module__input"
+                    type="date"
+                    name="registerDateBirth"
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="registerDateBirth"
+                    component="div"
+                  />
+
+                <fieldset>
+                    <legend className="home-module__lable">Giới tính *</legend>
+                    <label>
+                      <Field type="radio" name="registerSex" value="Nam" />
+                      Nam
+                    </label>
+                    <label>
+                      <Field type="radio" name="registerSex" value="Nữ" />
+                      Nữ
+                    </label>
+                    <label>
+                      <Field type="radio" name="registerSex" value="Khác" />
+                      Khác
+                    </label>
+                </fieldset>
+                  <ErrorMessage
+                    className="error"
+                    name="registerSex"
                     component="div"
                   />
                   {/*  */}

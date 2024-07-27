@@ -32,6 +32,24 @@ export const validattionSchemaRegister = yup.object().shape({
     .required("Nhập lại mật khẩu là bắt buộc")
     .oneOf([yup.ref("registerPassword"), null], "Mật khẩu nhập lại không khớp")
     ,
+  registerSex : yup 
+  .string().required('Giới tính là bắt buộc'),
+  registerDateBirth :yup 
+  .date().required('Ngày sinh là bắt buộc')
+  .max(new Date(), 'Ngày sinh không được nằm trong tương lai')
+  .test('age', 'Bạn phải từ 16 tuổi trờ lên', value =>{
+    if(!value) return false
+      const today = new Date();
+      const birthDate = new Date(value);
+      const age = today.getFullYear() - birthDate.getFullYear(); 
+      // trên lệnh số năm
+      const monthDifference = today.getMonth() - birthDate.getMonth();
+      // trên lệnh số tháng
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age >= 16;
+  })
 });
 export const validationSchemaLogin = yup.object().shape({
   loginName: yup

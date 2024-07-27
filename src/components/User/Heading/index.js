@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 import "./Heading.css";
 function Heading() {
   const navigate = useNavigate();
-  const [FlagExistUser, setFlagExistUser] = useState(false);
+  // const [FlagExistUser, setFlagExistUser] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
   const handleClick = (path) => {
     setActiveLink(path);
@@ -21,18 +21,30 @@ function Heading() {
   // đăng kí tài khoản
   const createAccount = async (values, actions) => {
     await axios
-      .get(`http://localhost:3001/account?registerEmail=${values.registerEmail}`)
+      .get(`http://localhost:3001/account?email=${values.registerEmail}`)
       .then((response) => {
         if (response.data.length !== 0 ) {
           actions.setFieldError("registerEmail", "Email này đã tồn tại");
         } else {
-          axios.post("http://localhost:3001/account", values);
+          const account = {
+            name: values.registerName,
+            email: values.registerEmail,
+            password: values.registerPassword,
+            phone : values.registerPhone,
+            address: values.registerAddress,
+            sex: values.registerSex,
+            date : values.registerDateBirth,
+            image : '',
+          }
+          axios.post("http://localhost:3001/account", account);
           values.registerName = "";
           values.registerPassword = "";
           values.registerPasswordRetype = "";
           values.registerEmail = "";
           values.registerPhone= "";
           values.registerAddress = "";
+          values.registerDateBirth = "";
+          values.registerSex = ""
           document.querySelector(".successful").style.display = "flex";
         }
       });
@@ -41,12 +53,12 @@ function Heading() {
   // đăng nhập tài khoản
   const loginAccount = async (values, actions) => {
     await axios
-      .get(`http://localhost:3001/account?registerEmmail=${values.loginName}`)
+      .get(`http://localhost:3001/account?email=${values.loginName}`)
       .then((response) => {
         if (response.data.length === 0) {
           actions.setFieldError("loginName", "Tài khoản không đúng");
         } else {
-          const registerPassword = response.data[0].registerPassword;
+          const registerPassword = response.data[0].password;
           if (values.loginPassword !== registerPassword) {
             actions.setFieldError("loginPassword", "Mật khẩu không đúng");
           } else {
@@ -56,7 +68,6 @@ function Heading() {
             };
             setCookie("username", values.loginName, 7);
             alert("Bạn đã đăng nhập thành công");
-            setFlagExistUser(true);
             setIsLogin(false);
             values.loginName = "";
             values.loginPassword = "";
@@ -68,7 +79,6 @@ function Heading() {
   // đăng xuất tài khoản
   const checkOutAccount = () => {
     Cookies.remove("username");
-    setFlagExistUser(false);
     navigate('/');
   };
   return (
@@ -195,7 +205,7 @@ function Heading() {
                 </Link>
               </div>
               <div>
-                {FlagExistUser ? (
+                {Cookies.get('username') ? (
                   <>
                   {/* =========== user ============= */}
                     <button className="iconbutton">
