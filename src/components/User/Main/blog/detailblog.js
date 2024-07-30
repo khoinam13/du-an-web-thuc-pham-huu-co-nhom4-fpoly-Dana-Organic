@@ -60,7 +60,7 @@ function DetailBlog() {
                   <h5 className="card-title" style={{textAlign:'left', fontSize:'25px'}}>{item.title}</h5>
                 </div>
                 <div className="card-body">
-                  <Link to={`/blog/${item.id}`} className="card-link link">Xem Thêm</Link>
+                  <Link to={`/detailblog/${item.id}`} className="card-link link">Xem Thêm</Link>
                 </div>
               </div>
             ))}

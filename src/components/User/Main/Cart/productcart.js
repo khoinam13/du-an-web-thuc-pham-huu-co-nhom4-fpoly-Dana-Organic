@@ -44,6 +44,7 @@ function ProductCart({ cart, count, handleIncrease, handleDecrease, handleChange
                       className="counter-input"
                       type="number"
                       min="1"
+                      max="10"
                       value={productCount}
                       onChange={(event) => handleChange(event, product.id)}
                     />

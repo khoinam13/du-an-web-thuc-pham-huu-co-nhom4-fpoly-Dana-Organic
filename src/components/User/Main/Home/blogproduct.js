@@ -43,7 +43,7 @@ function BlogProduct(){
                                     {item.title}
                                     </Link>
                                     </div>
-                                    <Link to={`/detailblog/${item.id}`} className="btn btn-secondary">Chi Tiết</Link> 
+                                    <Link to={`/detailblog/${item.id}`} className="btn btn-secondary" style={{backgroundColor:'rgb(0, 83, 80)'}}>Chi Tiết</Link> 
                                 </div>
                             </div>
                             ))}

@@ -19,7 +19,7 @@ export default function Cart() {
         setCart(data);
 
         const initialCount = data.reduce((acc, item) => {
-          acc[item.id] = item.quantity || 1; // Set initial count based on data
+          acc[item.id] = item.quantity || 1; 
           return acc;
         }, {});
         setCount(initialCount);

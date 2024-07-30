@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function Image() {
-  const { id } = useParams(); // Get the product ID from URL parameters
-  const navigate = useNavigate(); // Use navigate for programmatic navigation
-  const [product, setProduct] = useState(null); // State to store the product data
-  const [count, setCount] = useState(1); // State to manage the quantity
-  const [selectedImage, setSelectedImage] = useState(""); // State to manage the selected image
+  const { id } = useParams(); 
+  const navigate = useNavigate(); 
+  const [product, setProduct] = useState(null); 
+  const [count, setCount] = useState(1); 
+  const [selectedImage, setSelectedImage] = useState(""); 
 
   useEffect(() => {
-    // Fetch product data when component mounts or product ID changes
     const fetchData = async () => {
       try {
         const res = await fetch(`http://localhost:3000/products/${id}`);
@@ -29,17 +28,17 @@ function Image() {
   }, [id]);
 
   const handleIncrease = () => {
-    setCount((prevCount) => prevCount + 1); // Increase quantity
+    setCount((prevCount) => prevCount + 1); 
   };
 
   const handleDecrease = () => {
-    setCount((prevCount) => Math.max(1, prevCount - 1)); // Decrease quantity, minimum is 1
+    setCount((prevCount) => Math.max(1, prevCount - 1)); 
   };
 
   const handleChange = (event) => {
     const value = Number(event.target.value);
-    if (value >= 1) { // Ensure quantity is at least 1
-      setCount(value); // Update quantity based on user input
+    if (value >= 1) { 
+      setCount(value); 
     }
   };
 
@@ -47,13 +46,13 @@ function Image() {
     if (product && product.quantity > 0) {
       const cartItem = {
         productId: product.id,
-        quantity: count, // Use current quantity
+        quantity: count, 
         image: selectedImage,
         price: product.price,
         name: product.name,
       };
   
-      console.log('Adding to cart:', cartItem); // Debug log
+      console.log('Adding to cart:', cartItem); 
   
       try {
         const res = await fetch('http://localhost:3000/carts', {
@@ -66,7 +65,7 @@ function Image() {
   
         if (res.ok) {
           console.log('Thêm vào giỏ hàng thành công!');
-          navigate('/cart'); // Navigate to cart page after successful addition
+          navigate('/cart'); 
         } else {
           console.error('Không thể thêm vào giỏ hàng');
         }
@@ -79,11 +78,10 @@ function Image() {
   };
 
   if (!product) {
-    return <div>Loading...</div>; // Show loading message while fetching product data
+    return <div>Loading...</div>; 
   }
 
-  const discountedPrice = product.price * 0.7; // Calculate discounted price
-
+  const discountedPrice = product.price * 0.7;
   return (
     <>
       <div className="row d-flex justify-content-center align-items-center" style={{ width: "100%" }}>
