@@ -7,21 +7,12 @@ import './Heading.css';
 function Heading({ setSearchQuery }) {
   const [activeLink, setActiveLink] = useState('/');
   const [isToggle, setIsToggle] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
   const [cartItemCount, setCartItemCount] = useState(0); 
 
   const handleClick = (path) => {
     setActiveLink(path);
   }
 
-  const handleInputChange = (event) => {
-    setSearchInput(event.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setSearchQuery(searchInput.trim());
-  }
 
   return (
     <div style={{ position: 'sticky', top: '0px', zIndex: '1000' }}>
@@ -135,7 +126,7 @@ function Heading({ setSearchQuery }) {
         
         </div>
       </nav>
-      <Module isToggle={isToggle} setIsToggle={setIsToggle} onToggle={handleToggle} /> {/* Assuming Module component is correctly imported */}
+      <Module isToggle={isToggle} setIsToggle={setIsToggle} onToggle={handleToggle} />
     </div>
   );
 }

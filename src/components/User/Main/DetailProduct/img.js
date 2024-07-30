@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function Image() {
-  const { id } = useParams(); 
-  const navigate = useNavigate();
-  const [product, setProduct] = useState(null);
-  const [count, setCount] = useState(1);
-  const [selectedImage, setSelectedImage] = useState("");
+  const { id } = useParams(); // Get the product ID from URL parameters
+  const navigate = useNavigate(); // Use navigate for programmatic navigation
+  const [product, setProduct] = useState(null); // State to store the product data
+  const [count, setCount] = useState(1); // State to manage the quantity
+  const [selectedImage, setSelectedImage] = useState(""); // State to manage the selected image
 
   useEffect(() => {
+    // Fetch product data when component mounts or product ID changes
     const fetchData = async () => {
       try {
         const res = await fetch(`http://localhost:3000/products/${id}`);
@@ -28,28 +29,32 @@ function Image() {
   }, [id]);
 
   const handleIncrease = () => {
-    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1); // Increase quantity
   };
 
   const handleDecrease = () => {
-    setCount((prevCount) => Math.max(1, prevCount - 1));
+    setCount((prevCount) => Math.max(1, prevCount - 1)); // Decrease quantity, minimum is 1
   };
 
   const handleChange = (event) => {
     const value = Number(event.target.value);
-    setCount(value);
+    if (value >= 1) { // Ensure quantity is at least 1
+      setCount(value); // Update quantity based on user input
+    }
   };
 
   const handleAddToCart = async () => {
     if (product && product.quantity > 0) {
       const cartItem = {
         productId: product.id,
-        quantity: count,
+        quantity: count, // Use current quantity
         image: selectedImage,
         price: product.price,
         name: product.name,
       };
-
+  
+      console.log('Adding to cart:', cartItem); // Debug log
+  
       try {
         const res = await fetch('http://localhost:3000/carts', {
           method: 'POST',
@@ -58,24 +63,26 @@ function Image() {
           },
           body: JSON.stringify(cartItem),
         });
-
+  
         if (res.ok) {
           console.log('Thêm vào giỏ hàng thành công!');
-          navigate('/cart');
+          navigate('/cart'); // Navigate to cart page after successful addition
         } else {
           console.error('Không thể thêm vào giỏ hàng');
         }
       } catch (error) {
         console.error('Lỗi khi thêm vào giỏ hàng:', error);
       }
+    } else {
+      console.error('Sản phẩm không có sẵn hoặc số lượng không hợp lệ');
     }
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Show loading message while fetching product data
   }
 
-  const discountedPrice = product.price * 0.7;
+  const discountedPrice = product.price * 0.7; // Calculate discounted price
 
   return (
     <>
@@ -88,7 +95,15 @@ function Image() {
           </div>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "20px", padding: "20px" }}>
             {product.sameimage.map((img, index) => (
-              <img key={index} src={img}  alt={product.name} width={"130px"} height={"130px"} style={{ border: "1px solid #ebebeb", cursor: "pointer" }} onClick={() => setSelectedImage(img)} />
+              <img 
+                key={index} 
+                src={img}  
+                alt={product.name} 
+                width="130px" 
+                height="130px" 
+                style={{ border: "1px solid #ebebeb", cursor: "pointer" }} 
+                onClick={() => setSelectedImage(img)} 
+              />
             ))}
           </div>
         </div>
@@ -123,17 +138,37 @@ function Image() {
               )}
             </p>
             <div className="counter-container">
-              <button type="button" onClick={handleDecrease} className="counter-button" disabled={product.quantity === 0} > - </button>
-              <input className="counter-input" type="number" min="1" value={count} onChange={handleChange} disabled={product.quantity === 0}/>
-              <button type="button" onClick={handleIncrease} className="counter-button" disabled={product.quantity === 0} >
+              <button 
+                type="button" 
+                onClick={handleDecrease} 
+                className="counter-button" 
+                disabled={product.quantity === 0}
+              >
+                - 
+              </button>
+              <input 
+                className="counter-input" 
+                type="number" 
+                min="1" 
+                value={count} 
+                onChange={handleChange} 
+                disabled={product.quantity === 0}
+              />
+              <button 
+                type="button" 
+                onClick={handleIncrease} 
+                className="counter-button" 
+                disabled={product.quantity === 0}
+              >
                 +
               </button>
               <button
                 type="button"
                 className="btn btn"
-                style={{ backgroundColor: "#83bb3e", width: "250px", fontSize: "20px", fontWeight: "500", color: "#fff", marginLeft: "30px",}} 
+                style={{ backgroundColor: "#83bb3e", width: "250px", fontSize: "20px", fontWeight: "500", color: "#fff", marginLeft: "30px" }} 
                 onClick={handleAddToCart}
-                disabled={product.quantity === 0} >
+                disabled={product.quantity === 0}
+              >
                 Thêm Vào Giỏ Hàng
               </button>
             </div>
@@ -160,7 +195,7 @@ function Image() {
         </div>
         <div>
           <div style={{ border: '1px solid #ebebeb', padding: '20px' }}>
-            <p style={{ color:'#777',lineHeight:'25.6px',fontSize:'20px'}}>
+            <p style={{ color:'#777', lineHeight:'25.6px', fontSize:'20px' }}>
               {product.description}
             </p>
           </div>
