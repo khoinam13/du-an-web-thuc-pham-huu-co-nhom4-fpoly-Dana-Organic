@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function NewAdminProduct(){
     return(
         <>
@@ -43,6 +44,8 @@ function NewAdminProduct(){
                     </select>
                     </div>
                 </div>
+                <Link to="/admin/adminproduct" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
                 <button type="button" class="btn btn-primary" style={{fontWeight:'900'}}>Thêm sản phẩm</button>
             </div>
         </>

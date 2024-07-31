@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 function NewAdminCategory(){
     return(
         <>
@@ -9,7 +10,8 @@ function NewAdminCategory(){
                     <input type="text"  class="form-control" style={{fontWeight:'500'}} placeholder="Nhập tên danh mục..." />
                     </div>
                 </div>
-                
+                <Link to="/admin/admincategory" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
                 <button type="button" class="btn btn-primary" style={{fontWeight:'900'}}>Thêm danh mục</button>
             </div>
         </>

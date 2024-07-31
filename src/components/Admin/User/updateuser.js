@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 function UpdateAdminUser() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -151,6 +151,8 @@ function UpdateAdminUser() {
             </select>
           </div>
         </div>
+        <Link to="/admin/adminuser" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
         <button
           type="submit"
           className="btn btn-primary"

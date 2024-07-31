@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 function UpdateAdminCategory() {
   const { id } = useParams(); 
   const navigate = useNavigate(); 
@@ -68,6 +68,8 @@ function UpdateAdminCategory() {
             />
           </div>
         </div>
+        <Link to="/admin/admincategory" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
         <button type="submit" className="btn btn-primary" style={{ fontWeight: '900' }}>
           Cập nhật danh mục
         </button>

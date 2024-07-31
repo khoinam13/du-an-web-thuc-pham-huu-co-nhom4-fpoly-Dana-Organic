@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function UpdatOrder(){
     return(
         <>
@@ -41,6 +42,8 @@ function UpdatOrder(){
                     </select>
                     </div>
                 </div>
+                <Link to="/admin/orderproduct" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
                 <button type="button" class="btn btn-primary" style={{fontWeight:'900'}}>Cập nhập đơn hàng</button>
             </div>
         
