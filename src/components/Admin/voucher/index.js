@@ -88,7 +88,7 @@ function Voucher() {
                         <Link to={`/admin/updatevoucher/${voucher.id}`}>
                           <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                         </Link>
-                        <button onClick={() => handleDelete(voucher.id)}>
+                        <button onClick={() => handleDelete(voucher.id)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                           <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
                         </button>
                       </div>

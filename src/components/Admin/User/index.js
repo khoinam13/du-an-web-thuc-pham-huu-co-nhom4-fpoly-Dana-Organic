@@ -90,6 +90,7 @@ function AdminUser() {
                 <th scope="col">Hình Ảnh</th>
                 <th scope="col">Email</th>
                 <th scope="col">Mật Khẩu</th>
+                <th scope="col">Ngày Sinh</th>
                 <th scope="col">Vai Trò</th>
                 <th scope="col">Thao Tác</th>
               </tr>
@@ -108,13 +109,14 @@ function AdminUser() {
                   </td>
                   <td>{user.email}</td>
                   <td>{user.password}</td>
+                  <td>{user.Dob}</td>
                   <td>{user.role}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                       <Link to={`/admin/updateuser/${user.id}`}>
                         <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                       </Link>
-                      <button onClick={() => handleDelete(user.id)}>
+                      <button onClick={() => handleDelete(user.id)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                         <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
                       </button>
                     </div>

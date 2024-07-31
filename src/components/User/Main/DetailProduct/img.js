@@ -123,6 +123,11 @@ function Image() {
             </p>
           </div>
           <div>
+            <p style={{ color: "#777", lineHeight: "25.6px", fontSize: "20px" }}>
+              <b>Số lượng:</b> {product.quantity}
+            </p>
+          </div>
+          <div>
             <p style={{ color: "#7a9c59", fontSize: "19px", fontWeight: "600" }}>
               Tình trạng:
               {product.quantity > 0 ? (
@@ -136,7 +141,7 @@ function Image() {
               )}
             </p>
             <div className="counter-container">
-              <button 
+              <button style={{borderRadius: "5px",}}
                 type="button" 
                 onClick={handleDecrease} 
                 className="counter-button" 
@@ -144,7 +149,7 @@ function Image() {
               >
                 - 
               </button>
-              <input 
+              <input style={{borderRadius: "5px",}}
                 className="counter-input" 
                 type="number" 
                 min="1" 
@@ -152,7 +157,7 @@ function Image() {
                 onChange={handleChange} 
                 disabled={product.quantity === 0}
               />
-              <button 
+              <button style={{borderRadius: "5px",}}
                 type="button" 
                 onClick={handleIncrease} 
                 className="counter-button" 

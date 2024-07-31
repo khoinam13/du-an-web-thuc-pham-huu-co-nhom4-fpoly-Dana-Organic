@@ -15,10 +15,10 @@ function Carousel(){
       <img src="https://www.vinmec.com/s3-images/20210519_070755_784816_thuc-pham-huu-co.max-800x800.jpg" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}} alt="..."/>
     </div>
     <div class="carousel-item" data-bs-interval="2000" >
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCH8s27IAgee-5nItO1QjvgSMd_uAQWXMVYdh-wJA7LUq9nqWf2d0jgE8BqpmM-8r2H6o&usqp=CAU" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}} alt="..."/>
+      <img src="https://khostock.org/wp-content/uploads/2021/01/Kho-Stock-KS1165.jpg" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}} alt="..."/>
     </div>
     <div class="carousel-item" data-bs-interval="2000"  >
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhzYussa-_PiBuqxnFztdGYH4eNaw6ufYIVLB1DUZXNzOl_4Y2iF4QaHH79eSWLg9lvOs&usqp=CAU" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}}  alt="..."/>
+      <img src="https://mir-s3-cdn-cf.behance.net/projects/404/2d14d6189445149.65ab73e489f86.jpg" class="d-block w-100" height={'600px'} width={'800px'} style={{borderRadius:'13px'}}  alt="..."/>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -102,7 +102,7 @@ function Carousel(){
             <div style={{ width:'90%',display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'30px',}}>
                 <div style={{ width:'700px',height:'300px',}}>
                     <div   >
-                        <img  style={{borderRadius:'13px'}} height={'300px'}  width={'100%'} src="https://cdn.tgdd.vn/Files/2022/09/07/1465850/tu-26-8-21-9-2022-trai-cay-cac-loai-khuyen-mai-chi-tu-18000d-202209071258179650.jpg" alt='' />
+                        <img  style={{borderRadius:'13px'}} height={'300px'}  width={'100%'} src="https://fujifruit.com.vn/wp-content/uploads/2023/04/banner2.jpg" alt='' />
                     </div>
                 </div>
                 <div style={{ width:'700px',height:'300px'}}>

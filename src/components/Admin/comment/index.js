@@ -33,6 +33,18 @@ function Comment() {
     setSearchQuery(event.target.value);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`http://localhost:3000/feedbacks/${id}`, {
+        method: 'DELETE',
+      });
+      setFeedbacks(feedbacks.filter(feedback => feedback.id !== id));
+      setFilteredFeedbacks(filteredFeedbacks.filter(feedback => feedback.id !== id));
+    } catch (error) {
+      console.error('Error deleting feedback:', error);
+    }
+  };
+
   return (
     <>
       <div>
@@ -77,16 +89,19 @@ function Comment() {
                     <td>{feedback.rating} <i className="fa-solid fa-star" style={{ color: '#f39c12' }}></i></td>
                     <td>
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-                        <Link to={`/delete/${feedback.id}`}>
+                        <button 
+                          onClick={() => handleDelete(feedback.id)}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        >
                           <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
-                        </Link>
+                        </button>
                       </div>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6">Không tìm thấy dữ liệu!!</td>
+                  <td colSpan="7">Không tìm thấy dữ liệu!!</td>
                 </tr>
               )}
             </tbody>

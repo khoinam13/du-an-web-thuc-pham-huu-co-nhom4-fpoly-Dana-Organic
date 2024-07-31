@@ -3,20 +3,22 @@ import DanhGia from './danhgia'
 import './DetailProduct.css'
 import Image from './img'
 import ProductSlide from './productslide'
+import { useParams } from 'react-router-dom'; 
+
 export default function DetailProduct() {
-  const productId = 1; 
+  const { productId } = useParams();
+
   return (
-   <>
-    <div>
-      <Image/>
-    </div>
-   
-    <div>
-      <DanhGia/>
-    </div>
-    <div>
-    <ProductSlide productId={productId} />
-    </div>
-   </>
-  )
+    <>
+      <div>
+        <Image />
+      </div>
+      <div>
+        <DanhGia productId={productId} /> 
+      </div>
+      <div>
+        <ProductSlide />
+      </div>
+    </>
+  );
 }

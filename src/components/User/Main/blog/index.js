@@ -25,24 +25,22 @@ function Blog() {
       <div
         style={{
           display: 'flex',
-          width: '80%',
           justifyContent: 'center',
           alignItems: 'center',
-          marginLeft: '10%',
-          marginRight: '10%',
+      
           marginBottom: '70px',
         }}
       >
         <div
           className="row row-cols-1 row-cols-md-3 g-4"
-          style={{ justifyContent: 'center', alignItems: 'center' }}
+          style={{ justifyContent: 'center', alignItems: 'center',width:'100%' }}
         >
           {blog.map((item) => (
-            <div className="col" style={{ width: '385px', justifyContent: 'center', alignItems: 'center' }} key={item.id}>
+            <div className="col" style={{ width: '300px', justifyContent: 'center', alignItems: 'center' }} key={item.id}>
               <div className="card h-100">
-                <img src={item.image} className="card-img-top" alt={item.title} width={'200px'} height={'300px'} />
+                <img src={item.image} className="card-img-top" alt={item.title} width={'200px'} height={'250px'} />
                 <div className="card-body">
-                  <h5 className="card-title">{item.title}</h5>
+                  <h5 className="card-title" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{item.title}</h5>
                 </div>
                 <div className="card-body">
                   <Link to={`/detailblog/${item.id}`} className="card-link link">

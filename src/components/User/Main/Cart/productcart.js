@@ -33,14 +33,14 @@ function ProductCart({ cart, count, handleIncrease, handleDecrease, handleChange
                 </td>
                 <td className='tdcoll'>
                   <div className="counter-container">
-                    <button
+                    <button style={{borderRadius: "5px",}}
                       type="button"
                       onClick={() => handleDecrease(product.id)}
                       className="counter-button"
                     >
                       -
                     </button>
-                    <input
+                    <input style={{borderRadius: "5px",}}
                       className="counter-input"
                       type="number"
                       min="1"
@@ -48,7 +48,7 @@ function ProductCart({ cart, count, handleIncrease, handleDecrease, handleChange
                       value={productCount}
                       onChange={(event) => handleChange(event, product.id)}
                     />
-                    <button
+                    <button style={{borderRadius: "5px",}}
                       type="button"
                       onClick={() => handleIncrease(product.id)}
                       className="counter-button"

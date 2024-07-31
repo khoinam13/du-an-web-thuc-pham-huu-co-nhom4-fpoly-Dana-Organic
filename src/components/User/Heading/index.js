@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Module from './Module';
 import { handleToggle } from '../handle';
 import { FaUser } from 'react-icons/fa';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import './Heading.css';
 
 function Heading({ setSearchQuery }) {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState('/');
-  const [isToggle, setIsToggle] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [isRegister, setIsRegister] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [FlagExistUser, setFlagExistUser] = useState(false);
+
+  useEffect(() => {
+    // Hàm để gọi API và lấy số lượng mặt hàng trong giỏ hàng
+    const fetchCartItemCount = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/carts');
+        const data = await response.json();
+        setCartItemCount(data.length); // Giả sử dữ liệu trả về là mảng các mặt hàng
+      } catch (error) {
+        console.error('Lỗi khi lấy dữ liệu giỏ hàng:', error);
+      }
+    };
+
+    fetchCartItemCount();
+  }, []);
 
   const handleClick = (path) => {
     setActiveLink(path);
@@ -22,49 +35,55 @@ function Heading({ setSearchQuery }) {
 
   // đăng kí tài khoản
   const createAccount = async (values, actions) => {
-    await axios
-      .get(`http://localhost:3001/account?registerEmail=${values.registerEmail}`)
-      .then((response) => {
-        if (response.data.length !== 0 ) {
-          actions.setFieldError("registerEmail", "Email này đã tồn tại");
-        } else {
-          axios.post("http://localhost:3001/account", values);
-          values.registerName = "";
-          values.registerPassword = "";
-          values.registerPasswordRetype = "";
-          values.registerEmail = "";
-          values.registerPhone= "";
-          values.registerAddress = "";
-          document.querySelector(".successful").style.display = "flex";
-        }
-      });
+    try {
+      const response = await fetch(`http://localhost:3001/account?registerEmail=${values.registerEmail}`);
+      const data = await response.json();
+      if (data.length !== 0) {
+        actions.setFieldError("registerEmail", "Email này đã tồn tại");
+      } else {
+        await fetch("http://localhost:3001/account", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(values)
+        });
+        values.registerName = "";
+        values.registerPassword = "";
+        values.registerPasswordRetype = "";
+        values.registerEmail = "";
+        values.registerPhone= "";
+        values.registerAddress = "";
+        document.querySelector(".successful").style.display = "flex";
+      }
+    } catch (error) {
+      console.error('Lỗi khi tạo tài khoản:', error);
+    }
   };
 
   // đăng nhập tài khoản
   const loginAccount = async (values, actions) => {
-    await axios
-      .get(`http://localhost:3001/account?registerEmmail=${values.loginName}`)
-      .then((response) => {
-        if (response.data.length === 0) {
-          actions.setFieldError("loginName", "Tài khoản không đúng");
+    try {
+      const response = await fetch(`http://localhost:3001/account?registerEmail=${values.loginName}`);
+      const data = await response.json();
+      if (data.length === 0) {
+        actions.setFieldError("loginName", "Tài khoản không đúng");
+      } else {
+        const registerPassword = data[0].registerPassword;
+        if (values.loginPassword !== registerPassword) {
+          actions.setFieldError("loginPassword", "Mật khẩu không đúng");
         } else {
-          const registerPassword = response.data[0].registerPassword;
-          if (values.loginPassword !== registerPassword) {
-            actions.setFieldError("loginPassword", "Mật khẩu không đúng");
-          } else {
-            // khung
-            const setCookie = (name, values, days) => {
-              Cookies.set(name, values, { expires: days });
-            };
-            setCookie("username", values.loginName, 7);
-            alert("Bạn đã đăng nhập thành công");
-            setFlagExistUser(true);
-            setIsLogin(false);
-            values.loginName = "";
-            values.loginPassword = "";
-          }
+          Cookies.set("username", values.loginName, { expires: 7 });
+          alert("Bạn đã đăng nhập thành công");
+          setFlagExistUser(true);
+          setIsLogin(false);
+          values.loginName = "";
+          values.loginPassword = "";
         }
-      });
+      }
+    } catch (error) {
+      console.error('Lỗi khi đăng nhập:', error);
+    }
   };
 
   // đăng xuất tài khoản
@@ -78,8 +97,8 @@ function Heading({ setSearchQuery }) {
     <>
       <div style={{ position: "sticky", top: "0px", zIndex: "1000" }}>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
-          <div className="container ">
-            <Link className="navbar-brand " to="/" style={{ width: "200px" }}>
+          <div className="container">
+            <Link className="navbar-brand" to="/" style={{ width: "200px" }}>
               <img
                 src="https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/lg.png"
                 alt="Logo"
@@ -163,22 +182,17 @@ function Heading({ setSearchQuery }) {
                   </Link>
                 </li>
               </ul>
-            </div>
-          
               <div
                 className="d-flex"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "15px",
-                  
                   marginRight: "15%",
                 }}
               >
                 <Link to="/cart">
-                  <div
-                    style={{ position: "relative", display: "inline-block" }}
-                  >
+                  <div style={{ position: "relative", display: "inline-block" }}>
                     <center>
                       <i
                         className="fa-solid fa-cart-shopping"
@@ -194,13 +208,11 @@ function Heading({ setSearchQuery }) {
               <div>
                 {FlagExistUser ? (
                   <>
-                    {/* =========== user ============= */}
                     <button className="iconbutton">
                       <Link to='/acount'>
                         <FaUser className="nav__user-btn-icon" />
                       </Link>
                     </button>
-                    {/* ========= user ========== */}
                     <button className="textbutton" onClick={checkOutAccount}>
                       Đăng xuất
                     </button>
@@ -210,10 +222,10 @@ function Heading({ setSearchQuery }) {
                     <button
                       onClick={() => handleToggle(isLogin, setIsLogin)}
                       className="textbutton nav__login"
+                      style={{ backgroundColor:"#3c6", color:'white' }}
                     >
                       Đăng nhập
                     </button>
-
                     <button
                       onClick={() => handleToggle(isRegister, setIsRegister)}
                       className="textbutton nav__login"
@@ -223,6 +235,7 @@ function Heading({ setSearchQuery }) {
                   </>
                 )}
               </div>
+            </div>
           </div>
         </nav>
         <Module

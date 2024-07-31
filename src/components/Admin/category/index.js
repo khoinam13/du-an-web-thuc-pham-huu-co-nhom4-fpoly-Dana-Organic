@@ -37,6 +37,24 @@ function AdminCategory() {
     setSearchQuery(event.target.value);
   };
 
+  const handleDelete = async (id) => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa danh mục này?')) {
+      try {
+        const response = await fetch(`http://localhost:3000/category/${id}`, {
+          method: 'DELETE',
+        });
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        setCategories(categories.filter(category => category.id !== id));
+        setFilteredCategories(filteredCategories.filter(category => category.id !== id));
+        console.log(`Category with id ${id} deleted successfully`);
+      } catch (error) {
+        console.error(`There was an error deleting the category with id ${id}!`, error);
+      }
+    }
+  };
+
   return (
     <>
       <div>
@@ -81,7 +99,10 @@ function AdminCategory() {
                         <Link to={`/admin/updateadmincategory/${category.id}`}>
                           <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                         </Link>
-                        <button>
+                        <button 
+                          onClick={() => handleDelete(category.id)} 
+                          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        >
                           <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
                         </button>
                       </div>

@@ -126,6 +126,17 @@ function UpdateAdminUser() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          </div>
+        <div className="mb-3 row">
+          <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Ngày Sinh</label>
+          <div className="col-sm-4">
+            <input
+              type="date"
+              className="form-control"
+              style={{ fontWeight: '500' }}
+              
+            />
+          </div>
         </div>
         <div className="mb-3 row">
           <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Vai Trò</label>
