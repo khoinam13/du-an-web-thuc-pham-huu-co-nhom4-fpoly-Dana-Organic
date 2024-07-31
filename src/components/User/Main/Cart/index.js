@@ -3,6 +3,7 @@ import './Cart.css';
 import ProductCart from './productcart';
 import Total from './totalproduct';
 import { Outlet, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2'; 
 
 export default function Cart() {
   const [showComponents, setShowComponents] = useState(true);
@@ -84,6 +85,21 @@ export default function Cart() {
           const newCount = { ...prevCount };
           delete newCount[id];
           return newCount;
+        });
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "  Xóa thành công!"
         });
       } else {
         console.error('Failed to delete the product from the database');

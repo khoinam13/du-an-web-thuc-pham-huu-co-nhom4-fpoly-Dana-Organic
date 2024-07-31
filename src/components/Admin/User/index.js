@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function AdminUser() {
   const [users, setUsers] = useState([]);
@@ -48,6 +49,21 @@ function AdminUser() {
           setUsers(users.filter(user => user.id !== id));
           setFilteredUsers(filteredUsers.filter(user => user.id !== id));
           console.log('Người dùng đã được xóa thành công!');
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "  Xóa thành công!"
+          });
         } else {
           console.error('Lỗi khi xóa người dùng');
         }

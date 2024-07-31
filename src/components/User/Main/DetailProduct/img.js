@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'; 
 
 function Image() {
   const { id } = useParams(); 
@@ -20,7 +21,7 @@ function Image() {
           console.error('Sản phẩm không tìm thấy!');
         }
       } catch (error) {
-        console.error('Lỗi dữ liệu!!', error);
+        console.error('Lỗi dữ liệu:', error);
       }
     };
 
@@ -28,11 +29,11 @@ function Image() {
   }, [id]);
 
   const handleIncrease = () => {
-    setCount((prevCount) => prevCount + 1); 
+    setCount(prevCount => prevCount + 1); 
   };
 
   const handleDecrease = () => {
-    setCount((prevCount) => Math.max(1, prevCount - 1)); 
+    setCount(prevCount => Math.max(1, prevCount - 1)); 
   };
 
   const handleChange = (event) => {
@@ -53,7 +54,7 @@ function Image() {
       };
   
       console.log('Adding to cart:', cartItem); 
-  
+
       try {
         const res = await fetch('http://localhost:3000/carts', {
           method: 'POST',
@@ -65,6 +66,21 @@ function Image() {
   
         if (res.ok) {
           console.log('Thêm vào giỏ hàng thành công!');
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "  Đã Thêm vào giỏ hàng thành công!"
+          });
           navigate('/cart'); 
         } else {
           console.error('Không thể thêm vào giỏ hàng');

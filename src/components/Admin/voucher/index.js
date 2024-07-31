@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function Voucher() {
   const [vouchers, setVouchers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,6 +36,21 @@ function Voucher() {
     })
       .then(() => {
         setVouchers(vouchers.filter(voucher => voucher.id !== id));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "  Xóa thành công!"
+        });
       })
       .catch(error => {
         console.error('Error deleting voucher:', error);

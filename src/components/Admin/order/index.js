@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
+import Swal from 'sweetalert2';
+
 function OrderProduct() {
   const [orders, setOrders] = useState([]);
 
@@ -32,6 +34,21 @@ function OrderProduct() {
         }
         setOrders(orders.filter(order => order.id !== id));
         console.log(`Order with id ${id} deleted successfully`);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "  Xóa thành công!"
+        });
       } catch (error) {
         console.error(`There was an error deleting the order with id ${id}!`, error);
       }

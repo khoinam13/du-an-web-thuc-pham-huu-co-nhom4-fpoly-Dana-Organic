@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function Comment() {
   const [feedbacks, setFeedbacks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,6 +40,21 @@ function Comment() {
       });
       setFeedbacks(feedbacks.filter(feedback => feedback.id !== id));
       setFilteredFeedbacks(filteredFeedbacks.filter(feedback => feedback.id !== id));
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "  Xóa thành công!"
+      });
     } catch (error) {
       console.error('Error deleting feedback:', error);
     }

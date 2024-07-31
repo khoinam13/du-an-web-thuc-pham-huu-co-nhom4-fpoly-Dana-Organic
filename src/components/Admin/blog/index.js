@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function AdminBlog() {
   const [blogs, setBlogs] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,6 +48,21 @@ function AdminBlog() {
         }
         setBlogs(blogs.filter(blog => blog.id !== id));
         setFilteredBlogs(filteredBlogs.filter(blog => blog.id !== id));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "  Xóa thành công!"
+        });
         console.log(`Blog with id ${id} deleted successfully`);
       } catch (error) {
         console.error(`There was an error deleting the blog with id ${id}!`, error);

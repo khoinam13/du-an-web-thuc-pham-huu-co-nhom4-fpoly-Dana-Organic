@@ -205,12 +205,12 @@
   ],
   "carts": [
     {
-      "id": "3c54",
-      "productId": "1",
+      "id": "6e89",
+      "productId": "2",
       "quantity": 1,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftGAQnVj13MX03LZo4yv3vFFimI_nBDBiiA&usqp=CAU",
-      "price": 15990,
-      "name": "Cà rốt"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
+      "price": 215990,
+      "name": "Su hào"
     }
   ],
   "vouchers": [

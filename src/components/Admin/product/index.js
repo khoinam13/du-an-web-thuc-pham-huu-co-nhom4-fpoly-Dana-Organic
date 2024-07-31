@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function AdminProduct() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -49,6 +49,21 @@ function AdminProduct() {
         setProducts(products.filter(product => product.id !== id));
         setFilteredProducts(filteredProducts.filter(product => product.id !== id));
         console.log(`Product with id ${id} deleted successfully`);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "  Xóa thành công!"
+        });
       } catch (error) {
         console.error(`There was an error deleting the product with id ${id}!`, error);
       }
