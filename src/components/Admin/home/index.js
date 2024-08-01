@@ -85,26 +85,8 @@ function Admin() {
                                 <i className="fa-solid fa-truck-fast"></i>Đơn hàng
                             </button>
                         </Link>
-                        <Link to='/admin/comment' style={{ textDecoration: 'none' }}>
-                            <button 
-                                type="button" 
-                                style={buttonStyle('comment')} 
-                                className="btn list-group-item list-group-item-action"
-                                onClick={() => handleSelect('comment')}
-                            >
-                                <i className="fa-solid fa-comment"></i>Bình luận
-                            </button>
-                        </Link>
-                        <Link to='/admin/voucher' style={{ textDecoration: 'none' }}>
-                            <button 
-                                type="button" 
-                                style={buttonStyle('voucher')} 
-                                className="btn list-group-item list-group-item-action"
-                                onClick={() => handleSelect('voucher')}
-                            >
-                                <i className="fa-solid fa-ticket"></i>Mã giảm giá
-                            </button>
-                        </Link>
+                       
+                       
                         <Link to='/admin/thongke' style={{ textDecoration: 'none' }}>
                             <button 
                                 type="button" 
@@ -116,7 +98,7 @@ function Admin() {
                             </button>
                         </Link>
                     </div>
-                    <div style={{ marginTop: '126%' }} className="list-group parent-class">
+                    <div style={{ marginTop: '155%' }} className="list-group parent-class">
                         <Link to={'/'} style={{ textDecoration: 'none' }}>
                             <button type="button" style={{ color: '#777777 !important', fontSize: '20px', fontWeight: '500', display: 'flex', gap: '10px', alignItems: 'center' }} className="btn list-group-item list-group-item-action">
                                 <i className="fa-solid fa-arrow-right-from-bracket"></i>Đăng Xuất

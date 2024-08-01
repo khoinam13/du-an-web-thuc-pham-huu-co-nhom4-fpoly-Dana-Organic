@@ -77,7 +77,7 @@ function Products() {
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
           {filteredProducts.length > 0 ? (
             filteredProducts.map(product => {
-              const discountedPrice = product.price * 0.7; // Corrected variable name
+              const discountedPrice = product.price * 0.7; 
               return (
                 <Link 
                   to={`/detail-product/${product.id}`}
@@ -85,7 +85,8 @@ function Products() {
                   style={{ color: "#83bb3e" }}
                   key={product.id}
                 >
-                  <div className="card" style={{ width: '18rem' }}>
+                  <div  style={{ width: '18rem' }}>
+                   {/* bỏ className="card" */}
                     <center>
                       <img src={product.image} height={'247px'} width={'247px'} alt={product.name} />
                     </center>
