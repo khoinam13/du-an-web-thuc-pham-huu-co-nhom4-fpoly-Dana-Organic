@@ -1,27 +1,82 @@
-import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import { putData } from "../../handle";
+import { validationSchemaEditUser } from "../../untils";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Account() {
+  let userName = Cookies.get("username");
   const [account, setAccount] = useState([]);
+  const accountObject = account[0];
+  const [image, setImage] = useState('');
+  const [initialValues, setInitialValues] = useState({});
   useEffect(() => {
     const accountData = async () => {
-      const userName = Cookies.get("username");
       const res = await fetch(
         `http://localhost:3001/account?email=${userName}`
       );
       const data = await res.json();
       setAccount(data);
+      setImage(data[0].image);
+      setInitialValues({
+        accountId : data[0].id,
+        accountName: data[0].name,
+        accountEmail: data[0].email,
+        accountPassword: data[0].password,
+        accountPhone: data[0].phone,
+        accountDate: data[0].date,
+        accountImage: data[0].image,
+        accountSex: data[0].sex
+      });
     };
     accountData();
   }, []);
-  const [image, setImage] = useState(null);
+  // cập nhật ảnh vào api khi được thay dổi
+  useEffect(() => {
+    if (image) {
+      putData(`http://localhost:3001/account/${accountObject.id}`, {
+        ...accountObject,
+        image: image,
+      });
+    }
+  }, [image]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+      //===== chuyển đổi ảnh sang base64 =======
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
+    // ==========================================
+  };
+  const updateAccount = async (values, actions) => {
+    await axios
+    .get(`http://localhost:3001/account?email=${values.accountEmail}`)
+    .then((res)=>{
+      if(res.data.length === 1 && res.data[0].email !== initialValues.accountEmail){
+        actions.setFieldError("accountEmail", "Email này đã tồn tại");
+      }else{
+        console.log()
+        axios.put(`http://localhost:3001/account/${initialValues.accountId}`, 
+          {
+            id: initialValues.accountId,
+            image: initialValues.image,
+            sex: initialValues.accountSex,
+            name: values.accountName,
+            email: values.accountEmail,
+            password: values.accountPassword,
+            phone: values.accountPhone,
+            date: values.accountDate,
+          }
+        )
+        alert('cập nhật tài khoản thành công')
+      }
+    })
   };
   return (
     <>
@@ -40,91 +95,152 @@ function Account() {
       >
         <div style={{ padding: "30px", width: "600px" }}>
           <h3> Hồ Sơ Của Tôi</h3>
-          {account.map((user) => (
-            <>
-              <div class="mb-3 row">
-                <label
-                  class="col-sm-2 col-form-label"
-                  style={{ fontWeight: "900" }}
-                  htmlFor="user-name"
-                >
-                  Tên
-                </label>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="user-name"
-                    style={{ fontWeight: "500" }}
-                    value={user.name}
-                  />
-                </div>
-              </div>
 
-              <div class="mb-3 row">
-                <label
-                  class="col-sm-2 col-form-label"
-                  style={{ fontWeight: "900" }}
-                  htmlFor="user-email"
-                >
-                  Email
-                </label>
-                <div class="col-sm-10">
-                  <input
-                    type="email"
-                    id="user-email"
-                    style={{ fontWeight: "500" }}
-                    class="form-control"
-                    value={user.email}
-                  />
+          <Formik
+            enableReinitialize
+            initialValues={initialValues}
+            validationSchema={validationSchemaEditUser}
+            validateOnChange={false}
+            validateOnBlur={false}
+            enableReinitializ={true}
+            onSubmit={updateAccount}
+          >
+            {({ handleChange, values }) => (
+              <Form>
+                <div class="mb-3 row">
+                  <label
+                    class="col-sm-2 col-form-label"
+                    style={{ fontWeight: "900" }}
+                    htmlFor="user-name"
+                  >
+                    Tên
+                  </label>
+                  <div class="col-sm-10">
+                    <Field
+                      type="text"
+                      class="form-control"
+                      id="user-name"
+                      name="accountName"
+                      style={{ fontWeight: "500" }}
+                      value={values.accountName}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage
+                      name="accountName"
+                      className="error"
+                      component="div"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div class="mb-3 row">
-                <label
-                  class="col-sm-2 col-form-label"
-                  style={{ fontWeight: "900" }}
-                  htmlFor="user-password"
-                >
-                  Mật Khẩu
-                </label>
-                <div class="col-sm-10">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="user-password"
-                    style={{ fontWeight: "500" }}
-                    value={user.password}
-                  />
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label
-                  class="col-sm-2 col-form-label"
-                  style={{ fontWeight: "900" }}
-                >
-                  Ngày Sinh
-                </label>
-                <div class="col-sm-10">
-                  <input
-                    type="date"
-                    class="form-control"
-                    style={{ fontWeight: "500" }}
-                    value={user.date}
-                  />
-                </div>
-              </div>
-            </>
-          ))}
 
-          <center>
-            <button
-              type="button"
-              class="btn btn-primary"
-              style={{ fontWeight: "900" }}
-            >
-              Lưu
-            </button>
-          </center>
+                <div class="mb-3 row">
+                  <label
+                    class="col-sm-2 col-form-label"
+                    style={{ fontWeight: "900" }}
+                    htmlFor="user-email"
+                  >
+                    Email
+                  </label>
+                  <div class="col-sm-10">
+                    <Field
+                      type="email"
+                      id="user-email"
+                      name="accountEmail"
+                      style={{ fontWeight: "500" }}
+                      class="form-control"
+                      value={values.accountEmail}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage
+                      name="accountEmail"
+                      className="error"
+                      component="div"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label
+                    class="col-sm-2 col-form-label"
+                    style={{ fontWeight: "900" }}
+                    htmlFor="user-password"
+                  >
+                    Mật Khẩu
+                  </label>
+                  <div class="col-sm-10">
+                    <Field
+                      type="password"
+                      class="form-control"
+                      id="user-password"
+                      name="accountPassword"
+                      style={{ fontWeight: "500" }}
+                      value={values.accountPassword}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage
+                      name="accountPassword"
+                      className="error"
+                      component="div"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label
+                    class="col-sm-2 col-form-label"
+                    style={{ fontWeight: "900" }}
+                  >
+                    Ngày Sinh
+                  </label>
+                  <div class="col-sm-10">
+                    <Field
+                      type="date"
+                      class="form-control"
+                      name="accountDate"
+                      style={{ fontWeight: "500" }}
+                      value={values.accountDate}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage
+                      name="accountDate"
+                      className="error"
+                      component="div"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label
+                    class="col-sm-2 col-form-label"
+                    style={{ fontWeight: "900" }}
+                  >
+                    Số điện thoại
+                  </label>
+                  <div class="col-sm-10">
+                    <Field
+                      type="tel"
+                      class="form-control"
+                      name="accountPhone"
+                      style={{ fontWeight: "500" }}
+                      value={values.accountPhone}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage
+                      name="accountPhone"
+                      className="error"
+                      component="div"
+                    />
+                  </div>
+                </div>
+                <center>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style={{ fontWeight: "900" }}
+                  >
+                    Lưu
+                  </button>
+                </center>
+              </Form>
+            )}
+          </Formik>
         </div>
         {/*  */}
         <div>
@@ -143,7 +259,7 @@ function Account() {
               marginRight: "40px",
             }}
           >
-            {image ? (
+            {image  ? (
               <img
                 src={image}
                 alt="Selected"
@@ -163,7 +279,6 @@ function Account() {
                 type="file"
                 className="form-control"
                 onChange={handleImageChange}
-                placeholder="Chọn Ảnh"
               />
             </div>
           </div>

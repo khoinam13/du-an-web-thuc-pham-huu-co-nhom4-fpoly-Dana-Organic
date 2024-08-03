@@ -31,42 +31,46 @@ function Module({
                 onSubmit={onLogin}
               >
                 <Form>
-                  <label htmlFor="login__name" className="home-module__lable">
-                    Tên tài khoản hoặc địa chỉ email *
-                  </label>
-                  <Field
-                    id="login__name"
-                    className="home-module__input"
-                    type="text"
-                    name="loginName"
-                  />
-                  <ErrorMessage
-                    name="loginName"
-                    className="error"
-                    component="div"
-                  />
-                  <label
-                    htmlFor="login__password"
-                    className="home-module__lable"
-                  >
-                    Mật khẩu *
-                  </label>
-                  <Field
-                    id="login__password"
-                    className="home-module__input"
-                    type="password"
-                    name="loginPassword"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    component="div"
-                    name="loginPassword"
-                  />
-                  <Field
-                    id="login__memorize"
-                    className="home-module__input-check"
-                    type="checkbox"
-                  />
+                  <div className="form-group">
+                    <label htmlFor="login__name" className="home-module__lable">
+                      Tên tài khoản hoặc địa chỉ email *
+                    </label>
+                    <Field
+                      id="login__name"
+                      className="home-module__input"
+                      type="text"
+                      name="loginName"
+                    />
+                    <ErrorMessage
+                      name="loginName"
+                      className="error"
+                      component="div"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label
+                      htmlFor="login__password"
+                      className="home-module__lable"
+                    >
+                      Mật khẩu *
+                    </label>
+                    <Field
+                      id="login__password"
+                      className="home-module__input"
+                      type="password"
+                      name="loginPassword"
+                    />
+                    <ErrorMessage
+                      className="error"
+                      component="div"
+                      name="loginPassword"
+                    />
+                    <Field
+                      id="login__memorize"
+                      className="home-module__input-check"
+                      type="checkbox"
+                    />
+                  </div>
                   <label
                     htmlFor="login__memorize"
                     className="home-module__lable"
@@ -96,7 +100,16 @@ function Module({
               <h2 className="home-module__heading">ĐĂNG KÝ</h2>
 
               <Formik
-                initialValues={{ registerName: "", registerPassword: "", registerEmail : "", registerPasswordRetype : "", registerPhone : "", registerAddress : "", registerSex : "", registerDateBirth : ""  }}
+                initialValues={{
+                  registerName: "",
+                  registerPassword: "",
+                  registerEmail: "",
+                  registerPasswordRetype: "",
+                  registerPhone: "",
+                  registerAddress: "",
+                  registerSex: "",
+                  registerDateBirth: "",
+                }}
                 validationSchema={validattionSchemaRegister}
                 validateOnChange={false}
                 validateOnBlur={false}
@@ -104,151 +117,176 @@ function Module({
               >
                 <Form>
                   {/*  */}
-                  <label
-                    htmlFor="register__name"
-                    className="home-module__lable"
-                  >
-                    Họ tên *
-                  </label>
-                  <Field
-                    id="register__name"
-                    className="home-module__input"
-                    type="text"
-                    name="registerName"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="registerName"
-                    component="div"
-                  />
-                  {/*  */}
-                  <label
-                    htmlFor="register__email"
-                    className="home-module__lable"
-                  >
-                    Địa chỉ email *
-                  </label>
-                  <Field
-                    id="register__email"
-                    className="home-module__input"
-                    type="text"
-                    name="registerEmail"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="registerEmail"
-                    component="div"
-                  />
-                  {/*  */}
-                  <label
-                    htmlFor="register__address"
-                    className="home-module__lable"
-                  >
-                    Địa chỉ của bạn *
-                  </label>
-                  <Field
-                    id="register__addres"
-                    className="home-module__input"
-                    type="text"
-                    name="registerAddress"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="registerAddress"
-                    component="div"
-                  />
-                  {/*  */}
-                  {/*  */}
-                  <label htmlFor="register__phone" className="home-module__lable">
-                    SDT *
-                  </label>
-                  <Field
-                    id="register__phone"
-                    className="home-module__input"
-                    type="tel"
-                    name="registerPhone"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="registerPhone"
-                    component="div"
-                  />
+                  <div className="register__container">
+                      <div className="register__item">
+                        <label
+                          htmlFor="register__name"
+                          className="home-module__lable"
+                        >
+                          Họ tên *
+                        </label>
+                        <Field
+                          id="register__name"
+                          className="home-module__input"
+                          type="text"
+                          name="registerName"
+                        />
+                        <ErrorMessage
+                          className="error"
+                          name="registerName"
+                          component="div"
+                        />
+                      </div>
 
-                  <label htmlFor="register__date-birth" className="home-module__lable">
-                    Ngày sinh *
-                  </label>
-                  <Field
-                    id="register__date-birth"
-                    className="home-module__input"
-                    type="date"
-                    name="registerDateBirth"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="registerDateBirth"
-                    component="div"
-                  />
-
-                <fieldset>
-                    <legend className="home-module__lable">Giới tính *</legend>
-                    <label>
-                      <Field type="radio" name="registerSex" value="Nam" />
-                      Nam
-                    </label>
-                    <label>
-                      <Field type="radio" name="registerSex" value="Nữ" />
-                      Nữ
-                    </label>
-                    <label>
-                      <Field type="radio" name="registerSex" value="Khác" />
-                      Khác
-                    </label>
-                </fieldset>
-                  <ErrorMessage
-                    className="error"
-                    name="registerSex"
-                    component="div"
-                  />
-                  {/*  */}
-                  <label
-                    htmlFor="register__password"
-                    className="home-module__lable"
-                  >
-                    Mật khẩu *
-                  </label>
-                  <Field
-                    id="register__password"
-                    className="home-module__input"
-                    type="password"
-                    name="registerPassword"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="registerPassword"
-                    component="div"
-                  />
-
-                  {/*  */}
-
-                  <label
-                    htmlFor="register__password-retype"
-                    className="home-module__lable"
-                  >
-                    Nhập lại mật khẩu *
-                  </label>
-                  <Field
-                    id="register__password-retype"
-                    className="home-module__input"
-                    type="password"
-                    name="registerPasswordRetype"
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="registerPasswordRetype"
-                    component="div"
-                  />
-
-                  {/*  */}
+                      <div className="register__item">
+                        <label
+                          htmlFor="register__email"
+                          className="home-module__lable"
+                        >
+                          Địa chỉ email *
+                        </label>
+                        <Field
+                          id="register__email"
+                          className="home-module__input"
+                          type="text"
+                          name="registerEmail"
+                        />
+                        <ErrorMessage
+                          className="error"
+                          name="registerEmail"
+                          component="div"
+                        />
+                      </div>
+                    {/*  */}
+                      <div className="register__item">
+                        <label
+                          htmlFor="register__address"
+                          className="home-module__lable"
+                        >
+                          Địa chỉ của bạn *
+                        </label>
+                        <Field
+                          id="register__addres"
+                          className="home-module__input"
+                          type="text"
+                          name="registerAddress"
+                        />
+                        <ErrorMessage
+                          className="error"
+                          name="registerAddress"
+                          component="div"
+                        />
+                      </div>
+                      <div className="register__item">
+                        <label
+                          htmlFor="register__phone"
+                          className="home-module__lable"
+                        >
+                          SDT *
+                        </label>
+                        <Field
+                          id="register__phone"
+                          className="home-module__input"
+                          type="tel"
+                          name="registerPhone"
+                        />
+                        <ErrorMessage
+                          className="error"
+                          name="registerPhone"
+                          component="div"
+                        />
+                      </div>
+                      <div className="register__item">
+                        <label
+                          htmlFor="register__date-birth"
+                          className="home-module__lable"
+                        >
+                          Ngày sinh *
+                        </label>
+                        <Field
+                          id="register__date-birth"
+                          className="home-module__input"
+                          type="date"
+                          name="registerDateBirth"
+                          min="1920-01-01"
+                        />
+                        <ErrorMessage
+                          className="error"
+                          name="registerDateBirth"
+                          component="div"
+                        />
+                      </div>
+                      <div className="register__item">
+                        <fieldset>
+                          <legend className="home-module__lable">
+                            Giới tính *
+                          </legend>
+                          <label>
+                            <Field
+                              type="radio"
+                              name="registerSex"
+                              value="Nam"
+                            />
+                            <span className="title-radio">Nam</span>
+                          </label>
+                          <label>
+                            <Field type="radio" name="registerSex" value="Nữ" />
+                            <span className="title-radio">Nữ</span>
+                          </label>
+                          <label>
+                            <Field
+                              type="radio"
+                              name="registerSex"
+                              value="Khác"
+                            />
+                            <span className="title-radio">Khác</span>
+                          </label>
+                        </fieldset>
+                        <ErrorMessage
+                          className="error"
+                          name="registerSex"
+                          component="div"
+                        />
+                      </div>
+                      <div className="register__item">
+                        <label
+                          htmlFor="register__password"
+                          className="home-module__lable"
+                        >
+                          Mật khẩu *
+                        </label>
+                        <Field
+                          id="register__password"
+                          className="home-module__input"
+                          type="password"
+                          name="registerPassword"
+                        />
+                        <ErrorMessage
+                          className="error"
+                          name="registerPassword"
+                          component="div"
+                        />
+                      </div>
+                      <div className="register__item">
+                        <label
+                          htmlFor="register__password-retype"
+                          className="home-module__lable"
+                        >
+                          Nhập lại mật khẩu *
+                        </label>
+                        <Field
+                          id="register__password-retype"
+                          className="home-module__input"
+                          type="password"
+                          name="registerPasswordRetype"
+                        />
+                        <ErrorMessage
+                          className="error"
+                          name="registerPasswordRetype"
+                          component="div"
+                        />
+                      </div>
+                  </div>
 
                   <button type="submit" className="home-module__submit">
                     ĐĂNG KÍ
