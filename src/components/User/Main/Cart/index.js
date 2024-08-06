@@ -138,7 +138,7 @@ export default function Cart() {
     >
       {showComponents && (
         <>
-          <div style={{ width: '750px', placeSelf: 'normal', marginBottom:'150px' }}>
+          <div style={{ width: '750px', placeSelf: 'normal', marginBottom:'250px' }}>
             <ProductCart 
               cart={cart}
               count={count}

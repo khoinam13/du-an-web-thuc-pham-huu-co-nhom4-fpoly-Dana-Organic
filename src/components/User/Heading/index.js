@@ -14,20 +14,7 @@ function Heading({ setSearchQuery }) {
   const [isLogin, setIsLogin] = useState(false);
   const [FlagExistUser, setFlagExistUser] = useState(false);
 
-  useEffect(() => {
-    // Hàm để gọi API và lấy số lượng mặt hàng trong giỏ hàng
-    const fetchCartItemCount = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/carts');
-        const data = await response.json();
-        setCartItemCount(data.length); // Giả sử dữ liệu trả về là mảng các mặt hàng
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu giỏ hàng:', error);
-      }
-    };
-
-    fetchCartItemCount();
-  }, []);
+ 
 
   const handleClick = (path) => {
     setActiveLink(path);
@@ -178,7 +165,7 @@ function Heading({ setSearchQuery }) {
                     to="/blog"
                     onClick={() => handleClick("/blog")}
                   >
-                    Bài Viết
+                    Tin Tức
                   </Link>
                 </li>
               </ul>
@@ -188,9 +175,16 @@ function Heading({ setSearchQuery }) {
                   display: "flex",
                   alignItems: "center",
                   gap: "15px",
-                  marginRight: "15%",
+                  marginRight: "10%",
                 }}
               >
+               <div class="search-container " style={{  marginRight: "50%",}}>
+                <center>
+                  <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </center>
+                <input type="text" class="search-input" placeholder="Search..."/>
+              </div>
+
                 <Link to="/cart">
                   <div style={{ position: "relative", display: "inline-block" }}>
                     <center>
@@ -204,6 +198,8 @@ function Heading({ setSearchQuery }) {
                     </span>
                   </div>
                 </Link>
+               
+                
               </div>
               <div>
                 {FlagExistUser ? (

@@ -44,13 +44,13 @@ function Blog() {
           <h3 style={{ color: 'white', fontFamily: '"Quicksand", sans-serif',  backgroundColor:'#00923f',borderRadius:'20px',height:'50px',padding:'10px' }}>
             TIN NỔI BẬT
           </h3>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap',border:'1px solid #ebebeb',borderRadius:'15px', }}>
             {relatedBlogs.map((item) => (
-              <div class="card mb-3" style={{maxWidth: "540px;"}} key={item.id}>
+              <div class=" mb-3" style={{maxWidth: "540px;"}} key={item.id}>
                {/* bỏ className="card" */}
               <div class="row g-0">
-                <div class="col-md-4">
-                  <img src={item.image} class="img-fluid rounded-start fluid" alt="..."  />
+                <div class="col-md-4" style={{ borderRadius:'6px'}} >
+                  <img src={item.image} class="img-fluid rounded-start fluid" alt="..." />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -67,10 +67,10 @@ function Blog() {
         <div className='col-7'
  >
           {blog.map((item) => (
-            <div class="card mb-3" style={{maxWidth: "540px;"}} key={item.id}>
+            <div class=" mb-3" style={{maxWidth: "540px;",border:'1px solid #ebebeb',borderRadius:'15px',padding:'10px'}} key={item.id}>
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src={item.image} class="img-fluid rounded-start fluid" alt="..."  />
+                  <img src={item.image} class="img-fluid rounded-start fluid" alt="..." style={{ borderRadius:'15px'}} />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body" style={{padding:'20px'}}>

@@ -54,7 +54,7 @@ function DetailBlog() {
           </h3>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
             {relatedBlogs.map((item) => (
-              <div class="card mb-3" style={{maxWidth: "540px;"}} key={item.id}>
+              <div class=" mb-3" style={{maxWidth: "540px;"}} key={item.id}>
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src={item.image} class="img-fluid rounded-start fluid" alt="..."  />

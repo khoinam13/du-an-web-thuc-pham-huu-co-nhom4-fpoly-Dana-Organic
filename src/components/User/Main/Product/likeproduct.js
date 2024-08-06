@@ -28,7 +28,7 @@ function Likeproduct() {
     <>
       <div>
         <h3 className='h3'>Có thể bạn thích</h3>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap',marginTop:'20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap',marginTop:'20px',border:'1px solid #ebebeb',borderRadius:'15px', }}>
           {products.map(product => (
             <div className=" mb-3" style={{ width: '90%' }} key={product.id}>
              {/* bỏ className="card" */}

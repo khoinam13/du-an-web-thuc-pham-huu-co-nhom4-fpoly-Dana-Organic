@@ -23,7 +23,6 @@ function Products() {
 
   let filteredProducts = Array.isArray(products) ? products : [];
 
-  // Filtering logic
   if (categoryId) {
     filteredProducts = filteredProducts.filter(product => product.categoryId === parseInt(categoryId));
   }
@@ -34,7 +33,6 @@ function Products() {
     );
   }
 
-  // Sorting logic
   switch (sortOption) {
     case 'priceAsc':
       filteredProducts.sort((a, b) => a.price - b.price);
