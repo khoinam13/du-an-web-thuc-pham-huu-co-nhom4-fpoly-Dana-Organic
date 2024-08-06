@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 function NewAdminUser() {
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
@@ -126,6 +126,8 @@ function NewAdminUser() {
             </select>
           </div>
         </div>
+        <Link to="/admin/adminuser" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
         <button
           type="button"
           className="btn btn-primary"

@@ -1,53 +1,81 @@
-import React, { useState } from "react";
-import { Link} from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Module from "./Module";
 import { handleToggle } from "../handle";
 import { FaUser } from "react-icons/fa";
-import axios from "axios";
 import Cookies from "js-cookie";
 import "./Heading.css";
-function Heading() {
+import axios from "axios";
+
+function Heading({ setSearchQuery }) {
   const navigate = useNavigate();
   // const [FlagExistUser, setFlagExistUser] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const [isRegister, setIsRegister] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [FlagExistUser, setFlagExistUser] = useState(false);
+
   const handleClick = (path) => {
     setActiveLink(path);
   };
-  const [isRegister, setIsRegister] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
-  const [cartItemCount, setCartItemCount] = useState(0);
 
   // đăng kí tài khoản
   const createAccount = async (values, actions) => {
     await axios
       .get(`http://localhost:3001/account?email=${values.registerEmail}`)
       .then((response) => {
-        if (response.data.length !== 0 ) {
+        if (response.data.length !== 0) {
           actions.setFieldError("registerEmail", "Email này đã tồn tại");
         } else {
           const account = {
             name: values.registerName,
             email: values.registerEmail,
             password: values.registerPassword,
-            phone : values.registerPhone,
+            phone: values.registerPhone,
             address: values.registerAddress,
             sex: values.registerSex,
-            date : values.registerDateBirth,
-            image : '',
-          }
+            date: values.registerDateBirth,
+            image: "",
+          };
           axios.post("http://localhost:3001/account", account);
           values.registerName = "";
           values.registerPassword = "";
           values.registerPasswordRetype = "";
           values.registerEmail = "";
-          values.registerPhone= "";
+          values.registerPhone = "";
           values.registerAddress = "";
           values.registerDateBirth = "";
-          values.registerSex = ""
+          values.registerSex = "";
           document.querySelector(".successful").style.display = "flex";
         }
       });
+    try {
+      const response = await fetch(
+        `http://localhost:3001/account?registerEmail=${values.registerEmail}`
+      );
+      const data = await response.json();
+      if (data.length !== 0) {
+        actions.setFieldError("registerEmail", "Email này đã tồn tại");
+      } else {
+        await fetch("http://localhost:3001/account", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+        values.registerName = "";
+        values.registerPassword = "";
+        values.registerPasswordRetype = "";
+        values.registerEmail = "";
+        values.registerPhone = "";
+        values.registerAddress = "";
+        document.querySelector(".successful").style.display = "flex";
+      }
+    } catch (error) {
+      console.error("Lỗi khi tạo tài khoản:", error);
+    }
   };
 
   // đăng nhập tài khoản
@@ -72,6 +100,29 @@ function Heading() {
             values.loginName = "";
             values.loginPassword = "";
           }
+          try {
+            const response = fetch(
+              `http://localhost:3001/account?registerEmail=${values.loginName}`
+            );
+            const data = response.json();
+            if (data.length === 0) {
+              actions.setFieldError("loginName", "Tài khoản không đúng");
+            } else {
+              const registerPassword = data[0].registerPassword;
+              if (values.loginPassword !== registerPassword) {
+                actions.setFieldError("loginPassword", "Mật khẩu không đúng");
+              } else {
+                Cookies.set("username", values.loginName, { expires: 7 });
+                alert("Bạn đã đăng nhập thành công");
+                setFlagExistUser(true);
+                setIsLogin(false);
+                values.loginName = "";
+                values.loginPassword = "";
+              }
+            }
+          } catch (error) {
+            console.error("Lỗi khi đăng nhập:", error);
+          }
         }
       });
   };
@@ -79,14 +130,15 @@ function Heading() {
   // đăng xuất tài khoản
   const checkOutAccount = () => {
     Cookies.remove("username");
-    navigate('/');
+    navigate("/");
   };
+
   return (
     <>
       <div style={{ position: "sticky", top: "0px", zIndex: "1000" }}>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
-          <div className="container ">
-            <Link className="navbar-brand " to="/" style={{ width: "200px" }}>
+          <div className="container">
+            <Link className="navbar-brand" to="/" style={{ width: "200px" }}>
               <img
                 src="https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/lg.png"
                 alt="Logo"
@@ -166,28 +218,39 @@ function Heading() {
                     Giới thiệu
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link
+                    className={`text ${activeLink === "/blog" ? "active" : ""}`}
+                    style={{
+                      color: activeLink === "/blog" ? "#111111d9" : "#666666d9",
+                    }}
+                    to="/blog"
+                    onClick={() => handleClick("/blog")}
+                  >
+                    Tin Tức
+                  </Link>
+                </li>
               </ul>
-            </div>
-            <div style={{ marginRight: "30px" }}>
-              <form className="d-flex" role="search">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="btn btn-outline-success" type="submit" />
-              </form>
               <div
                 className="d-flex"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "15px",
-                  width: "50%",
-                  marginLeft: "30px",
+                  marginRight: "10%",
                 }}
               >
+                <div class="search-container " style={{ marginRight: "50%" }}>
+                  <center>
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                  </center>
+                  <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Search..."
+                  />
+                </div>
+
                 <Link to="/cart">
                   <div
                     style={{ position: "relative", display: "inline-block" }}
@@ -205,15 +268,13 @@ function Heading() {
                 </Link>
               </div>
               <div>
-                {Cookies.get('username') ? (
+                {Cookies.get("username") ? (
                   <>
-                  {/* =========== user ============= */}
                     <button className="iconbutton">
-                      <Link to={'/acount'}>
+                      <Link to="/acount">
                         <FaUser className="nav__user-btn-icon" />
                       </Link>
                     </button>
-                    {/* ========= user ========== */}
                     <button className="textbutton" onClick={checkOutAccount}>
                       Đăng xuất
                     </button>
@@ -223,16 +284,14 @@ function Heading() {
                     <button
                       onClick={() => handleToggle(isLogin, setIsLogin)}
                       className="textbutton nav__login"
+                      style={{ backgroundColor: "#3c6", color: "white" }}
                     >
-                      {" "}
                       Đăng nhập
                     </button>
-
                     <button
                       onClick={() => handleToggle(isRegister, setIsRegister)}
                       className="textbutton nav__login"
                     >
-                      {" "}
                       Đăng kí
                     </button>
                   </>
@@ -254,4 +313,5 @@ function Heading() {
     </>
   );
 }
+
 export default Heading;

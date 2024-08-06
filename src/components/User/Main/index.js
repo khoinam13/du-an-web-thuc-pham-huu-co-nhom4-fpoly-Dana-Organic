@@ -35,6 +35,7 @@ import Blog from './blog';
 import DetailBlog from './blog/detailblog';
 import Account from '../Heading/login/taikhoan';
 import Order from '../Heading/login/order';
+import HomeMain from '../../Admin/home/homemain';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
         element: <AdminProduct />,
       },
       {
+        path: "/admin",
+        element: <HomeMain />,
+      },
+      {
         path: "newadminproduct",
         element: <NewAdminProduct />,
 
@@ -171,8 +176,9 @@ const router = createBrowserRouter([
         element: <OrderProduct />,
 
       },
+    
       {
-        path: "updateorderproduct",
+        path: "updateorderproduct/:id",
         element: <UpdateOrderProduct />,
 
       },

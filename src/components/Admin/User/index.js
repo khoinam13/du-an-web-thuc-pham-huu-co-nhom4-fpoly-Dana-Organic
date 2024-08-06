@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function AdminUser() {
   const [users, setUsers] = useState([]);
@@ -48,6 +49,21 @@ function AdminUser() {
           setUsers(users.filter(user => user.id !== id));
           setFilteredUsers(filteredUsers.filter(user => user.id !== id));
           console.log('Người dùng đã được xóa thành công!');
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "  Xóa thành công!"
+          });
         } else {
           console.error('Lỗi khi xóa người dùng');
         }
@@ -90,6 +106,7 @@ function AdminUser() {
                 <th scope="col">Hình Ảnh</th>
                 <th scope="col">Email</th>
                 <th scope="col">Mật Khẩu</th>
+                <th scope="col">Ngày Sinh</th>
                 <th scope="col">Vai Trò</th>
                 <th scope="col">Thao Tác</th>
               </tr>
@@ -108,13 +125,14 @@ function AdminUser() {
                   </td>
                   <td>{user.email}</td>
                   <td>{user.password}</td>
+                  <td>{user.Dob}</td>
                   <td>{user.role}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                       <Link to={`/admin/updateuser/${user.id}`}>
                         <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                       </Link>
-                      <button onClick={() => handleDelete(user.id)}>
+                      <button onClick={() => handleDelete(user.id)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                         <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
                       </button>
                     </div>

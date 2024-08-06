@@ -11,7 +11,7 @@ function Category() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3001/category");
+        const res = await fetch("http://localhost:3000/category");
         const data = await res.json();
         setCategories(data);
       } catch (error) {

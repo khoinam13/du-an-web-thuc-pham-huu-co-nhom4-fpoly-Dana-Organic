@@ -10,11 +10,14 @@ h2{
 .link{
     text-decoration: none;
     font-size: 20px;
-    color: #f72936;
+    color: #83bb3e;
     font-weight: 400;
     font-family: "Quicksand", sans-serif;
 }
-
+.card-text{
+    font-size: 17px;
+    font-weight: 400;
+}
 .link:hover{
     color:#FFDEAD;
 }
@@ -22,4 +25,11 @@ h2{
     font-size: 30px;
     font-weight: 600;
     font-family: "Quicksand", sans-serif;
+}
+.fluid{
+    height: 90% !important;
+  margin: 0 auto ;
+  border-radius: 20px;
+ /* margin-top: 10px; */
+ padding: 20px;
 }

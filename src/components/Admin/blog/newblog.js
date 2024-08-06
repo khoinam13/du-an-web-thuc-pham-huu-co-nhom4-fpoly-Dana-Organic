@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function NewAdminBlog(){
     return(
         <>
@@ -25,7 +27,9 @@ function NewAdminBlog(){
                 </div>
                
                 
-                <button type="button" class="btn btn-primary" style={{fontWeight:'900'}}>Thêm bài viết</button>
+             <Link to="/admin/adminblog" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+                <button type="button" class="btn btn-primary" style={{fontWeight:'900'}}>Thêm bài viết</button> 
+                
             </div>
         </>
         

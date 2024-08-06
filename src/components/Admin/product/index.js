@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function AdminProduct() {
-
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -36,6 +35,39 @@ function AdminProduct() {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+      try {
+        const response = await fetch(`http://localhost:3000/products/${id}`, {
+          method: 'DELETE',
+        });
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        setProducts(products.filter(product => product.id !== id));
+        setFilteredProducts(filteredProducts.filter(product => product.id !== id));
+        console.log(`Product with id ${id} deleted successfully`);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "  Xóa thành công!"
+        });
+      } catch (error) {
+        console.error(`There was an error deleting the product with id ${id}!`, error);
+      }
+    }
   };
 
   return (
@@ -98,7 +130,10 @@ function AdminProduct() {
                         <Link to={`/admin/updateadminproduct/${product.id}`}>
                           <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                         </Link>
-                        <button>
+                        <button 
+                          onClick={() => handleDelete(product.id)} 
+                          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        >
                           <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
                         </button>
                       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 function UpdateAdminUser() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -126,6 +126,17 @@ function UpdateAdminUser() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          </div>
+        <div className="mb-3 row">
+          <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Ngày Sinh</label>
+          <div className="col-sm-4">
+            <input
+              type="date"
+              className="form-control"
+              style={{ fontWeight: '500' }}
+              
+            />
+          </div>
         </div>
         <div className="mb-3 row">
           <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Vai Trò</label>
@@ -140,6 +151,8 @@ function UpdateAdminUser() {
             </select>
           </div>
         </div>
+        <Link to="/admin/adminuser" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
         <button
           type="submit"
           className="btn btn-primary"

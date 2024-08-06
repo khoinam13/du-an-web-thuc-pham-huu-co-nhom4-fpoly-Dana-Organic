@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 function UpdateAdminBlog() {
   const { id } = useParams(); 
   const navigate = useNavigate(); 
@@ -101,6 +101,8 @@ function UpdateAdminBlog() {
             />
           </div>
         </div>
+        <Link to="/admin/adminblog" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
         <button
           type="submit"
           className="btn btn-primary"

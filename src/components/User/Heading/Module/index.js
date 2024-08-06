@@ -82,6 +82,9 @@ function Module({
               </Formik>
               <Link className="home-module__forget" to={"/"}>
                 Quên mật khẩu?
+              </Link><br/>
+              <Link className="home-module__forget" to={"/"}>
+                Đăng kí tài khoản.
               </Link>
             </div>
             <button className="home-module__close">

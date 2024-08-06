@@ -50,19 +50,23 @@ function DetailBlog() {
         </div>
         <div style={{ width: '400px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 5px 15px' }}>
           <h3 style={{ color: 'black', fontFamily: '"Quicksand", sans-serif', textAlign: 'center', padding: '20px' }}>
-            BÀI VIẾT KHÁC
+            TIN TỨC KHÁC
           </h3>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
             {relatedBlogs.map((item) => (
-              <div className="card" key={item.id} style={{ width: '20rem', marginBottom: '30px' }}>
-               <center> <img src={item.image} className="card-img-top" alt={item.title} style={{width:'200px'}}/></center>
-                <div className="card-body">
-                  <h5 className="card-title" style={{textAlign:'left', fontSize:'25px'}}>{item.title}</h5>
+              <div class=" mb-3" style={{maxWidth: "540px;"}} key={item.id}>
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src={item.image} class="img-fluid rounded-start fluid" alt="..."  />
                 </div>
-                <div className="card-body">
-                  <Link to={`/blog/${item.id}`} className="card-link link">Xem Thêm</Link>
+                <div class="col-md-8">
+                  <div class="card-body">
+                  <Link to={`/detailblog/${item.id}`} style={{textDecoration: 'none'}}><h5 class="card-title" style={{fontSize:'25px',color:'#83bb3e'}}>{item.title}</h5></Link>
+                   
+                  </div>
                 </div>
               </div>
+            </div>
             ))}
           </div>
         </div>

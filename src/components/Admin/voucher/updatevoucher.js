@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 function UpdateVoucher() {
   const [voucher, setVoucher] = useState({ name: '', id: '', value: '' });
   const { id } = useParams();
@@ -82,6 +82,8 @@ function UpdateVoucher() {
             />
           </div>
         </div>
+        <Link to="/admin/voucher" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
         <button
           type="button"
           className="btn btn-primary"

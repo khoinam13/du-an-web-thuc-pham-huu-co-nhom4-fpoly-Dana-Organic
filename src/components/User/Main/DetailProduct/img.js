@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'; 
 
 function Image() {
   const { id } = useParams(); 
-  const navigate = useNavigate();
-  const [product, setProduct] = useState(null);
-  const [count, setCount] = useState(1);
-  const [selectedImage, setSelectedImage] = useState("");
+  const navigate = useNavigate(); 
+  const [product, setProduct] = useState(null); 
+  const [count, setCount] = useState(1); 
+  const [selectedImage, setSelectedImage] = useState(""); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +21,7 @@ function Image() {
           console.error('Sản phẩm không tìm thấy!');
         }
       } catch (error) {
-        console.error('Lỗi dữ liệu!!', error);
+        console.error('Lỗi dữ liệu:', error);
       }
     };
 
@@ -28,27 +29,31 @@ function Image() {
   }, [id]);
 
   const handleIncrease = () => {
-    setCount((prevCount) => prevCount + 1);
+    setCount(prevCount => prevCount + 1); 
   };
 
   const handleDecrease = () => {
-    setCount((prevCount) => Math.max(1, prevCount - 1));
+    setCount(prevCount => Math.max(1, prevCount - 1)); 
   };
 
   const handleChange = (event) => {
     const value = Number(event.target.value);
-    setCount(value);
+    if (value >= 1) { 
+      setCount(value); 
+    }
   };
 
   const handleAddToCart = async () => {
     if (product && product.quantity > 0) {
       const cartItem = {
         productId: product.id,
-        quantity: count,
+        quantity: count, 
         image: selectedImage,
         price: product.price,
         name: product.name,
       };
+  
+      console.log('Adding to cart:', cartItem); 
 
       try {
         const res = await fetch('http://localhost:3001/carts', {
@@ -58,25 +63,41 @@ function Image() {
           },
           body: JSON.stringify(cartItem),
         });
-
+  
         if (res.ok) {
           console.log('Thêm vào giỏ hàng thành công!');
-          navigate('/cart');
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "  Đã Thêm vào giỏ hàng thành công!"
+          });
+          navigate('/cart'); 
         } else {
           console.error('Không thể thêm vào giỏ hàng');
         }
       } catch (error) {
         console.error('Lỗi khi thêm vào giỏ hàng:', error);
       }
+    } else {
+      console.error('Sản phẩm không có sẵn hoặc số lượng không hợp lệ');
     }
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; 
   }
 
   const discountedPrice = product.price * 0.7;
-
   return (
     <>
       <div className="row d-flex justify-content-center align-items-center" style={{ width: "100%" }}>
@@ -88,7 +109,15 @@ function Image() {
           </div>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "20px", padding: "20px" }}>
             {product.sameimage.map((img, index) => (
-              <img key={index} src={img}  alt={product.name} width={"130px"} height={"130px"} style={{ border: "1px solid #ebebeb", cursor: "pointer" }} onClick={() => setSelectedImage(img)} />
+              <img 
+                key={index} 
+                src={img}  
+                alt={product.name} 
+                width="130px" 
+                height="130px" 
+                style={{ border: "1px solid #ebebeb", cursor: "pointer" }} 
+                onClick={() => setSelectedImage(img)} 
+              />
             ))}
           </div>
         </div>
@@ -110,6 +139,11 @@ function Image() {
             </p>
           </div>
           <div>
+            <p style={{ color: "#777", lineHeight: "25.6px", fontSize: "20px" }}>
+              <b>Số lượng:</b> {product.quantity}
+            </p>
+          </div>
+          <div>
             <p style={{ color: "#7a9c59", fontSize: "19px", fontWeight: "600" }}>
               Tình trạng:
               {product.quantity > 0 ? (
@@ -123,17 +157,37 @@ function Image() {
               )}
             </p>
             <div className="counter-container">
-              <button type="button" onClick={handleDecrease} className="counter-button" disabled={product.quantity === 0} > - </button>
-              <input className="counter-input" type="number" min="1" value={count} onChange={handleChange} disabled={product.quantity === 0}/>
-              <button type="button" onClick={handleIncrease} className="counter-button" disabled={product.quantity === 0} >
+              <button style={{borderRadius: "5px",}}
+                type="button" 
+                onClick={handleDecrease} 
+                className="counter-button" 
+                disabled={product.quantity === 0}
+              >
+                - 
+              </button>
+              <input style={{borderRadius: "5px",}}
+                className="counter-input" 
+                type="number" 
+                min="1" 
+                value={count} 
+                onChange={handleChange} 
+                disabled={product.quantity === 0}
+              />
+              <button style={{borderRadius: "5px",}}
+                type="button" 
+                onClick={handleIncrease} 
+                className="counter-button" 
+                disabled={product.quantity === 0}
+              >
                 +
               </button>
               <button
                 type="button"
                 className="btn btn"
-                style={{ backgroundColor: "#83bb3e", width: "250px", fontSize: "20px", fontWeight: "500", color: "#fff", marginLeft: "30px",}} 
+                style={{ backgroundColor: "#83bb3e", width: "250px", fontSize: "20px", fontWeight: "500", color: "#fff", marginLeft: "30px" }} 
                 onClick={handleAddToCart}
-                disabled={product.quantity === 0} >
+                disabled={product.quantity === 0}
+              >
                 Thêm Vào Giỏ Hàng
               </button>
             </div>
@@ -160,7 +214,7 @@ function Image() {
         </div>
         <div>
           <div style={{ border: '1px solid #ebebeb', padding: '20px' }}>
-            <p style={{ color:'#777',lineHeight:'25.6px',fontSize:'20px'}}>
+            <p style={{ color:'#777', lineHeight:'25.6px', fontSize:'20px' }}>
               {product.description}
             </p>
           </div>

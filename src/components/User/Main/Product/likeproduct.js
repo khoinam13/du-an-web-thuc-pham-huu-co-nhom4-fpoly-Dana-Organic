@@ -28,9 +28,10 @@ function Likeproduct() {
     <>
       <div>
         <h3 className='h3'>Có thể bạn thích</h3>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap',marginTop:'20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap',marginTop:'20px',border:'1px solid #ebebeb',borderRadius:'15px', }}>
           {products.map(product => (
-            <div className="card mb-3" style={{ width: '90%' }} key={product.id}>
+            <div className=" mb-3" style={{ width: '90%' }} key={product.id}>
+             {/* bỏ className="card" */}
               <div className="row g-0">
                 <div className="col-md-4">
                   <img src={product.image} height={'80%'} width={'100%'} alt={product.name} />

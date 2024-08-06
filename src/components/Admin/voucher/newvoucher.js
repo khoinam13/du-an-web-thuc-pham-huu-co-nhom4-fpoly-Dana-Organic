@@ -1,3 +1,4 @@
+ import { Link } from "react-router-dom";
 function NewVoucher(){
     return(
         <>
@@ -22,7 +23,8 @@ function NewVoucher(){
                     </div>
                 </div>
                 
-               
+                <Link to="/admin/voucher" >  <button type="button" class="btn btn-secondary" style={{marginRight:'20px'}}>Trở về</button></Link>
+
                 <button type="button" class="btn btn-primary" style={{fontWeight:'900'}}>Thêm mã giảm giá</button>
             </div>
         

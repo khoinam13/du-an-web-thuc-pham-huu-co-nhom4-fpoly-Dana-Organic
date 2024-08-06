@@ -1,51 +1,154 @@
-function UpdatOrder(){
-    return(
-        <>
-            <div style={{padding:'30px'}}>
-            <h3> Cập nhật đơn hàng</h3>
-                 <div class="mb-3 row">
-                    <label  class="col-sm-2 col-form-label" style={{fontWeight:'900'}}>Mã khách hàng</label>
-                    <div class="col-sm-4">
-                    <input type="text"  class="form-control" style={{fontWeight:'500'}} disabled />
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label  class="col-sm-2 col-form-label" style={{fontWeight:'900'}}>Địa chỉ giao hàng</label>
-                    <div class="col-sm-4">
-                    <input type="text" class="form-control"  />
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label  class="col-sm-2 col-form-label" style={{fontWeight:'900'}}>Phương thức thanh toán</label>
-                    <div class="col-sm-4">
-                    <select class="form-control" >
-                        <option>Thanh toán khi nhận hàng</option>
-                        <option>Chuyển khoản</option>
-                    </select>
-                    </div>
-                </div>
-                
-                <div class="mb-3 row">
-                    <label  class="col-sm-2 col-form-label" style={{fontWeight:'900'}}>Số điện thoại</label>
-                    <div class="col-sm-4">
-                    <input type="phone"  class="form-control" style={{fontWeight:'500'}} />
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label  class="col-sm-2 col-form-label" style={{fontWeight:'900'}}>Trạng thái</label>
-                    <div class="col-sm-4">
-                    <select class="form-control" >
-                        <option>Đã xác nhận</option>
-                        <option>Đã vận chuyển</option>
-                        <option>Đã giao hàng</option>
-                    </select>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-primary" style={{fontWeight:'900'}}>Cập nhập đơn hàng</button>
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+
+function UpdateOrder() {
+  const { id } = useParams();
+  const [order, setOrder] = useState(null);
+  const [formData, setFormData] = useState({
+    userId: '',
+    address: '',
+    pay: '',
+    phone: '',
+    status: ''
+  });
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/orders/${id}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setOrder(data);
+        setFormData({
+          userId: data.userId,
+          address: data.address,
+          pay: data.pay,
+          phone: data.phone,
+          status: data.status
+        });
+      } catch (error) {
+        console.error('There was an error fetching the order!', error);
+      }
+    };
+
+    fetchOrder();
+  }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/orders/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const updatedOrder = await response.json();
+      setOrder(updatedOrder);
+      alert('Order updated successfully!');
+    } catch (error) {
+      console.error('There was an error updating the order!', error);
+    }
+  };
+
+  return (
+    <>
+      <div style={{ padding: '30px' }}>
+        <h3>Cập nhật đơn hàng</h3>
+        {order ? (
+          <>
+            <div className="mb-3 row">
+              <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Mã khách hàng</label>
+              <div className="col-sm-4">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="userId"
+                  value={formData.userId}
+                  onChange={handleChange}
+                  style={{ fontWeight: '500' }}
+                  disabled
+                />
+              </div>
             </div>
-        
-        </>
-    )
+            <div className="mb-3 row">
+              <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Địa chỉ giao hàng</label>
+              <div className="col-sm-4">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  disabled
+                />
+              </div>
+            </div>
+            <div className="mb-3 row">
+              <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Phương thức thanh toán</label>
+              <div className="col-sm-4">
+                <select
+                  className="form-control"
+                  name="pay"
+                  value={formData.pay}
+                  onChange={handleChange}
+                  disabled
+                >
+                  <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>
+                  <option value="Chuyển khoản">Chuyển khoản</option>
+                </select>
+              </div>
+            </div>
+            <div className="mb-3 row">
+              <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Số điện thoại</label>
+              <div className="col-sm-4">
+                <input
+                  type="phone"
+                  className="form-control"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  style={{ fontWeight: '500' }}
+                  disabled
+                />
+              </div>
+            </div>
+            <div className="mb-3 row">
+              <label className="col-sm-2 col-form-label" style={{ fontWeight: '900' }}>Trạng thái</label>
+              <div className="col-sm-4">
+                <select
+                  className="form-control"
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                >
+                  <option value="Đã xác nhận">Đã xác nhận</option>
+                  <option value="Đã vận chuyển">Đã vận chuyển</option>
+                  <option value="Đã giao hàng">Đã giao hàng</option>
+                </select>
+              </div>
+            </div>
+            <Link to="/admin/orderproduct">
+              <button type="button" className="btn btn-secondary" style={{ marginRight: '20px' }}>Trở về</button>
+            </Link>
+            <button type="button" className="btn btn-primary" onClick={handleUpdate} style={{ fontWeight: '900' }}>Cập nhập đơn hàng</button>
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+    </>
+  );
 }
 
-export default UpdatOrder;
+export default UpdateOrder;

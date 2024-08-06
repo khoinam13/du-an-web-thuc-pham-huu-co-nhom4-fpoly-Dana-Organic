@@ -71,13 +71,15 @@ function NewProduct() {
             const discountedPrice = item.price * 0.7;
 
             return (
-              <div className="card" style={{ width: "18rem" }} key={item.id}>
+              <div  style={{ width: "18rem" }} key={item.id}>
+              {/* bỏ className="card" */}
                 <center>
                   <img
                     src={item.image}
                     alt={item.name}
                     height={"247px"}
-                    width={"247px"}
+                    width={"247px"} 
+                   
                   />
                 </center>
                 <div className="card-body">

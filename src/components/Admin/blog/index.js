@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function AdminBlog() {
   const [blogs, setBlogs] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -35,6 +35,39 @@ function AdminBlog() {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa blog này?')) {
+      try {
+        const response = await fetch(`http://localhost:3000/blog/${id}`, {
+          method: 'DELETE',
+        });
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        setBlogs(blogs.filter(blog => blog.id !== id));
+        setFilteredBlogs(filteredBlogs.filter(blog => blog.id !== id));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "  Xóa thành công!"
+        });
+        console.log(`Blog with id ${id} deleted successfully`);
+      } catch (error) {
+        console.error(`There was an error deleting the blog with id ${id}!`, error);
+      }
+    }
   };
 
   return (
@@ -89,7 +122,10 @@ function AdminBlog() {
                         <Link to={`/admin/updateblog/${blog.id}`}>
                           <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                         </Link>
-                        <button>
+                        <button 
+                          onClick={() => handleDelete(blog.id)} 
+                          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        >
                           <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
                         </button>
                       </div>
@@ -98,7 +134,7 @@ function AdminBlog() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4">Không Tìm Thấy Sản Phẩm!</td>
+                  <td colSpan="4">Không Tìm Thấy Blog!</td>
                 </tr>
               )}
             </tbody>
