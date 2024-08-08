@@ -1,22 +1,44 @@
 {
   "account": [
     {
-      "id": "1",
-      "username": "admin",
-      "password": "123456",
-      "role": "admin",
-      "email": "admin@admin.com",
-      "image": "https://png.pngtree.com/png-vector/20230316/ourmid/pngtree-admin-and-customer-service-job-vacancies-vector-png-image_6650726.png",
-      "Dob": "01/01/2000"
+      "id": "e041",
+      "sex": "Nam",
+      "name": "dang nam dep trai",
+      "email": "dangnam1303k2223@gmail.com",
+      "password": "Boy13032003!",
+      "phone": "0369832486",
+      "date": "2004-03-13"
     },
     {
-      "id": "2",
-      "username": "user",
-      "password": "1234568",
-      "role": "người dùng",
-      "email": "abc@example.com",
-      "image": "https://png.pngtree.com/png-vector/20220520/ourlarge/pngtree-worker-admin-avatar-black-business-png-image_4627365.png",
-      "Dob": "01/01/2003"
+      "name": "dang nam dep  trai",
+      "email": "dangnam2@gmail.com",
+      "password": "Boy13032003!",
+      "phone": "0369832486",
+      "date": "2003-03-13",
+      "id": "c3ed",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcNiCsw51yvrizsUno3m0xwH6RNu1b8SaKvA&s"
+    },
+    {
+      "id": "291d",
+      "name": "dnagnma",
+      "email": "dangnam13032k3@gmail.com",
+      "password": "Boy13032003!",
+      "phone": "0369832486",
+      "address": "177 Phạm Như Xương",
+      "sex": "Nam",
+      "date": "2003-08-02",
+      "image": ""
+    },
+    {
+      "id": "7c81",
+      "name": "dangnamtoi",
+      "email": "dangnam1303k3@gmail.com",
+      "password": "Boy13032003!",
+      "phone": "03698324861",
+      "address": "177 Phạm Như Xương",
+      "sex": "Nam",
+      "date": "2003-03-13",
+      "image": ""
     }
   ],
   "category": [
@@ -117,18 +139,6 @@
       "categoryId": 1
     },
     {
-      "id": "8",
-      "name": "Húng quế",
-      "image": "https://tinhdauhanoi.com/wp-content/uploads/2020/02/avatar-s%E1%BA%A3n-ph%E1%BA%A9m-h%C3%BAng-qu%E1%BA%BF.jpg",
-      "sameimage": [
-        "https://admin.nongsandungha.com/wp-content/uploads/2021/05/rau-hung-cho-min.jpg"
-      ],
-      "price": 65990,
-      "description": "Húng Quế rất tốt cho sức khỏe",
-      "quantity": 10,
-      "categoryId": 2
-    },
-    {
       "id": "9",
       "name": "Lê",
       "image": "https://suckhoedoisong.qltns.mediacdn.vn/2015/1-two-pears-2405-1425959375-1426076921348.jpg",
@@ -150,13 +160,13 @@
       "price": 75990,
       "description": "Lựu rất tốt cho sức khỏe",
       "quantity": 10,
-      "categoryId": 1
+      "categoryId": 2
     }
   ],
   "blog": [
     {
-      "id": "1",
-      "title": "Lý do nên ăn lê thường xuyên để có một sức khỏe tốt",
+      "id": "4",
+      "title": "Tác dụng  khi ăn lê",
       "image": "https://bizweb.dktcdn.net/100/447/072/products/le-duong-tui-1kg-4-6-trai-202211040848115718.jpg?v=1684730248843",
       "content": "Quả lê vị ngọt, có nhiều màu sắc khác nhau bao gồm màu đỏ, nâu, xanh lá cây và màu vàng. Quả lê có hình dạng như cái chuông: hẹp ở phía trên và rộng ở phía dưới. Lê được bán trong hầu hết các mùa, nhiều nhất là giữa tháng 6 và tháng 2. Lê chứa rất nhiều chất xơ và vitamin, vì vậy bạn nên ăn thường xuyên. Ngoài ra, các khoáng chất như kali, phốt pho các đồng trong trái cây này cũng tốt cho sức khỏe. Lê chứa một lượng nhỏ chất sắt.."
     },
@@ -203,16 +213,7 @@
       "content": "TPO - Cải thảo vốn là loại rau quen thuộc với nhiều gia đình, nó không những ngon miệng, có nhiều cách chế biến mà còn giàu dinh dưỡng, tốt cho sức khỏe. Tuy nhiên, cải thảo cần phải được ăn đúng cách để không gây hại cho sức khỏe. Lợi ích khi ăn cải thảo Cung cấp các chất dinh dưỡng cần thiết cho sức khỏe Bên trong cải thảo có chứa nhiều chất dinh dưỡng tốt cho sức khỏe như các loại vitamin: vitamin K, vitamin C, vitamin B6, và những chất khác như protein, folate, calories, magnesium, folate, fiber, calcium, cùng với các khoáng chất khác như sắt, vitamin A, chất chống oxy hóa, chất xơ.  Cải thiện sức khỏe tim mạch Cải thảo chứa hơn 36 loại anthocyanin mạnh khác nhau, làm cho nó trở thành một lựa chọn tuyệt vời cho sức khỏe tim mạch. Tăng lượng anthocyanin trong chế độ ăn uống của bạn cũng đã được chứng minh là làm giảm huyết áp và nguy cơ mắc bệnh mạch vành. Tăng cường miễn dịch Cải thảo chứa nhiều chất dinh dưỡng thiết yếu mà cơ thể cần để khoẻ mạnh. Uống một ly nước cải thảo giúp chống lại các tác nhân gây bệnh nguy hiểm và ngăn ngừa các loại nhiễm trùng."
     }
   ],
-  "carts": [
-    {
-      "id": "6e89",
-      "productId": "2",
-      "quantity": 1,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_S9VFO3nqpsP0F6BCmNES5kgqemIPU7Ebw&usqp=CAU",
-      "price": 215990,
-      "name": "Su hào"
-    }
-  ],
+  "carts": [],
   "vouchers": [
     {
       "id": "1",

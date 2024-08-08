@@ -47,6 +47,7 @@ body{
 @media (max-width: 600px){
   .home-module__wrap{
     width: 340px;
+    font-size: 10px;
   }
   .home-module__lable{
     font-size: 12px;

@@ -80,7 +80,7 @@ function AdminCategory() {
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearchChange}
-              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px' }}
+              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px',height: '38px' }}
             />
             <i
               className="fa-solid fa-magnifying-glass"
@@ -88,8 +88,8 @@ function AdminCategory() {
             ></i>
           </div>
           <Link to={'/admin/newadmincategory'}>
-            <button className="btn btn-link">
-              <i className="fa-solid fa-plus"></i>
+            <button className="btn btn-primary"> 
+              <i className="fa-solid fa-plus"></i>Thêm danh mục
             </button>
           </Link>
         </div>
@@ -107,8 +107,8 @@ function AdminCategory() {
               {filteredCategories.length > 0 ? (
                 filteredCategories.map(category => (
                   <tr key={category.id}>
-                    <td>{category.id}</td>
-                    <td>{category.name}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{category.id}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{category.name}</td>
                     <td>
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                         <Link to={`/admin/updateadmincategory/${category.id}`}>

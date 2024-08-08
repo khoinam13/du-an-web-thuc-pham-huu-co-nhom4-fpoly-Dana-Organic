@@ -41,11 +41,12 @@ function TopProduct() {
               const discountedPrice = item.price * 0.7;
               return (
                 <div key={item.id} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '30px' }}>
+                
                   <div className=" mb-3" style={{ maxWidth: '540px' }}>
                    {/* bỏ className="card" */}
                     <div className="row g-0" style={{ width: '395px' }}>
                       <div className="col-md-6">
-                        <img src={item.image} height={'247px'} width={'247px'} alt={item.name} />
+                        <center><img src={item.image} height={'247px'} width={'247px'} alt={item.name} /></center>
                       </div>
                       <div className="col-md-6" style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
                         <div className="card-body">

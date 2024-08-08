@@ -22,7 +22,7 @@ function NewAdminBlog(){
                 <div class="mb-3 row">
                     <label  class="col-sm-2 col-form-label" style={{fontWeight:'900'}}>Mô Tả</label>
                     <div class="col-sm-4">
-                    <textarea  class="form-control" style={{fontWeight:'500'}} placeholder="Mô tả" />
+                    <textarea  class="form-control" style={{fontWeight:'500',height:'300px'}} placeholder="Mô tả" />
                     </div>
                 </div>
                

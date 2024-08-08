@@ -7,6 +7,7 @@ function Products() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('default');
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,6 +34,8 @@ function Products() {
     );
   }
 
+
+
   switch (sortOption) {
     case 'priceAsc':
       filteredProducts.sort((a, b) => a.price - b.price);
@@ -44,6 +47,8 @@ function Products() {
       filteredProducts.sort((a, b) => a.id - b.id);
       break;
   }
+
+
 
   return (
     <>

@@ -4,7 +4,7 @@ import ProductCart from './productcart';
 import Total from './totalproduct';
 import { Outlet, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2'; 
-
+import { Link } from 'react-router-dom';
 export default function Cart() {
   const [showComponents, setShowComponents] = useState(true);
   const location = useLocation();
@@ -99,7 +99,7 @@ export default function Cart() {
         });
         Toast.fire({
           icon: "success",
-          title: "  Xóa thành công!"
+          title: "Xóa thành công!"
         });
       } else {
         console.error('Failed to delete the product from the database');
@@ -137,21 +137,28 @@ export default function Cart() {
       }}
     >
       {showComponents && (
-        <>
-          <div style={{ width: '750px', placeSelf: 'normal', marginBottom:'250px' }}>
-            <ProductCart 
-              cart={cart}
-              count={count}
-              handleIncrease={handleIncrease}
-              handleDecrease={handleDecrease}
-              handleChange={handleChange}
-              handleRemove={handleRemove}
-            />
+        cart.length === 0 ? (
+          <div style={{ textAlign:'center',marginBottom:"150px" }}>
+          <img src="http://www.tienngocnosa.com/assets/images/empty_cart.png" alt="Empty Cart" style={{ width: '100%', maxWidth: '500px' }} /> ,
+          <h5>Giỏ hàng của bạn đang trống</h5> <Link to="/product/products" style={{ textDecoration:'none',fontSize:'20px'}}> Quay lại</Link>
           </div>
-          <div style={{ width: '750px', marginBottom:'auto' }}>
-            <Total totalAmount={totalAmount} />
-          </div>
-        </>
+        ) : (
+          <>
+            <div style={{ width: '750px', placeSelf: 'normal', marginBottom: '250px' }}>
+              <ProductCart 
+                cart={cart}
+                count={count}
+                handleIncrease={handleIncrease}
+                handleDecrease={handleDecrease}
+                handleChange={handleChange}
+                handleRemove={handleRemove}
+              />
+            </div>
+            <div style={{ width: '750px', marginBottom: 'auto' }}>
+              <Total totalAmount={totalAmount} />
+            </div>
+          </>
+        )
       )}
       <Outlet />
     </div>

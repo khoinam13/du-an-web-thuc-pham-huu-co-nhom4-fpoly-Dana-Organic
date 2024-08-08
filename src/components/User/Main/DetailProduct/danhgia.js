@@ -60,7 +60,7 @@ function DanhGia() {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/feedbacks', {
+      const res = await fetch('http://localhost:3001/feedbacks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

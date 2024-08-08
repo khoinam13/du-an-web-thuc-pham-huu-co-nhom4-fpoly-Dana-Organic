@@ -9,11 +9,13 @@ function ProductSlide({ productId }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/products?similarTo=${productId}`);
+        const res = await fetch(
+          `http://localhost:3000/products?similarTo=${productId}`
+        );
         const data = await res.json();
         setProducts(data);
       } catch (error) {
-        console.error('Lỗi dữ liệu!!', error);
+        console.error("Lỗi dữ liệu!!", error);
       }
     };
 
@@ -30,32 +32,47 @@ function ProductSlide({ productId }) {
   };
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + productGroups.length) % productGroups.length);
+    setCurrentIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + productGroups.length) % productGroups.length
+    );
   };
 
   return (
-    <div style={{ width: '100%', margin: '20px auto',marginBottom:"50px" }}>
-      <h2 style={{ padding: '10px 0 10px 20px',fontSize:'40px' }}>SẢN PHẨM KHÁC</h2>
+    <div style={{ width: "100%", margin: "20px auto", marginBottom: "50px" }}>
+      <h2 style={{ padding: "10px 0 10px 20px", fontSize: "40px" }}>
+        SẢN PHẨM KHÁC
+      </h2>
       <div id="carouselExample" className="carousel slide">
         <div className="carousel-inner">
           {productGroups.map((group, groupIndex) => (
             <div
-              className={`carousel-item ${groupIndex === currentIndex ? 'active' : ''}`}
+              className={`carousel-item ${
+                groupIndex === currentIndex ? "active" : ""
+              }`}
               key={groupIndex}
             >
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-                {group.map(item => {
-                  const discountedPrice = item.price * 0.7; 
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  gap: "20px",
+                }}
+              >
+                {group.map((item) => {
+                  const discountedPrice = item.price * 0.7;
 
                   return (
-                    <div  style={{ width: '18rem' }} key={item.id}>
+                    <div style={{ width: "18rem" }} key={item.id}>
                       <center>
                         <img
                           src={item.image}
                           height="245px"
                           width="245px"
                           alt={item.name}
-                          style={{ objectFit: 'cover' }}
+                          style={{ objectFit: "cover" }}
                         />
                       </center>
                       <div className="card-body">
@@ -63,17 +80,29 @@ function ProductSlide({ productId }) {
                           <Link
                             to={`/product/${item.id}`}
                             className="card-title cardtitle"
-                            style={{ color: '#83bb3e' }}
+                            style={{ color: "#83bb3e" }}
                           >
                             {item.name}
                           </Link>
-                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px' }}>
-                          <p>
-                        <del className="carddel">{item.price.toLocaleString()}đ</del>
-                      </p>
-                      <p className="carddel" style={{ fontWeight: "bold" }}>
-                        {discountedPrice.toLocaleString()}đ
-                      </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              gap: "15px",
+                            }}
+                          >
+                            <p>
+                              <del className="carddel">
+                                {item.price.toLocaleString()}đ
+                              </del>
+                            </p>
+                            <p
+                              className="carddel"
+                              style={{ fontWeight: "bold" }}
+                            >
+                              {discountedPrice.toLocaleString()}đ
+                            </p>
                           </div>
                         </center>
                       </div>
@@ -90,10 +119,20 @@ function ProductSlide({ productId }) {
           data-bs-target="#carouselExample"
           data-bs-slide="prev"
           onClick={handlePrevious}
-          style={{ backgroundColor:'#808080',height:'60px',borderRadius:'50%',marginTop:'7%',marginBottom:'10%', width:'60px',marginLeft:'115px' }}
-
+          style={{
+            backgroundColor: "#808080",
+            height: "60px",
+            borderRadius: "50%",
+            marginTop: "7%",
+            marginBottom: "10%",
+            width: "60px",
+            marginLeft: "115px",
+          }}
         >
-          <span className="carousel-control-prev-icon" aria-hidden="true" ></span>
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Previous</span>
         </button>
         <button
@@ -102,9 +141,20 @@ function ProductSlide({ productId }) {
           data-bs-target="#carouselExample"
           data-bs-slide="next"
           onClick={handleNext}
-          style={{ backgroundColor:'#808080',height:'60px',borderRadius:'50%',marginTop:'7%',marginBottom:'10%', width:'60px',marginRight:'115px' }}
+          style={{
+            backgroundColor: "#808080",
+            height: "60px",
+            borderRadius: "50%",
+            marginTop: "7%",
+            marginBottom: "10%",
+            width: "60px",
+            marginRight: "115px",
+          }}
         >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Next</span>
         </button>
       </div>
