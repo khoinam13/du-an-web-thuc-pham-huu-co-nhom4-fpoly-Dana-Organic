@@ -117,7 +117,7 @@ function UpdateAdminProduct() {
           <div className="col-sm-4">
             <textarea
               className="form-control"
-              style={{ fontWeight: '500' }}
+              style={{ fontWeight: '500',height: '300px'}}
               placeholder="Mô tả"
               value={description}
               onChange={handleDescriptionChange}

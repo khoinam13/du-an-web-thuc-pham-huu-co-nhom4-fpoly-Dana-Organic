@@ -32,7 +32,8 @@ function AdminUser() {
     } else {
       setFilteredUsers(
         users.filter(user =>
-          user.username.toLowerCase().includes(searchTerm.toLowerCase())
+          user.name.toLowerCase().includes(searchTerm.toLowerCase())||
+          user.email.toLowerCase().includes(searchTerm.toLowerCase()),
         )
       );
     }
@@ -81,18 +82,20 @@ function AdminUser() {
             <input
               type="search"
               placeholder="Search..."
-              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px' }}
+              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px',height: '38px' }}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
+            
             <i
               className="fa-solid fa-magnifying-glass"
               style={{ position: 'absolute', top: '50%', right: '10px', transform: 'translateY(-50%)' }}
             ></i>
           </div>
           <Link to={'/admin/newuser'}>
-            <button className="btn btn-link">
-              <i className="fa-solid fa-plus"></i>
+          
+            <button className="btn btn-primary" > 
+              <i className="fa-solid fa-plus"></i> Thêm người dùng  
             </button>
           </Link>
         </div>
@@ -100,8 +103,8 @@ function AdminUser() {
           {filteredUsers.length === 0 && <p>Không Tìm thấy dữ liệu!!</p>}
           <table className="table">
             <thead>
-              <tr>
-                <th scope="col">ID</th>
+              <tr style={{ color:'red'}}>
+                <th scope="col" >ID</th>
                 <th scope="col">Tên</th>
                 <th scope="col">Hình Ảnh</th>
                 <th scope="col">Email</th>
@@ -113,9 +116,9 @@ function AdminUser() {
             </thead>
             <tbody>
               {filteredUsers.map(user => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.username}</td>
+                <tr key={user.id} >
+                  <td style={{fontSize:'18px',fontWeight:'500'}}>{user.id}</td>
+                  <td style={{fontSize:'18px',fontWeight:'500'}}>{user.name}</td>
                   <td>
                     <img
                       src={user.image}
@@ -123,10 +126,10 @@ function AdminUser() {
                       style={{ width: '50px', height: '50px', borderRadius: '50%' }}
                     />
                   </td>
-                  <td>{user.email}</td>
-                  <td>{user.password}</td>
-                  <td>{user.Dob}</td>
-                  <td>{user.role}</td>
+                  <td style={{fontSize:'18px',fontWeight:'500'}}>{user.email}</td>
+                  <td style={{fontSize:'18px',fontWeight:'500'}}>{user.password}</td>
+                  <td style={{fontSize:'18px',fontWeight:'500'}}>{user.date}</td>
+                  <td style={{fontSize:'18px',fontWeight:'500'}}>{user.role}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                       <Link to={`/admin/updateuser/${user.id}`}>

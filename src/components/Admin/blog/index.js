@@ -80,7 +80,7 @@ function AdminBlog() {
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearchChange}
-              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px' }}
+              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px',height: '38px' }}
             />
             <i
               className="fa-solid fa-magnifying-glass"
@@ -88,8 +88,8 @@ function AdminBlog() {
             ></i>
           </div>
           <Link to={'/admin/newblog'}>
-            <button className="btn btn-link">
-              <i className="fa-solid fa-plus"></i>
+            <button className="btn btn-primary">  
+              <i className="fa-solid fa-plus"></i> Thêm tin tức
             </button>
           </Link>
         </div>
@@ -108,7 +108,7 @@ function AdminBlog() {
               {filteredBlogs.length > 0 ? (
                 filteredBlogs.map(blog => (
                   <tr key={blog.id}>
-                    <td>{blog.title}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500',width:'300px'}}>{blog.title}</td>
                     <td>
                       <img
                         src={blog.image}
@@ -116,7 +116,7 @@ function AdminBlog() {
                         style={{ width: '100px', height: 'auto' }}
                       />
                     </td>
-                    <td>{blog.content}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500',width:'700px'}}>{blog.content}</td>
                     <td>
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                         <Link to={`/admin/updateblog/${blog.id}`}>

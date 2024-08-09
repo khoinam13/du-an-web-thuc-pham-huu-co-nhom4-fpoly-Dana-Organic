@@ -11,7 +11,7 @@ function DanhGia() {
   const [ratings, setRatings] = useState([0, 0, 0, 0, 0]); 
 
   useEffect(() => {
-    fetch('http://localhost:3001/feedbacks')
+    fetch('http://localhost:3000/feedbacks')
       .then(response => response.json())
       .then(data => {
         setFeedbacks(data);

@@ -80,7 +80,7 @@ function AdminProduct() {
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearchChange}
-              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px' }}
+              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px',height: '38px' }}
             />
             <i
               className="fa-solid fa-magnifying-glass"
@@ -88,8 +88,8 @@ function AdminProduct() {
             ></i>
           </div>
           <Link to={'/admin/newadminproduct'}>
-            <button className="btn btn-link">
-              <i className="fa-solid fa-plus"></i>
+            <button className="btn btn-primary"> 
+              <i className="fa-solid fa-plus"></i>Thêm sản phẩm
             </button>
           </Link>
         </div>
@@ -112,8 +112,8 @@ function AdminProduct() {
               {filteredProducts.length > 0 ? (
                 filteredProducts.map(product => (
                   <tr key={product.id}>
-                    <td>{product.id}</td>
-                    <td>{product.name}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{product.id}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{product.name}</td>
                     <td>
                       <img
                         src={product.image}
@@ -121,10 +121,10 @@ function AdminProduct() {
                         style={{ width: '100px', height: 'auto' }}
                       />
                     </td>
-                    <td>{product.price}</td>
-                    <td>{product.description}</td>
-                    <td>{product.quantity}</td>
-                    <td>{product.categoryId}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{product.price}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{product.description}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{product.quantity}</td>
+                    <td style={{fontSize:'18px',fontWeight:'500'}}>{product.categoryId}</td>
                     <td>
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                         <Link to={`/admin/updateadminproduct/${product.id}`}>

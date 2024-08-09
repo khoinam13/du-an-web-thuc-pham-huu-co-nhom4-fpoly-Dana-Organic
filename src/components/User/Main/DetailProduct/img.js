@@ -12,7 +12,7 @@ function Image() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/products/${id}`);
+        const res = await fetch(`http://localhost:3000/products/${id}`);
         if (res.ok) {
           const data = await res.json();
           setProduct(data);
@@ -56,7 +56,7 @@ function Image() {
       console.log('Adding to cart:', cartItem); 
 
       try {
-        const res = await fetch('http://localhost:3001/carts', {
+        const res = await fetch('http://localhost:3000/carts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
