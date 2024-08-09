@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { GoCheckCircleFill } from "react-icons/go";
 import { GoX } from "react-icons/go";
+import { useState } from "react";
 import { validationSchemaLogin, validattionSchemaRegister } from "../../untils";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { hiddenElement } from "../../handle";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 import "./Module.css";
-
+  
 function Module({
   isLogin,
   setIsLogin,
@@ -16,6 +19,29 @@ function Module({
   onLogin,
   onCreateAccount,
 }) {
+  const [flagEye, setFlagEye] = useState(true)
+  const [flagEye2nd, setFlagEye2nd] = useState(true)
+  const hiddenshowPasssword = ()=>{
+    setFlagEye(!flagEye)
+    const TypeInput = document.getElementById('register__password') 
+    if(flagEye === true){
+        TypeInput.type = "text"
+    }
+    else{
+      TypeInput.type = "password"
+    }
+
+  }
+  const hiddenshowPasssword2nd = ()=>{
+    setFlagEye2nd(!flagEye2nd)
+    const TypeInput2nd  = document.getElementById('register__password-retype')
+    if(flagEye2nd === true){
+      TypeInput2nd.type = "text"
+  }
+  else{
+    TypeInput2nd.type = "password"
+  }
+  }
   return (
     <>
       {isLogin && (
@@ -224,7 +250,7 @@ function Module({
                           <legend className="home-module__lable">
                             Giới tính *
                           </legend>
-                          <label>
+                          <label  >
                             <Field
                               type="radio"
                               name="registerSex"
@@ -232,7 +258,7 @@ function Module({
                             />
                             <span className="title-radio">Nam</span>
                           </label>
-                          <label>
+                          <label >
                             <Field type="radio" name="registerSex" value="Nữ" />
                             <span className="title-radio">Nữ</span>
                           </label>
@@ -264,10 +290,19 @@ function Module({
                           type="password"
                           name="registerPassword"
                         />
+                       {flagEye ? (
+                           <FaEye onClick={hiddenshowPasssword} className="registerEye" />
+                       )
+                       : 
+                       (
+                          <FaEyeSlash onClick={hiddenshowPasssword} className="registerEye" />
+                       )
+                      }
                         <ErrorMessage
                           className="error"
                           name="registerPassword"
                           component="div"
+
                         />
                       </div>
                       <div className="register__item">
@@ -283,6 +318,14 @@ function Module({
                           type="password"
                           name="registerPasswordRetype"
                         />
+                        {flagEye2nd ? (
+                           <FaEye onClick={hiddenshowPasssword2nd } className="registerEye" />
+                       )
+                       : 
+                       (
+                          <FaEyeSlash onClick={hiddenshowPasssword2nd} className="registerEye" />
+                       )
+                        }
                         <ErrorMessage
                           className="error"
                           name="registerPasswordRetype"

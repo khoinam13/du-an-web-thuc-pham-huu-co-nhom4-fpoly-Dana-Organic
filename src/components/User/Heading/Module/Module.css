@@ -35,22 +35,29 @@
   }
   .register__container{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
-  .register__item:nth-child(1){
+  /* .register__item:nth-child(3){
+    grid-column: span 2; 
+  } */
+  /* .register__item:nth-child(1){
     grid-column: span 3; 
   }
   .register__item:nth-child(2){
     grid-column: span 3; 
   }
-  .register__item:nth-child(3){
+ 
+  /* .register__item:nth-child(7){
     grid-column: span 3; 
-  }
-  .register__item:nth-child(7){
-    grid-column: span 3; 
-  }
-  .register__item:nth-child(8){
-    grid-column: span 3; 
+  } */
+   .register__item{
+    position:relative;
+   }
+  .registerEye{
+    position: absolute;
+    top: 35px;
+    right: 20px;
+
   }
   .home-module__heading{
     font-size: 26px;

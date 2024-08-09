@@ -51,6 +51,10 @@ body{
   }
   .home-module__lable{
     font-size: 12px;
+    margin-right: 0;
+  }
+  .title-radio{
+    font-size: 10px;
   }
 }
 @media (min-width: 601px) and (max-width: 1200px) {
