@@ -138,7 +138,7 @@ function Heading({ setSearchQuery }) {
       <div style={{ position: "sticky", top: "0px", zIndex: "1000" }}>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container">
-            <Link className="navbar-brand" to="/" style={{ width: "200px" }}>
+            <Link className="navbar-brand" to="/" >
               <img
                 src="https://thucpham4.giaodienwebmau.com/wp-content/uploads/2021/10/lg.png"
                 alt="Logo"
@@ -237,7 +237,7 @@ function Heading({ setSearchQuery }) {
                   display: "flex",
                   alignItems: "center",
                   gap: "15px",
-                  marginRight: "10%",
+                  marginRight: "9.9%",
                 }}
               >
                 <div class="search-container " style={{ marginRight: "50%" }}>
@@ -281,6 +281,7 @@ function Heading({ setSearchQuery }) {
                   </>
                 ) : (
                   <>
+                    <div className="buttonlogin">
                     <button
                       onClick={() => handleToggle(isLogin, setIsLogin)}
                       className="textbutton nav__login"
@@ -294,6 +295,7 @@ function Heading({ setSearchQuery }) {
                     >
                       Đăng kí
                     </button>
+                    </div>
                   </>
                 )}
               </div>

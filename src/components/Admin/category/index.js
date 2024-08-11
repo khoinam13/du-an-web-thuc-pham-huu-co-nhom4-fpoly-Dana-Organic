@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+
 function AdminCategory() {
   const [categories, setCategories] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
   const [filteredCategories, setFilteredCategories] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const categoriesPerPage = 8;
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -31,6 +34,7 @@ function AdminCategory() {
         category.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
     );
+    setCurrentPage(1); 
   }, [searchQuery, categories]);
 
   const handleSearchChange = (event) => {
@@ -61,7 +65,7 @@ function AdminCategory() {
         });
         Toast.fire({
           icon: "success",
-          title: "  Xóa thành công!"
+          title: "Xóa thành công!"
         });
         console.log(`Category with id ${id} deleted successfully`);
       } catch (error) {
@@ -69,6 +73,16 @@ function AdminCategory() {
       }
     }
   };
+
+  const indexOfLastCategory = currentPage * categoriesPerPage;
+  const indexOfFirstCategory = indexOfLastCategory - categoriesPerPage;
+  const currentCategories = filteredCategories.slice(indexOfFirstCategory, indexOfLastCategory);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const totalPages = Math.ceil(filteredCategories.length / categoriesPerPage);
 
   return (
     <>
@@ -80,16 +94,13 @@ function AdminCategory() {
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearchChange}
-              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px',height: '38px' }}
+              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px', height: '38px' }}
             />
-            <i
-              className="fa-solid fa-magnifying-glass"
-              style={{ position: 'absolute', top: '50%', right: '10px', transform: 'translateY(-50%)' }}
-            ></i>
+            <i className="fa-solid fa-magnifying-glass" style={{ position: 'absolute', top: '50%', right: '10px', transform: 'translateY(-50%)' }}></i>
           </div>
           <Link to={'/admin/newadmincategory'}>
             <button className="btn btn-primary"> 
-              <i className="fa-solid fa-plus"></i>Thêm danh mục
+              <i className="fa-solid fa-plus"></i> Thêm danh mục
             </button>
           </Link>
         </div>
@@ -104,11 +115,11 @@ function AdminCategory() {
               </tr>
             </thead>
             <tbody>
-              {filteredCategories.length > 0 ? (
-                filteredCategories.map(category => (
+              {currentCategories.length > 0 ? (
+                currentCategories.map(category => (
                   <tr key={category.id}>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{category.id}</td>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{category.name}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{category.id}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{category.name}</td>
                     <td>
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                         <Link to={`/admin/updateadmincategory/${category.id}`}>
@@ -131,6 +142,25 @@ function AdminCategory() {
               )}
             </tbody>
           </table>
+
+          {/* phân trang */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <nav>
+              <ul className="pagination">
+                <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>Trước</button>
+                </li>
+                {[...Array(totalPages).keys()].map(page => (
+                  <li key={page + 1} className={`page-item ${currentPage === page + 1 ? 'active' : ''}`}>
+                    <button className="page-link" onClick={() => handlePageChange(page + 1)}>{page + 1}</button>
+                  </li>
+                ))}
+                <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>Sau</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </>

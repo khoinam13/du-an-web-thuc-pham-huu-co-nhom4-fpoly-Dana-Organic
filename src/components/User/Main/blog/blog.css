@@ -33,3 +33,37 @@ h2{
  /* margin-top: 10px; */
  padding: 20px;
 }
+.blog-container {
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  
+  .col-3 {
+    flex: 1 1 30%;
+    margin-bottom: 20px;
+
+  }
+  
+  .col-7 {
+    flex: 1 1 65%;
+  }
+  
+  @media (max-width: 768px) {
+   
+  
+    .col-3, .col-7 {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  
+    .col-7 {
+      order: 1; /* Move this section below col-3 on small screens */
+    }
+  
+  
+  }
+  

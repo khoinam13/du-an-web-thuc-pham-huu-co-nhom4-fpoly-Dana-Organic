@@ -67,15 +67,47 @@ min-width: 94px;
     font-size: 30px;
 }
 
-@media screen and (min-width: 990px) and (max-width: 1200px) {
+@media screen and (min-width: 990px) and (max-width: 1400px) {
     .textbutton {
       height: 45px; 
-      width: 120px;
+      width: 50px;
+      font-size: 15px;
     }
     .textlogin{
         font-size: 15px;
     }
+    .container{
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    ul li{
+      color: red;
+      width: 105px;
+      
+    }
+    .text{
+      font-size: 18px;
+      margin: 0 auto;
+    }
+    .d-flex{
+      width: 50%;
+    }
+   .buttonlogin{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 145px;
+   }
+   .navbar-brand{
+    width: 120px;
+   }
+   .d-inline-block{
+    width: 120px;
+   }
+ 
  }
+
  .dropdown-item{
     font-size: 20px;
     font-weight: 500;

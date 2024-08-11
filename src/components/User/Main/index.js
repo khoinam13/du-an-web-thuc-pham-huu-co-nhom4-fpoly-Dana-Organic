@@ -36,6 +36,7 @@ import DetailBlog from './blog/detailblog';
 import Account from '../Heading/login/taikhoan';
 import Order from '../Heading/login/order';
 import HomeMain from '../../Admin/home/homemain';
+import LoginAdmin from '../../Admin/login';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -105,6 +106,12 @@ const router = createBrowserRouter([
     ],
   },
   {
+    
+      path: "loginadmin",
+      element: <LoginAdmin />,
+    
+  },
+  {
     path: "/admin",
     element: <Admin />,
     children: [
@@ -112,6 +119,7 @@ const router = createBrowserRouter([
         path: "adminproduct",
         element: <AdminProduct />,
       },
+     
       {
         path: "/admin",
         element: <HomeMain />,

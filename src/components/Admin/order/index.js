@@ -6,6 +6,8 @@ function OrderProduct() {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 8;
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -39,6 +41,7 @@ function OrderProduct() {
         )
       );
     }
+    setCurrentPage(1); 
   }, [searchTerm, orders]);
 
   const handleDelete = async (id) => {
@@ -51,7 +54,7 @@ function OrderProduct() {
           throw new Error(`Network response was not ok: ${response.statusText}`);
         }
         setOrders(orders.filter(order => order.id !== id));
-        setFilteredOrders(filteredOrders.filter(order => order.id !== id)); 
+        setFilteredOrders(filteredOrders.filter(order => order.id !== id));
         const Toast = Swal.mixin({
           toast: true,
           position: "top-end",
@@ -72,6 +75,16 @@ function OrderProduct() {
       }
     }
   };
+
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
 
   return (
     <>
@@ -102,22 +115,22 @@ function OrderProduct() {
               </tr>
             </thead>
             <tbody>
-              {filteredOrders.length > 0 ? (
-                filteredOrders.map(order => (
+              {currentOrders.length > 0 ? (
+                currentOrders.map(order => (
                   <tr key={order.id}>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{order.id}</td>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{order.userId}</td>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{order.address}</td>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{order.pay}</td>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{order.phone}</td>
-                    <td style={{fontSize:'18px',fontWeight:'500'}}>{order.status}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{order.id}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{order.userId}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{order.address}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{order.pay}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{order.phone}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500' }}>{order.status}</td>
                     <td>
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                         <Link to={`/admin/updateorderproduct/${order.id}`}>
                           <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                         </Link>
-                        <button 
-                          onClick={() => handleDelete(order.id)} 
+                        <button
+                          onClick={() => handleDelete(order.id)}
                           style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                         >
                           <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
@@ -133,6 +146,25 @@ function OrderProduct() {
               )}
             </tbody>
           </table>
+
+          {/* Phân trang */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <nav>
+              <ul className="pagination">
+                <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>Trước</button>
+                </li>
+                {[...Array(totalPages).keys()].map(page => (
+                  <li key={page + 1} className={`page-item ${currentPage === page + 1 ? 'active' : ''}`}>
+                    <button className="page-link" onClick={() => handlePageChange(page + 1)}>{page + 1}</button>
+                  </li>
+                ))}
+                <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>Sau</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </>

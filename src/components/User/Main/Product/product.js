@@ -6,7 +6,8 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('default');
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 9;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,8 +35,6 @@ function Products() {
     );
   }
 
-
-
   switch (sortOption) {
     case 'priceAsc':
       filteredProducts.sort((a, b) => a.price - b.price);
@@ -49,6 +48,15 @@ function Products() {
   }
 
 
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
     <>
@@ -78,8 +86,8 @@ function Products() {
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map(product => {
+          {currentProducts.length > 0 ? (
+            currentProducts.map(product => {
               const discountedPrice = product.price * 0.7; 
               return (
                 <Link 
@@ -88,14 +96,13 @@ function Products() {
                   style={{ color: "#83bb3e" }}
                   key={product.id}
                 >
-                  <div  style={{ width: '18rem' }}>
-                   {/* bỏ className="card" */}
+                  <div className='aaa' style={{ width: '18rem' }}>
                     <center>
                       <img src={product.image} height={'247px'} width={'247px'} alt={product.name} />
                     </center>
                     <div className="card-body">
                       <center>
-                        <p><strong>{product.name}</strong></p>
+                        <p className="card-title">{product.name}</p>
                         <div
                           style={{
                             display: "flex",
@@ -107,7 +114,7 @@ function Products() {
                           <p>
                             <del className="carddel">{product.price.toLocaleString()}đ</del>
                           </p>
-                          <p className="carddel" style={{ fontWeight: "bold",marginTop:'5px' }}>
+                          <p className="carddel" style={{ fontWeight: "bold", marginTop: '5px' }}>
                             {discountedPrice.toLocaleString()}đ
                           </p>
                         </div>
@@ -120,6 +127,25 @@ function Products() {
           ) : (
             <p>Không có sản phẩm nào.</p>
           )}
+        </div>
+
+        {/* phân trang */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <nav>
+            <ul className="pagination">
+              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>Trước</button>
+              </li>
+              {[...Array(totalPages).keys()].map(page => (
+                <li key={page + 1} className={`page-item ${currentPage === page + 1 ? 'active' : ''}`}>
+                  <button className="page-link" onClick={() => handlePageChange(page + 1)}>{page + 1}</button>
+                </li>
+              ))}
+              <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>Sau</button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </>

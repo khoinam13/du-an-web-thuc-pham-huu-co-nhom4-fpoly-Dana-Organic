@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+
 function AdminBlog() {
   const [blogs, setBlogs] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 3;
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -31,6 +34,7 @@ function AdminBlog() {
         blog.title.toLowerCase().includes(searchQuery.toLowerCase())
       )
     );
+    setCurrentPage(1); 
   }, [searchQuery, blogs]);
 
   const handleSearchChange = (event) => {
@@ -50,18 +54,18 @@ function AdminBlog() {
         setFilteredBlogs(filteredBlogs.filter(blog => blog.id !== id));
         const Toast = Swal.mixin({
           toast: true,
-          position: "top-end",
+          position: 'top-end',
           showConfirmButton: false,
           timer: 2000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;
             toast.onmouseleave = Swal.resumeTimer;
-          }
+          },
         });
         Toast.fire({
-          icon: "success",
-          title: "  Xóa thành công!"
+          icon: 'success',
+          title: 'Xóa thành công!',
         });
         console.log(`Blog with id ${id} deleted successfully`);
       } catch (error) {
@@ -69,6 +73,16 @@ function AdminBlog() {
       }
     }
   };
+
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
 
   return (
     <>
@@ -80,7 +94,7 @@ function AdminBlog() {
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearchChange}
-              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px',height: '38px' }}
+              style={{ borderRadius: '6px', border: '1px solid #777777', paddingRight: '30px', height: '38px' }}
             />
             <i
               className="fa-solid fa-magnifying-glass"
@@ -88,7 +102,7 @@ function AdminBlog() {
             ></i>
           </div>
           <Link to={'/admin/newblog'}>
-            <button className="btn btn-primary">  
+            <button className="btn btn-primary">
               <i className="fa-solid fa-plus"></i> Thêm tin tức
             </button>
           </Link>
@@ -105,10 +119,10 @@ function AdminBlog() {
               </tr>
             </thead>
             <tbody>
-              {filteredBlogs.length > 0 ? (
-                filteredBlogs.map(blog => (
+              {currentBlogs.length > 0 ? (
+                currentBlogs.map(blog => (
                   <tr key={blog.id}>
-                    <td style={{fontSize:'18px',fontWeight:'500',width:'300px'}}>{blog.title}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500', width: '300px' }}>{blog.title}</td>
                     <td>
                       <img
                         src={blog.image}
@@ -116,14 +130,14 @@ function AdminBlog() {
                         style={{ width: '100px', height: 'auto' }}
                       />
                     </td>
-                    <td style={{fontSize:'18px',fontWeight:'500',width:'700px'}}>{blog.content}</td>
+                    <td style={{ fontSize: '18px', fontWeight: '500', width: '700px' }}>{blog.content}</td>
                     <td>
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                         <Link to={`/admin/updateblog/${blog.id}`}>
                           <i className="fa-solid fa-edit" style={{ fontSize: '20px' }}></i>
                         </Link>
-                        <button 
-                          onClick={() => handleDelete(blog.id)} 
+                        <button
+                          onClick={() => handleDelete(blog.id)}
                           style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                         >
                           <i className="fa-solid fa-trash" style={{ fontSize: '20px', color: 'red' }}></i>
@@ -139,6 +153,25 @@ function AdminBlog() {
               )}
             </tbody>
           </table>
+
+          {/* phân trang */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <nav>
+              <ul className="pagination">
+                <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>Trước</button>
+                </li>
+                {[...Array(totalPages).keys()].map(page => (
+                  <li key={page + 1} className={`page-item ${currentPage === page + 1 ? 'active' : ''}`}>
+                    <button className="page-link" onClick={() => handlePageChange(page + 1)}>{page + 1}</button>
+                  </li>
+                ))}
+                <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>Sau</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </>
