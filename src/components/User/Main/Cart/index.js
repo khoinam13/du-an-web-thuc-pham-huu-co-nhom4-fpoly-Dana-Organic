@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import './Cart.css';
 import ProductCart from './productcart';
 import Total from './totalproduct';
-import { Outlet, useLocation } from 'react-router-dom';
-import Swal from 'sweetalert2'; 
-import { Link } from 'react-router-dom';
+
 export default function Cart() {
   const [showComponents, setShowComponents] = useState(true);
   const location = useLocation();
@@ -15,12 +15,12 @@ export default function Cart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/carts');
+        const res = await fetch('http://localhost:3001/carts');
         const data = await res.json();
         setCart(data);
 
         const initialCount = data.reduce((acc, item) => {
-          acc[item.id] = item.quantity || 1; 
+          acc[item.id] = item.quantity || 1;
           return acc;
         }, {});
         setCount(initialCount);
@@ -34,7 +34,7 @@ export default function Cart() {
 
   const updateProductQuantity = async (id, newQuantity) => {
     try {
-      const res = await fetch(`http://localhost:3000/carts/${id}`, {
+      const res = await fetch(`http://localhost:3001/carts/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ quantity: newQuantity })
@@ -75,7 +75,7 @@ export default function Cart() {
 
   const handleRemove = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/carts/${id}`, {
+      const res = await fetch(`http://localhost:3001/carts/${id}`, {
         method: 'DELETE',
       });
 
@@ -99,7 +99,7 @@ export default function Cart() {
         });
         Toast.fire({
           icon: "success",
-          title: "Xóa thành công!"
+          title: "  Xóa thành công!"
         });
       } else {
         console.error('Failed to delete the product from the database');
@@ -137,28 +137,21 @@ export default function Cart() {
       }}
     >
       {showComponents && (
-        cart.length === 0 ? (
-          <div style={{ textAlign:'center',marginBottom:"150px" }}>
-          <img src="http://www.tienngocnosa.com/assets/images/empty_cart.png" alt="Empty Cart" style={{ width: '100%', maxWidth: '500px' }} /> ,
-          <h5>Giỏ hàng của bạn đang trống</h5> <Link to="/product/products" style={{ textDecoration:'none',fontSize:'20px'}}> Quay lại</Link>
+        <>
+          <div style={{ width: '750px', placeSelf: 'normal', marginBottom: '150px' }}>
+            <ProductCart
+              cart={cart}
+              count={count}
+              handleIncrease={handleIncrease}
+              handleDecrease={handleDecrease}
+              handleChange={handleChange}
+              handleRemove={handleRemove}
+            />
           </div>
-        ) : (
-          <>
-            <div style={{ width: '750px', placeSelf: 'normal', marginBottom: '250px' }}>
-              <ProductCart 
-                cart={cart}
-                count={count}
-                handleIncrease={handleIncrease}
-                handleDecrease={handleDecrease}
-                handleChange={handleChange}
-                handleRemove={handleRemove}
-              />
-            </div>
-            <div style={{ width: '750px', marginBottom: 'auto' }}>
-              <Total totalAmount={totalAmount} />
-            </div>
-          </>
-        )
+          <div style={{ width: '750px', marginBottom: 'auto' }}>
+            <Total totalAmount={totalAmount} />
+          </div>
+        </>
       )}
       <Outlet />
     </div>
