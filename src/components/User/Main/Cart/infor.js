@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
-import Swal from "sweetalert2";
 function Infor() {
   const navigate = useNavigate();
 
@@ -36,26 +35,6 @@ function Infor() {
     let idUser = localStorage.getItem('idUser');
 
     const formData = new FormData(e.target);
-
-    if (formData.get("name") == "" || formData.get("phone") == "" || formData.get("email") == "" || formData.get("address") == "") {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        }
-      });
-      Toast.fire({
-        icon: "error",
-        title: "  Vui lòng điền các trường"
-      });
-      return;
-    }
-
     const data = {
       orderItems: cart.map((product) => ({
         productId: product.productId,
@@ -72,24 +51,10 @@ function Infor() {
     console.log(data);
     // check bank or cod
     const option = formData.get("option");
-    let res = await axios.post("http://localhost:3030/admin/orders", data);
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      }
-    });
-    Toast.fire({
-      icon: "success",
-      title: " Mua hàng thành công"
-    });
+    let res = await axios.post("http://localhost:3030/v1/orders", data);
+
     if (option === "bank") {
-      let response = await axios.post("http://localhost:3030/admin/orders/momo", {
+      let response = await axios.post("http://localhost:3030/v1/orders/momo", {
         orderId: res.data.data._id,
         amount: totalAmount,
         paymentMethod: "bank",
