@@ -3,20 +3,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'; 
 
 function Image() {
-  const { id } = useParams(); 
+  const { _id } = useParams(); 
   const navigate = useNavigate(); 
   const [product, setProduct] = useState(null); 
   const [count, setCount] = useState(1); 
   const [selectedImage, setSelectedImage] = useState(""); 
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/products/${id}`);
+        const res = await fetch(`http://localhost:3030/v1/products/${_id}`);
         if (res.ok) {
           const data = await res.json();
+          console.log(data);
           setProduct(data);
-          setSelectedImage(data.image);
+          setSelectedImage(data.data.image);
         } else {
           console.error('Sản phẩm không tìm thấy!');
         }
@@ -26,7 +27,7 @@ function Image() {
     };
 
     fetchData();
-  }, [id]);
+  }, [_id]);
 
   const handleIncrease = () => {
     setCount(prevCount => prevCount + 1); 
@@ -44,26 +45,26 @@ function Image() {
   };
 
   const handleAddToCart = async () => {
-    if (product && product.quantity > 0) {
+    if (product && product.data.quantity > 0) {
       const cartItem = {
-        productId: product.id,
+        productId: product.data._id,
         quantity: count, 
         image: selectedImage,
-        price: product.price,
-        name: product.name,
+        price: product.data.price,
+        name: product.data.productName,
       };
-  
+
       console.log('Adding to cart:', cartItem); 
 
       try {
-        const res = await fetch('http://localhost:3000/carts', {
+        const res = await fetch('http://localhost:3030/v1/orderproducts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(cartItem),
         });
-  
+
         if (res.ok) {
           console.log('Thêm vào giỏ hàng thành công!');
           const Toast = Swal.mixin({
@@ -79,7 +80,7 @@ function Image() {
           });
           Toast.fire({
             icon: "success",
-            title: "  Đã Thêm vào giỏ hàng thành công!"
+            title: "Đã Thêm vào giỏ hàng thành công!"
           });
           navigate('/cart'); 
         } else {
@@ -97,7 +98,8 @@ function Image() {
     return <div>Loading...</div>; 
   }
 
-  const discountedPrice = product.price * 0.7;
+  const discountedPrice = product.data.price ? product.data.price * 0.7 : 0; 
+
   return (
     <>
       <div className="row d-flex justify-content-center align-items-center" style={{ width: "100%" }}>
@@ -108,7 +110,7 @@ function Image() {
             </button>
           </div>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "20px", padding: "20px" }}>
-            {product.sameimage.map((img, index) => (
+            {Array.isArray(product.data.sameimage) && product.data.sameimage.map((img, index) => (
               <img 
                 key={index} 
                 src={img}  
@@ -122,31 +124,33 @@ function Image() {
           </div>
         </div>
         <div style={{ width: "720px", marginBottom: "auto" }}>
-          <h2 style={{ fontWeight: "600" }}>{product.name}</h2>
+          <h2 style={{ fontWeight: "600" }}>{product.data.productName}</h2>
           <div style={{ display: "flex", gap: "20px" }}>
-            <p>
-              <del className="carddel" style={{ fontSize: "25px" }}>
-                {product.price.toLocaleString()}đ
-              </del>
-            </p>
+            {product.data.price !== undefined && (
+              <p>
+                <del className="carddel" style={{ fontSize: "25px" }}>
+                  {product.data.price.toLocaleString()}đ
+                </del>
+              </p>
+            )}
             <p className="carddel" style={{ fontWeight: "bold", fontSize: "25px" }}>
               {discountedPrice.toLocaleString()}đ
             </p>
           </div>
           <div>
             <p style={{ color: "#777", lineHeight: "25.6px", fontSize: "20px" }}>
-              {product.description}
+              {product.data.description}
             </p>
           </div>
           <div>
             <p style={{ color: "#777", lineHeight: "25.6px", fontSize: "20px" }}>
-              <b>Số lượng:</b> {product.quantity}
+              <b>Số lượng:</b> {product.data.quantity}
             </p>
           </div>
           <div>
             <p style={{ color: "#7a9c59", fontSize: "19px", fontWeight: "600" }}>
               Tình trạng:
-              {product.quantity > 0 ? (
+              {product.data.quantity > 0 ? (
                 <span style={{ backgroundColor: "#00923f", color: "#fff", marginLeft: "5px", padding: "5px" }}>
                   <i className="fa-solid fa-check"></i> Còn hàng
                 </span>
@@ -171,13 +175,13 @@ function Image() {
                 min="1" 
                 value={count} 
                 onChange={handleChange} 
-                disabled={product.quantity === 0}
+                disabled={product.data.quantity === 0}
               />
               <button style={{borderRadius: "5px",}}
                 type="button" 
                 onClick={handleIncrease} 
                 className="counter-button" 
-                disabled={product.quantity === 0}
+                disabled={product.data.quantity === 0}
               >
                 +
               </button>
@@ -186,7 +190,7 @@ function Image() {
                 className="btn btn"
                 style={{ backgroundColor: "#83bb3e", width: "250px", fontSize: "20px", fontWeight: "500", color: "#fff", marginLeft: "30px" }} 
                 onClick={handleAddToCart}
-                disabled={product.quantity === 0}
+                disabled={product.data.quantity === 0}
               >
                 Thêm Vào Giỏ Hàng
               </button>
@@ -215,7 +219,7 @@ function Image() {
         <div>
           <div style={{ border: '1px solid #ebebeb', padding: '20px' }}>
             <p style={{ color:'#777', lineHeight:'25.6px', fontSize:'20px' }}>
-              {product.description}
+              {product.data.description}
             </p>
           </div>
         </div>

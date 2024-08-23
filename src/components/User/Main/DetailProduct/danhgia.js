@@ -11,7 +11,7 @@ function DanhGia() {
   const [ratings, setRatings] = useState([0, 0, 0, 0, 0]); 
 
   useEffect(() => {
-    fetch('http://localhost:3000/feedbacks')
+    fetch('http://localhost:3030/v1/feedbacks')
       .then(response => response.json())
       .then(data => {
         setFeedbacks(data);
@@ -60,7 +60,7 @@ function DanhGia() {
     };
 
     try {
-      const res = await fetch('http://localhost:3001/feedbacks', {
+      const res = await fetch('http://localhost:3030/v1/feedbacks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -11,14 +11,20 @@ function Category() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/category");
-        const data = await res.json();
-        setCategories(data);
+        const res = await fetch('http://localhost:3030/v1/categories');
+        const result = await res.json();
+        console.log(result);
+        
+        if (Array.isArray(result.data)) {
+          setCategories(result.data);
+        } else {
+          console.error('Unexpected data format:', result);
+        }
       } catch (error) {
-        console.error("Lỗi dữ liệu!!", error);
+        console.error('Lỗi dữ liệu!!', error);
       }
     };
-
+  
     fetchData();
   }, []);
 
@@ -34,21 +40,21 @@ function Category() {
       <div className="list-group">
         {categories.map((category, index) => (
           <Link
-            to={`/product/products/${category.id}`}
-            key={category.id}
+            to={`/product/products/${category._id}`}
+            key={category._id}
             className={`list-group-item list-group-item-action ${
               activeIndex === index ? "active" : ""
             }`}
             onClick={() => handleClick(index)}
           >
-            {category.name}
+            {category.categoryName}
           </Link>
         ))}
       </div>
 
-      <div style={{ marginTop: "20px" }}>
+      {/* <div style={{ marginTop: "20px" }}>
         <Range />
-      </div>
+      </div> */}
       <div style={{ marginTop: "20px" }}>
         <Likeproduct />
       </div>

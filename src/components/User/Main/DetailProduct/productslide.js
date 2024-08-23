@@ -7,20 +7,24 @@ function ProductSlide({ productId }) {
   const productsPerPage = 5;
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:3000/products?similarTo=${productId}`
-        );
-        const data = await res.json();
-        setProducts(data);
+        const res = await fetch('http://localhost:3030/v1/products');
+        const result = await res.json();
+        console.log(result);
+        
+        if (Array.isArray(result.data)) {
+          setProducts(result.data);
+        } else {
+          console.error('Unexpected data format:', result);
+        }
       } catch (error) {
-        console.error("Lỗi dữ liệu!!", error);
+        console.error('Lỗi dữ liệu!!', error);
       }
     };
-
-    fetchProducts();
-  }, [productId]);
+  
+    fetchData();
+  }, []);
 
   const productGroups = [];
   for (let i = 0; i < products.length; i += productsPerPage) {
@@ -78,7 +82,7 @@ function ProductSlide({ productId }) {
                       <div className="card-body">
                         <center>
                           <Link
-                            to={`/product/${item.id}`}
+                            to={`/detail-product/${item._id}`}
                             className="card-title cardtitle"
                             style={{ color: "#83bb3e" }}
                           >

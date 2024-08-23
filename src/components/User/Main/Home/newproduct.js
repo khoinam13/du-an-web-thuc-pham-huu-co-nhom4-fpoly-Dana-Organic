@@ -1,8 +1,6 @@
-import { Link,  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Home.css";
-// import products from "../../../../../db.json"
-import { useState,useEffect } from 'react';
-
+import { useState, useEffect } from 'react';
 
 function NewProduct() {
   const [products, setProducts] = useState([]);
@@ -10,16 +8,24 @@ function NewProduct() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/products');
-        const data = await res.json();
-        setProducts(data);
+        const res = await fetch('http://localhost:3030/v1/products');
+        const result = await res.json();
+        console.log(result);
+        
+        if (Array.isArray(result.data)) {
+          setProducts(result.data.slice(0,10));
+        } else {
+          console.error('Unexpected data format:', result);
+        }
       } catch (error) {
         console.error('Lỗi dữ liệu!!', error);
       }
     };
-
+  
     fetchData();
-  }, []); 
+  }, []);
+  
+  
 
   return (
     <>
@@ -42,7 +48,7 @@ function NewProduct() {
             color: "#777",
           }}
         >
-          <h6 style={{ fontSize: "20px" }}> Sản phẩm vừa về cửa hàng</h6>
+          <h6 style={{ fontSize: "20px" }}> Sản phẩm của cửa hàng</h6>
         </div>
         <div
           style={{
@@ -54,7 +60,7 @@ function NewProduct() {
             fontSize: "48px",
           }}
         >
-          <h3 style={{ fontSize: "48px" }}> Sản phẩm mới</h3>
+          <h3 style={{ fontSize: "48px" }}> Sản phẩm </h3>
         </div>
 
         <div
@@ -67,30 +73,29 @@ function NewProduct() {
             width: "89%",
           }}
         >
-          {products.map((item) => {
+          {Array.isArray(products) && products.map((item) => {
+            console.log("Product Item:", item._id);
             const discountedPrice = item.price * 0.7;
 
             return (
-              <div  style={{ width: "18rem" }} key={item.id}>
-              {/* bỏ className="card" */}
+              <div style={{ width: "18rem" }} key={item.id}>
                 <center>
                   <img
                     src={item.image}
                     alt={item.name}
                     height={"247px"}
                     width={"247px"} 
-                   
                   />
                 </center>
                 <div className="card-body">
                   <center>
-                    <Link
-                      to={`/detail-product/${item.id}`}
-                      className="card-title cardtitle"
-                      style={{ color: "#83bb3e" }}
-                    >
-                      {item.name}
-                    </Link>
+                  <Link
+                  to={`/detail-product/${item._id}`} 
+                  className="card-title cardtitle"
+                  style={{ color: "#83bb3e" }}
+                >
+                  {item.productName}
+                </Link>
                     <div
                       style={{
                         display: "flex",
