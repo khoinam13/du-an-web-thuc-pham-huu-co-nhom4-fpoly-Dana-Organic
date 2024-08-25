@@ -13,7 +13,6 @@
       "id": "1",
       "email": "admin@gmail.com",
       "password": "12345"
-    
     },
     {
       "name": "dang nam dep  trai",
@@ -41,6 +40,28 @@
       "email": "dangnam1303k3@gmail.com",
       "password": "Boy13032003!",
       "phone": "03698324861",
+      "address": "177 Phạm Như Xương",
+      "sex": "Nam",
+      "date": "2003-03-13",
+      "image": ""
+    },
+    {
+      "id": "ed90",
+      "name": "abce",
+      "email": "dangnam13033k3@gmail.com",
+      "password": "Boy13032003!",
+      "phone": "0369832486",
+      "address": "177 Phạm Như Xương",
+      "sex": "Nam",
+      "date": "2003-03-13",
+      "image": ""
+    },
+    {
+      "id": "20b9",
+      "name": "dangnam",
+      "email": "dangnam1303k33@gmail.com",
+      "password": "Boy13030203!",
+      "phone": "0369832486",
       "address": "177 Phạm Như Xương",
       "sex": "Nam",
       "date": "2003-03-13",
@@ -145,7 +166,6 @@
       "categoryId": 1
     },
     {
-
       "id": "8",
       "name": "Húng quế",
       "image": "https://tinhdauhanoi.com/wp-content/uploads/2020/02/avatar-s%E1%BA%A3n-ph%E1%BA%A9m-h%C3%BAng-qu%E1%BA%BF.jpg",

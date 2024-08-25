@@ -18,12 +18,13 @@ function Heading({ setSearchQuery }) {
 
   const handleClick = (path) => {
     setActiveLink(path);
-  };
-
+  }
   // đăng kí tài khoản
   const createAccount = async (values, actions) => {
-    await axios
+    try {
+      await axios
       .get(`http://localhost:3001/account?email=${values.registerEmail}`)
+      // .get(`http://localhost:3030/v1/customers?email=${values.registerEmail}`)
       .then((response) => {
         if (response.data.length !== 0) {
           actions.setFieldError("registerEmail", "Email này đã tồn tại");
@@ -39,6 +40,7 @@ function Heading({ setSearchQuery }) {
             image: "",
           };
           axios.post("http://localhost:3001/account", account);
+          // axios.post("http://localhost:3030/v1/customers", account);
           values.registerName = "";
           values.registerPassword = "";
           values.registerPasswordRetype = "";
@@ -50,37 +52,16 @@ function Heading({ setSearchQuery }) {
           document.querySelector(".successful").style.display = "flex";
         }
       });
-    try {
-      const response = await fetch(
-        `http://localhost:3001/account?registerEmail=${values.registerEmail}`
-      );
-      const data = await response.json();
-      if (data.length !== 0) {
-        actions.setFieldError("registerEmail", "Email này đã tồn tại");
-      } else {
-        await fetch("http://localhost:3001/account", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        });
-        values.registerName = "";
-        values.registerPassword = "";
-        values.registerPasswordRetype = "";
-        values.registerEmail = "";
-        values.registerPhone = "";
-        values.registerAddress = "";
-        document.querySelector(".successful").style.display = "flex";
-      }
+
     } catch (error) {
-      console.error("Lỗi khi tạo tài khoản:", error);
+      console.log('ERROR', error)
     }
   };
 
   // đăng nhập tài khoản
   const loginAccount = async (values, actions) => {
-    await axios
+    try {
+      await axios
       .get(`http://localhost:3001/account?email=${values.loginName}`)
       .then((response) => {
         if (response.data.length === 0) {
@@ -100,31 +81,12 @@ function Heading({ setSearchQuery }) {
             values.loginName = "";
             values.loginPassword = "";
           }
-          try {
-            const response = fetch(
-              `http://localhost:3001/account?registerEmail=${values.loginName}`
-            );
-            const data = response.json();
-            if (data.length === 0) {
-              actions.setFieldError("loginName", "Tài khoản không đúng");
-            } else {
-              const registerPassword = data[0].registerPassword;
-              if (values.loginPassword !== registerPassword) {
-                actions.setFieldError("loginPassword", "Mật khẩu không đúng");
-              } else {
-                Cookies.set("username", values.loginName, { expires: 7 });
-                alert("Bạn đã đăng nhập thành công");
-                setFlagExistUser(true);
-                setIsLogin(false);
-                values.loginName = "";
-                values.loginPassword = "";
-              }
-            }
-          } catch (error) {
-            console.error("Lỗi khi đăng nhập:", error);
-          }
         }
       });
+    } catch (error) {
+      console.log('ERROR', error)
+    }
+   
   };
 
   // đăng xuất tài khoản
